@@ -1,0 +1,18 @@
+{
+  "name": "melone-brisbane-drain-care",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "node build/preview-server.mjs",
+    "build": "node build/static-build.mjs",
+    "start": "node build/preview-server.mjs",
+    "test": "node --test tests/site.test.mjs",
+    "lint": "node --check site/worker.mjs && node --check site/site.js && node --check build/static-build.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "type": "module"
+}
