@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import vercelHandler from "../api/render.mjs";
 import worker from "../dist/server/index.js";
 
 const paths = [
@@ -91,4 +92,34 @@ test("unknown pages return a helpful 404", async () => {
   const response = await fetchPath("/missing-page/");
   assert.equal(response.status, 404);
   assert.match(await response.text(), /wrong drain/);
+});
+
+test("Vercel catch-all renders the requested public route", async () => {
+  const chunks = [];
+  const headers = new Map();
+  const response = {
+    statusCode: 0,
+    setHeader: (name, value) => headers.set(name.toLowerCase(), value),
+    end: (chunk) => {
+      if (chunk) chunks.push(Buffer.from(chunk));
+    },
+  };
+
+  await vercelHandler(
+    {
+      method: "GET",
+      headers: {
+        host: "melone.example",
+        "x-forwarded-proto": "https",
+      },
+      query: { path: "blocked-drains-brisbane/" },
+    },
+    response,
+  );
+
+  const html = Buffer.concat(chunks).toString("utf8");
+  assert.equal(response.statusCode, 200);
+  assert.match(headers.get("content-type") || "", /^text\/html/);
+  assert.match(html, /A blocked drain needs a clear next step/);
+  assert.match(html, /https:\/\/melone\.example\/blocked-drains-brisbane\//);
 });

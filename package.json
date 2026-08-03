@@ -10,7 +10,7 @@
     "build": "node build/static-build.mjs",
     "start": "node build/preview-server.mjs",
     "test": "node --test tests/site.test.mjs",
-    "lint": "node --check site/worker.mjs && node --check site/site.js && node --check build/static-build.mjs"
+    "lint": "node --check site/worker.mjs && node --check site/site.js && node --check build/static-build.mjs && node --check api/render.mjs"
   },
   "dependencies": {},
   "devDependencies": {},
