@@ -2,6 +2,8 @@ const PHONE_DISPLAY = "0403 202 949";
 const PHONE_HREF = "+61403202949";
 const EMAIL = "handyman.kevinlee@gmail.com";
 const CONTACT = "Felix2";
+const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/place/Mel+One+Maintenance/@-37.8179747,144.9562013,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad65d960519febf:0x7dee54b29c5d00fa!8m2!3d-37.817979!4d144.9587762!16s%2Fg%2F11sskz225t?entry=ttu&g_ep=EgoyMDI2MDcyNy4wIKXMDSoASAFQAw%3D%3D";
+const GOOGLE_BUSINESS_EMBED = "https://www.google.com/maps?q=Mel%20One%20Maintenance%2C%20Melbourne%20VIC&amp;output=embed";
 
 const services = [
   {
@@ -256,6 +258,7 @@ const routePaths = [
   "/service-areas-brisbane/",
   "/about/",
   "/contact/",
+  "/zh/",
 ];
 
 const esc = (value) =>
@@ -346,6 +349,28 @@ const reviewCarousel = () => `
     </div>
   </section>`;
 
+const brisbaneMap = ({ id, eyebrow, heading, copy, linkText }) => `
+  <section class="section map-section location-map-section" aria-labelledby="${esc(id)}">
+    <div class="map-copy reveal">
+      <p class="eyebrow">${esc(eyebrow)}</p>
+      <h2 id="${esc(id)}">${esc(heading)}</h2>
+      <p>${esc(copy)}</p>
+      <div class="location-meta" aria-label="MelOne company and service area details">
+        <strong>Mel One Property Maintenance Pty Ltd</strong>
+        <span>ABN 39 666 325 408</span>
+        <span>Mel One Maintenance</span>
+        <span>Google Maps</span>
+      </div>
+      <div class="map-links">
+        <a class="text-link" href="${esc(GOOGLE_BUSINESS_URL)}" target="_blank" rel="noopener">${esc(linkText)} <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="/service-areas-brisbane/">See the Brisbane service-area map <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="map-frame map-frame-colour reveal">
+      <iframe title="Colour Google map for Mel One Maintenance" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>`;
+
 const breadcrumb = (items) => `
   <nav class="breadcrumbs" aria-label="Breadcrumb">
     <ol>
@@ -359,7 +384,7 @@ const callout = (heading = "Tell us what the drain is doing.") => `
     <div>
       <p class="eyebrow eyebrow-light">Brisbane drain help</p>
       <h2 id="contact-band-title">${esc(heading)}</h2>
-      <p>Call Felix2 with your suburb, the affected drain and what happens when water is used. We will confirm availability and the next practical step.</p>
+      <p>Call Felix2 with your suburb, the blocked drain and what happens when water is used. We will confirm availability and explain what happens next.</p>
     </div>
     <div class="contact-band-actions">
       <a class="button button-light" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
@@ -501,6 +526,14 @@ const homePage = () => ({
         ${["Brisbane City", "New Farm", "Chermside", "Wynnum", "Sunnybank", "Carindale", "Indooroopilly", "The Gap", "Cannon Hill", "Mount Gravatt", "Nundah", "West End"].map((area) => `<span>${area}</span>`).join("")}
       </div>
     </section>
+
+    ${brisbaneMap({
+      id: "home-brisbane-map-title",
+      eyebrow: "Brisbane service area",
+      heading: "Find Mel One Maintenance on Google Maps.",
+      copy: "Use the map to view the Mel One Maintenance business profile and get directions.",
+      linkText: "View Mel One Maintenance on Google Maps",
+    })}
 
     <section class="section about-preview">
       <div class="about-card reveal">
@@ -720,9 +753,91 @@ const aboutPage = () => ({
         </div>
       </section>
 
+      ${brisbaneMap({
+        id: "about-brisbane-map-title",
+        eyebrow: "Where we work",
+        heading: "Mel One Maintenance on Google Maps.",
+        copy: "View the Mel One Maintenance business profile, location and directions.",
+        linkText: "Open in Google Maps",
+      })}
+
       ${reviewCarousel()}
 
       ${callout("Speak directly with MelOne.")}
+    </main>`,
+});
+
+const chinesePage = () => ({
+  title: "布里斯班管道疏通与排水服务 | MelOne",
+  description:
+    "MelOne 为布里斯班住宅、出租物业和本地商家提供堵塞排水管、马桶、洗手盆及雨水排水问题的中文咨询。",
+  eyebrow: "中文服务",
+  heading: "布里斯班管道疏通与排水服务",
+  lang: "zh-Hans",
+  updated: "2026-08-03",
+  body: `
+    <main>
+      <section class="inner-hero about-hero">
+        <nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="/">English</a></li><li><span aria-current="page">中文</span></li></ol></nav>
+        <div class="inner-hero-grid">
+          <div class="reveal">
+            <p class="eyebrow">MelOne 中文服务</p>
+            <h1>布里斯班管道堵塞？先把情况说清楚。</h1>
+          </div>
+          <div class="inner-hero-aside reveal">
+            <p>告诉 Felix2 您所在的布里斯班郊区、哪一个排水口堵塞，以及是否有积水、异味、咕噜声或倒灌。我们会确认服务范围和可预约时间。</p>
+            <a class="text-link" href="/">View the English website <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split-intro">
+        <div><p class="eyebrow">常见排水问题</p><h2>住宅、出租物业和本地商家。</h2></div>
+        <p>我们处理布里斯班常见的排水堵塞咨询。情况紧急时，请先停止使用受影响的排水口，并尽量减少附近用水。</p>
+      </section>
+
+      <section class="section section-tight" aria-label="中文排水服务">
+        <div class="service-grid">
+          <article class="service-card reveal"><span class="service-number">01</span><p class="eyebrow">水位上升或倒灌</p><h3>堵塞排水管</h3><p>洗手盆、淋浴、地漏或室外排水口排水缓慢、发出咕噜声或溢水。</p><a class="text-link" href="/blocked-drains-brisbane/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
+          <article class="service-card reveal"><span class="service-number">02</span><p class="eyebrow">慢排水与异味</p><h3>排水清理</h3><p>处理积垢、反复出现的异味，以及越来越慢的厨房或浴室排水。</p><a class="text-link" href="/drain-cleaning-brisbane/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
+          <article class="service-card reveal"><span class="service-number">03</span><p class="eyebrow">卫生间与厨房</p><h3>马桶和洗手盆堵塞</h3><p>马桶、厨房水槽、浴室洗手盆和淋浴排水问题。</p><a class="text-link" href="/toilet-sink-blockages/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
+          <article class="service-card reveal"><span class="service-number">04</span><p class="eyebrow">室外积水</p><h3>雨水排水</h3><p>布里斯班大雨前后的格栅、落叶淤积和室外积水问题。</p><a class="text-link" href="/stormwater-drain-cleaning/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
+        </div>
+      </section>
+
+      <section class="section why-section" aria-labelledby="zh-why-title">
+        <div class="why-heading reveal">
+          <p class="eyebrow">为什么选择 MelOne</p>
+          <h2 id="zh-why-title">一个联系人，清楚沟通。</h2>
+          <p>直接联系 Felix2。请提供郊区、邮编和现场情况，我们会先确认服务范围与时间。</p>
+        </div>
+        <div class="why-grid">
+          <article class="why-card reveal"><span>01</span><h3>直接联系</h3><p>电话和邮箱在全站保持一致，不需要重复寻找联系人。</p></article>
+          <article class="why-card reveal"><span>02</span><h3>说明白再安排</h3><p>先了解哪里堵塞、何时开始，以及其他排水口是否也受影响。</p></article>
+          <article class="why-card reveal"><span>03</span><h3>布里斯班上门服务</h3><p>提供郊区和邮编后，我们会确认当天的行程与可预约时间。</p></article>
+          <article class="why-card reveal"><span>04</span><h3>住宅与本地商家</h3><p>可咨询住宅、出租物业、物业管理和小型商家的排水问题。</p></article>
+        </div>
+      </section>
+
+      ${brisbaneMap({
+        id: "zh-brisbane-map-title",
+        eyebrow: "服务区域地图",
+        heading: "在 Google 地图查看 Mel One Maintenance",
+        copy: "使用地图查看 Mel One Maintenance 商家资料、地点和路线。",
+        linkText: "在 Google 地图中查看 Mel One Maintenance",
+      })}
+
+      <section class="contact-band" aria-labelledby="zh-contact-title">
+        <div>
+          <p class="eyebrow eyebrow-light">中文咨询</p>
+          <h2 id="zh-contact-title">告诉我们哪里堵塞。</h2>
+          <p>联系 Felix2 时请提供布里斯班郊区、邮编、堵塞位置和当前情况。</p>
+        </div>
+        <div class="contact-band-actions">
+          <a class="button button-light" href="tel:${PHONE_HREF}">电话 ${PHONE_DISPLAY}</a>
+          <a class="button button-ghost-light" href="mailto:${EMAIL}?subject=Brisbane%20drain%20service%20enquiry">${EMAIL}</a>
+        </div>
+      </section>
     </main>`,
 });
 
@@ -783,6 +898,7 @@ const getPage = (path) => {
   if (path === "/service-areas-brisbane/") return areaPage();
   if (path === "/about/") return aboutPage();
   if (path === "/contact/") return contactPage();
+  if (path === "/zh/") return chinesePage();
   return null;
 };
 
@@ -799,6 +915,7 @@ const header = (path) => `
       <a ${path.startsWith("/blocked") || path.startsWith("/drain-") || path.startsWith("/toilet") || path.startsWith("/stormwater") ? 'aria-current="page"' : ""} href="/blocked-drains-brisbane/">Services</a>
       <a ${path === "/service-areas-brisbane/" ? 'aria-current="page"' : ""} href="/service-areas-brisbane/">Map & areas</a>
       <a ${path === "/about/" ? 'aria-current="page"' : ""} href="/about/">About</a>
+      <a ${path === "/zh/" ? 'aria-current="page"' : ""} href="/zh/" lang="zh-Hans">中文</a>
       <a class="nav-contact" ${path === "/contact/" ? 'aria-current="page"' : ""} href="/contact/">Contact <span aria-hidden="true">↗</span></a>
     </nav>
   </header>`;
@@ -808,7 +925,7 @@ const footer = () => `
     <div class="footer-main">
       <div class="footer-brand"><div class="footer-logo-lockup"><span class="footer-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><strong class="brand-wordmark">MELONE</strong></div><p>Blocked drain and drain cleaning help across Brisbane and nearby suburbs.</p><p>Mel One Property Maintenance Pty Ltd · ABN 39 666 325 408</p></div>
       <div><h2>Services</h2><ul>${services.map((service) => `<li><a href="${service.slug}">${esc(service.nav)}</a></li>`).join("")}</ul></div>
-      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li></ul></div>
       <div class="footer-contact"><h2>Speak with ${CONTACT}</h2><a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Brisbane, Queensland</p></div>
     </div>
     <div class="footer-bottom"><span>© MelOne</span><span>Brisbane drain clearing</span></div>
@@ -844,6 +961,7 @@ const jsonLd = (page, origin, path) => {
         { "@type": "PropertyValue", propertyID: "ABN", value: "39 666 325 408" },
         { "@type": "PropertyValue", propertyID: "ACN", value: "666 325 408" },
       ],
+      sameAs: [GOOGLE_BUSINESS_URL],
       contactPoint: {
         "@type": "ContactPoint",
         name: CONTACT,
@@ -851,7 +969,7 @@ const jsonLd = (page, origin, path) => {
         email: EMAIL,
         contactType: "customer service",
         areaServed: "AU-QLD",
-        availableLanguage: "en-AU",
+        availableLanguage: ["en-AU", "zh-Hans"],
       },
     },
     {
@@ -864,6 +982,8 @@ const jsonLd = (page, origin, path) => {
       telephone: PHONE_HREF,
       email: EMAIL,
       taxID: "ABN 39 666 325 408",
+      sameAs: [GOOGLE_BUSINESS_URL],
+      hasMap: GOOGLE_BUSINESS_URL,
       areaServed: [
         { "@type": "City", name: "Brisbane" },
         { "@type": "AdministrativeArea", name: "Greater Brisbane" },
@@ -881,7 +1001,7 @@ const jsonLd = (page, origin, path) => {
       "@id": `${origin}/#website`,
       url: `${origin}/`,
       name: "MelOne Brisbane Drain Care",
-      inLanguage: "en-AU",
+      inLanguage: ["en-AU", "zh-Hans"],
       publisher: { "@id": `${origin}/#organisation` },
     },
     {
@@ -890,7 +1010,7 @@ const jsonLd = (page, origin, path) => {
       url: canonical,
       name: page.title,
       description: page.description,
-      inLanguage: "en-AU",
+      inLanguage: page.lang || "en-AU",
       isPartOf: { "@id": `${origin}/#website` },
       about: { "@id": `${origin}/#business` },
       dateModified: page.updated,
@@ -924,8 +1044,10 @@ const jsonLd = (page, origin, path) => {
 
 const document = (page, origin, path) => {
   const canonical = `${origin}${path}`;
+  const pageLang = page.lang || "en-AU";
+  const ogLocale = pageLang === "zh-Hans" ? "zh_CN" : "en_AU";
   return `<!doctype html>
-<html lang="en-AU">
+<html lang="${pageLang}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -933,11 +1055,14 @@ const document = (page, origin, path) => {
   <meta name="description" content="${esc(page.description)}">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="canonical" href="${canonical}">
+  <link rel="alternate" hreflang="en-AU" href="${origin}/">
+  <link rel="alternate" hreflang="zh-Hans" href="${origin}/zh/">
+  <link rel="alternate" hreflang="x-default" href="${origin}/">
   <link rel="preload" href="/assets/site.css" as="style">
   <link rel="stylesheet" href="/assets/site.css">
   <meta name="theme-color" content="#071a2b">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_AU">
+  <meta property="og:locale" content="${ogLocale}">
   <meta property="og:site_name" content="MelOne Brisbane Drain Care">
   <meta property="og:title" content="${esc(page.title)}">
   <meta property="og:description" content="${esc(page.description)}">
@@ -1012,7 +1137,7 @@ export default {
         "cache-control": "public, max-age=0, s-maxage=3600",
         "x-content-type-options": "nosniff",
         "referrer-policy": "strict-origin-when-cross-origin",
-        "content-language": "en-AU",
+        "content-language": page.lang || "en-AU",
       },
     });
   },

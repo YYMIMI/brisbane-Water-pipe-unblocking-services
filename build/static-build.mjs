@@ -7,6 +7,7 @@ const dist = path.join(root, "dist");
 const server = path.join(dist, "server");
 const client = path.join(dist, "client");
 const assets = path.join(client, "assets");
+const hosting = path.join(dist, ".openai");
 
 if (!dist.startsWith(`${root}${path.sep}`)) {
   throw new Error("Refusing to build outside the project directory");
@@ -15,9 +16,11 @@ if (!dist.startsWith(`${root}${path.sep}`)) {
 await rm(dist, { recursive: true, force: true });
 await mkdir(server, { recursive: true });
 await mkdir(assets, { recursive: true });
+await mkdir(hosting, { recursive: true });
 
 await Promise.all([
   copyFile(path.join(root, "site", "worker.mjs"), path.join(server, "index.js")),
+  copyFile(path.join(root, ".openai", "hosting.json"), path.join(hosting, "hosting.json")),
   copyFile(path.join(root, "site", "site.css"), path.join(assets, "site.css")),
   copyFile(path.join(root, "site", "site.js"), path.join(assets, "site.js")),
   copyFile(path.join(root, "public", "og.png"), path.join(client, "og.png")),

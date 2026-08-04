@@ -12,6 +12,7 @@ const paths = [
   "/service-areas-brisbane/",
   "/about/",
   "/contact/",
+  "/zh/",
 ];
 
 const assets = { fetch: async () => new Response("asset", { status: 200 }) };
@@ -24,7 +25,7 @@ test("every public page renders with unique metadata and one useful heading", as
     assert.equal(response.status, 200, path);
     assert.match(response.headers.get("content-type") || "", /^text\/html/);
     const html = await response.text();
-    assert.match(html, /<html lang="en-AU">/);
+    assert.match(html, path === "/zh/" ? /<html lang="zh-Hans">/ : /<html lang="en-AU">/);
     assert.match(html, /0403 202 949/);
     assert.match(html, /handyman\.kevinlee@gmail\.com/);
     assert.match(html, /\/melone-logo\.png/);
@@ -57,6 +58,9 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /Kong Tran/);
       assert.match(html, /Kevin Song/);
       assert.match(html, /What customers say about MelOne/);
+      assert.match(html, /home-brisbane-map-title/);
+      assert.match(html, /www\.google\.com\/maps\?q=Mel%20One%20Maintenance/);
+      assert.match(html, /Mel One Property Maintenance Pty Ltd/);
     }
     if (path === "/about/") {
       assert.match(html, /data-review-carousel/);
@@ -64,6 +68,16 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /Ingrid Gao/);
       assert.match(html, /Kong Tran/);
       assert.match(html, /Kevin Song/);
+      assert.match(html, /about-brisbane-map-title/);
+      assert.match(html, /www\.google\.com\/maps\?q=Mel%20One%20Maintenance/);
+      assert.match(html, /Mel One Property Maintenance Pty Ltd/);
+    }
+    if (path === "/zh/") {
+      assert.match(html, /MelOne 中文服务/);
+      assert.match(html, /布里斯班管道疏通与排水服务/);
+      assert.match(html, /zh-brisbane-map-title/);
+      assert.match(html, /www\.google\.com\/maps\?q=Mel%20One%20Maintenance/);
+      assert.match(html, /hreflang="zh-Hans"/);
     }
     if (path === "/service-areas-brisbane/") {
       assert.match(html, /Indicative map of the MelOne Brisbane service area/);
@@ -112,7 +126,7 @@ test("Vercel catch-all renders the requested public route", async () => {
         host: "melone.example",
         "x-forwarded-proto": "https",
       },
-      query: { path: "blocked-drains-brisbane/" },
+      query: { path: "zh/" },
     },
     response,
   );
@@ -120,6 +134,6 @@ test("Vercel catch-all renders the requested public route", async () => {
   const html = Buffer.concat(chunks).toString("utf8");
   assert.equal(response.statusCode, 200);
   assert.match(headers.get("content-type") || "", /^text\/html/);
-  assert.match(html, /A blocked drain needs a clear next step/);
-  assert.match(html, /https:\/\/melone\.example\/blocked-drains-brisbane\//);
+  assert.match(html, /布里斯班管道疏通与排水服务/);
+  assert.match(html, /https:\/\/melone\.example\/zh\//);
 });

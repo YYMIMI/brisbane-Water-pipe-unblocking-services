@@ -2341,6 +2341,36 @@ p {
   margin-top: 1.5rem;
 }
 
+.location-map-section {
+  align-items: stretch;
+}
+
+.location-map-section .map-copy {
+  align-self: center;
+}
+
+.location-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  margin: 1.5rem 0 0;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.location-meta strong {
+  flex: 0 0 100%;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.map-frame-colour iframe {
+  filter: none;
+}
+
 .map-frame {
   min-height: 480px;
   overflow: hidden;
@@ -2464,4 +2494,16 @@ p {
     grid-template-columns: 1fr;
     gap: 0.35rem;
   }
+}
+
+.map-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.map-links .text-link {
+  margin-top: 0;
 }
