@@ -2,8 +2,8 @@ const PHONE_DISPLAY = "0403 202 949";
 const PHONE_HREF = "+61403202949";
 const EMAIL = "handyman.kevinlee@gmail.com";
 const CONTACT = "Felix2";
-const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/place/Mel+One+Maintenance/@-37.8179747,144.9562013,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad65d960519febf:0x7dee54b29c5d00fa!8m2!3d-37.817979!4d144.9587762!16s%2Fg%2F11sskz225t?entry=ttu&g_ep=EgoyMDI2MDcyNy4wIKXMDSoASAFQAw%3D%3D";
-const GOOGLE_BUSINESS_EMBED = "https://www.google.com/maps?q=Mel%20One%20Maintenance%2C%20Melbourne%20VIC&amp;output=embed";
+const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/place/Mel+One+Renovations/@-27.4677227,153.0289747,17z/data=!4m6!3m5!1s0x6b915b94f91493e3:0xb7c3ba1146243943!8m2!3d-27.4677227!4d153.0289747!16s%2Fg%2F11zh9gk28p?hl=en";
+const GOOGLE_BUSINESS_EMBED = "https://www.google.com/maps?q=-27.4677227%2C153.0289747&amp;output=embed";
 
 const services = [
   {
@@ -358,7 +358,7 @@ const brisbaneMap = ({ id, eyebrow, heading, copy, linkText }) => `
       <div class="location-meta" aria-label="MelOne company and service area details">
         <strong>Mel One Property Maintenance Pty Ltd</strong>
         <span>ABN 39 666 325 408</span>
-        <span>Mel One Maintenance</span>
+        <span>Mel One Renovations</span>
         <span>Google Maps</span>
       </div>
       <div class="map-links">
@@ -367,7 +367,7 @@ const brisbaneMap = ({ id, eyebrow, heading, copy, linkText }) => `
       </div>
     </div>
     <div class="map-frame map-frame-colour reveal">
-      <iframe title="Colour Google map for Mel One Maintenance" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe title="Colour Google map for Mel One Renovations" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>`;
 
@@ -530,9 +530,9 @@ const homePage = () => ({
     ${brisbaneMap({
       id: "home-brisbane-map-title",
       eyebrow: "Brisbane service area",
-      heading: "Find Mel One Maintenance on Google Maps.",
-      copy: "Use the map to view the Mel One Maintenance business profile and get directions.",
-      linkText: "View Mel One Maintenance on Google Maps",
+      heading: "Find Mel One Renovations on Google Maps.",
+      copy: "Use the map to view the Mel One Renovations business profile and get directions.",
+      linkText: "View Mel One Renovations on Google Maps",
     })}
 
     <section class="section about-preview">
@@ -649,11 +649,11 @@ const areaPage = () => ({
           <p class="eyebrow">Indicative coverage map</p>
           <h2 id="service-map-title">Mobile service across Brisbane.</h2>
           <p>MelOne travels to customer properties. This map shows Brisbane as the general service area; it is not a shopfront pin or a guaranteed travel boundary. Call with your suburb and postcode so Felix2 can confirm current availability.</p>
-          <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Brisbane%2C%20QLD%2C%20Australia" target="_blank" rel="noopener">Open Brisbane in Google Maps <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="${GOOGLE_BUSINESS_URL}" target="_blank" rel="noopener">Open Mel One Renovations in Google Maps <span aria-hidden="true">↗</span></a>
           <p class="updated-note">Coverage information reviewed <time datetime="2026-08-03">3 August 2026</time>.</p>
         </div>
         <div class="map-frame reveal">
-          <iframe title="Indicative map of the MelOne Brisbane service area" src="https://www.google.com/maps?q=Brisbane%2C%20QLD%2C%20Australia&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe title="Map of Mel One Renovations in Brisbane" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <aside class="entity-card reveal" aria-labelledby="entity-title">
           <p class="eyebrow">Business details</p>
@@ -756,8 +756,8 @@ const aboutPage = () => ({
       ${brisbaneMap({
         id: "about-brisbane-map-title",
         eyebrow: "Where we work",
-        heading: "Mel One Maintenance on Google Maps.",
-        copy: "View the Mel One Maintenance business profile, location and directions.",
+        heading: "Mel One Renovations on Google Maps.",
+        copy: "View the Mel One Renovations business profile, location and directions.",
         linkText: "Open in Google Maps",
       })}
 
@@ -822,9 +822,9 @@ const chinesePage = () => ({
       ${brisbaneMap({
         id: "zh-brisbane-map-title",
         eyebrow: "服务区域地图",
-        heading: "在 Google 地图查看 Mel One Maintenance",
-        copy: "使用地图查看 Mel One Maintenance 商家资料、地点和路线。",
-        linkText: "在 Google 地图中查看 Mel One Maintenance",
+        heading: "在 Google 地图查看 Mel One Renovations",
+        copy: "使用地图查看 Mel One Renovations 商家资料、地点和路线。",
+        linkText: "在 Google 地图中查看 Mel One Renovations",
       })}
 
       <section class="contact-band" aria-labelledby="zh-contact-title">
