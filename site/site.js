@@ -119,3 +119,15 @@ document.querySelectorAll("[data-review-carousel]").forEach((carousel) => {
   updateToggle();
   start();
 });
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href^='tel:'], a[href^='mailto:']");
+  if (!link || typeof window.gtag !== "function") return;
+
+  const isPhone = link.href.startsWith("tel:");
+  window.gtag("event", isPhone ? "click_to_call" : "email_click", {
+    link_url: link.href,
+    page_path: window.location.pathname,
+    transport_type: "beacon",
+  });
+});
