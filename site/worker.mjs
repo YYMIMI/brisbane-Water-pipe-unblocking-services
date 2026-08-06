@@ -2,6 +2,7 @@ const PHONE_DISPLAY = "0403 202 949";
 const PHONE_HREF = "+61403202949";
 const EMAIL = "handyman.kevinlee@gmail.com";
 const CONTACT = "Felix2";
+const GA_MEASUREMENT_ID = "G-2FKG0LZ2V1";
 const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/place/Mel+One+Renovations/@-27.4677227,153.0289747,17z/data=!4m6!3m5!1s0x6b915b94f91493e3:0xb7c3ba1146243943!8m2!3d-27.4677227!4d153.0289747!16s%2Fg%2F11zh9gk28p?hl=en";
 const GOOGLE_BUSINESS_EMBED = "https://www.google.com/maps?q=-27.4677227%2C153.0289747&amp;output=embed";
 
@@ -950,7 +951,8 @@ const jsonLd = (page, origin, path) => {
     {
       "@type": "Organization",
       "@id": `${origin}/#organisation`,
-      name: "MelOne",
+      name: "Mel One Renovations",
+      alternateName: ["MelOne", "MelOne Brisbane Drain Care"],
       legalName: "Mel One Property Maintenance Pty Ltd",
       url: `${origin}/`,
       logo: `${origin}/melone-logo.png`,
@@ -975,7 +977,8 @@ const jsonLd = (page, origin, path) => {
     {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
       "@id": `${origin}/#business`,
-      name: "MelOne",
+      name: "Mel One Renovations",
+      alternateName: ["MelOne", "MelOne Brisbane Drain Care"],
       legalName: "Mel One Property Maintenance Pty Ltd",
       url: `${origin}/`,
       image: `${origin}/og.png`,
@@ -1046,6 +1049,9 @@ const document = (page, origin, path) => {
   const canonical = `${origin}${path}`;
   const pageLang = page.lang || "en-AU";
   const ogLocale = pageLang === "zh-Hans" ? "zh_CN" : "en_AU";
+  const alternateLinks = path === "/" || path === "/zh/"
+    ? `\n  <link rel="alternate" hreflang="en-AU" href="${origin}/">\n  <link rel="alternate" hreflang="zh-Hans" href="${origin}/zh/">\n  <link rel="alternate" hreflang="x-default" href="${origin}/">`
+    : "";
   return `<!doctype html>
 <html lang="${pageLang}">
 <head>
@@ -1054,10 +1060,7 @@ const document = (page, origin, path) => {
   <title>${esc(page.title)}</title>
   <meta name="description" content="${esc(page.description)}">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <link rel="canonical" href="${canonical}">
-  <link rel="alternate" hreflang="en-AU" href="${origin}/">
-  <link rel="alternate" hreflang="zh-Hans" href="${origin}/zh/">
-  <link rel="alternate" hreflang="x-default" href="${origin}/">
+  <link rel="canonical" href="${canonical}">${alternateLinks}
   <link rel="preload" href="/assets/site.css" as="style">
   <link rel="stylesheet" href="/assets/site.css">
   <meta name="theme-color" content="#071a2b">
@@ -1075,6 +1078,8 @@ const document = (page, origin, path) => {
   <meta name="twitter:title" content="${esc(page.title)}">
   <meta name="twitter:description" content="${esc(page.description)}">
   <meta name="twitter:image" content="${origin}/og.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_MEASUREMENT_ID}");</script>
   <script type="application/ld+json">${jsonLd(page, origin, path)}</script>
 </head>
 <body>
