@@ -30,6 +30,15 @@ test("every public page renders with unique metadata and one useful heading", as
     assert.match(html, /handyman\.kevinlee@gmail\.com/);
     assert.match(html, /\/melone-logo\.png/);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://melone\\.example${path.replaceAll("/", "\\/")}">`));
+    assert.match(html, /googletagmanager\\.com\\/gtag\\/js\\?id=G-2FKG0LZ2V1/);
+    assert.match(html, /gtag\\("config","G-2FKG0LZ2V1"\\)/);
+    if (path === "/" || path === "/zh/") {
+      assert.match(html, /hreflang="en-AU"/);
+      assert.match(html, /hreflang="zh-Hans"/);
+      assert.match(html, /hreflang="x-default"/);
+    } else {
+      assert.doesNotMatch(html, /rel="alternate"/);
+    }
     assert.equal((html.match(/<h1\b/g) || []).length, 1, `${path} should contain one h1`);
     assert.doesNotMatch(html, /codex-preview|Your site is taking shape|keyword strategy|SEO strategy/i);
     assert.doesNotMatch(html, /melonerenovations\.com\.au/i);
@@ -49,7 +58,9 @@ test("every public page renders with unique metadata and one useful heading", as
     titles.add(title);
     const json = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)?.[1];
     assert.ok(json, `${path} should contain JSON-LD`);
-    assert.doesNotThrow(() => JSON.parse(json));
+    const structuredData = JSON.parse(json);
+    assert.equal(structuredData["@graph"][0].name, "Mel One Renovations");
+    assert.equal(structuredData["@graph"][1].name, "Mel One Renovations");
     assert.doesNotMatch(json, /AggregateRating|\"@type\":\"Review\"/);
     if (path === "/") {
       assert.match(html, /Why choose MelOne/);
@@ -59,7 +70,7 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /Kevin Song/);
       assert.match(html, /What customers say about MelOne/);
       assert.match(html, /home-brisbane-map-title/);
-      assert.match(html, /www\.google\.com\/maps\?q=Mel%20One%20Maintenance/);
+      assert.match(html, /www\.google\.com\/maps\/place\/Mel\+One\+Renovations/);
       assert.match(html, /Mel One Property Maintenance Pty Ltd/);
     }
     if (path === "/about/") {
@@ -69,18 +80,18 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /Kong Tran/);
       assert.match(html, /Kevin Song/);
       assert.match(html, /about-brisbane-map-title/);
-      assert.match(html, /www\.google\.com\/maps\?q=Mel%20One%20Maintenance/);
+      assert.match(html, /www\.google\.com\/maps\/place\/Mel\+One\+Renovations/);
       assert.match(html, /Mel One Property Maintenance Pty Ltd/);
     }
     if (path === "/zh/") {
       assert.match(html, /MelOne 中文服务/);
       assert.match(html, /布里斯班管道疏通与排水服务/);
       assert.match(html, /zh-brisbane-map-title/);
-      assert.match(html, /www\.google\.com\/maps\?q=Mel%20One%20Maintenance/);
+      assert.match(html, /www\.google\.com\/maps\/place\/Mel\+One\+Renovations/);
       assert.match(html, /hreflang="zh-Hans"/);
     }
     if (path === "/service-areas-brisbane/") {
-      assert.match(html, /Indicative map of the MelOne Brisbane service area/);
+      assert.match(html, /Indicative coverage map/);
       assert.match(html, /Mel One Property Maintenance Pty Ltd/);
       assert.match(html, /39 666 325 408/);
       assert.match(html, /no walk-in shopfront/);
