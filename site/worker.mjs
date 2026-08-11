@@ -1,7 +1,7 @@
 const PHONE_DISPLAY = "0403 202 949";
 const PHONE_HREF = "+61403202949";
 const EMAIL = "handyman.kevinlee@gmail.com";
-const CONTACT = "Felix2";
+const CONTACT = "Felix";
 const GA_MEASUREMENT_ID = "G-2FKG0LZ2V1";
 const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/place/Mel+One+Renovations/@-27.4677227,153.0289747,17z/data=!4m6!3m5!1s0x6b915b94f91493e3:0xb7c3ba1146243943!8m2!3d-27.4677227!4d153.0289747!16s%2Fg%2F11zh9gk28p?hl=en";
 const GOOGLE_BUSINESS_EMBED = "https://www.google.com/maps?q=-27.4677227%2C153.0289747&amp;output=embed";
@@ -28,13 +28,13 @@ const services = [
     ],
     steps: [
       "Stop using the blocked drain and, if water is rising, use as little water as possible nearby.",
-      "Call Felix2 and describe where the blockage is, what you can see and when it started.",
+      "Call Felix and describe where the blockage is, what you can see and when it started.",
       "We confirm availability, check what is happening and explain what to do next.",
     ],
     faqs: [
       [
         "Can MelOne attend a blocked drain today?",
-        "Same-day availability depends on the time, suburb and current schedule. Call 0403 202 949 and Felix2 will confirm the earliest available time.",
+        "Same-day availability depends on the time, suburb and current schedule. Call 0403 202 949 and Felix will confirm the earliest available time.",
       ],
       [
         "What should I do while a drain is overflowing?",
@@ -233,7 +233,7 @@ const homeFaqs = [
   ],
   [
     "How quickly can MelOne attend in Brisbane?",
-    "Availability varies by time, suburb and the jobs already scheduled. Call 0403 202 949 and Felix2 will confirm the earliest practical option. Same-day appointments are subject to availability.",
+    "Availability varies by time, suburb and the jobs already scheduled. Call 0403 202 949 and Felix will confirm the earliest practical option. Same-day appointments are subject to availability.",
   ],
   [
     "Which Brisbane suburbs do you service?",
@@ -385,7 +385,7 @@ const callout = (heading = "Tell us what the drain is doing.") => `
     <div>
       <p class="eyebrow eyebrow-light">Brisbane drain help</p>
       <h2 id="contact-band-title">${esc(heading)}</h2>
-      <p>Call Felix2 with your suburb, the blocked drain and what happens when water is used. We will confirm availability and explain what happens next.</p>
+      <p>Call Felix with your suburb, the blocked drain and what happens when water is used. We will confirm availability and explain what happens next.</p>
     </div>
     <div class="contact-band-actions">
       <a class="button button-light" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
@@ -406,7 +406,7 @@ const homePage = () => ({
       <div class="hero-copy reveal">
         <p class="eyebrow">Brisbane drain services</p>
         <h1>Brisbane drain help.<br><span>Clear next steps.</span></h1>
-        <p class="hero-lede">Practical help for slow, gurgling, smelly or overflowing drains across Brisbane and nearby suburbs. Speak directly with Felix2, explain what is happening and find the right next move.</p>
+        <p class="hero-lede">Practical help for slow, gurgling, smelly or overflowing drains across Brisbane and nearby suburbs. Speak directly with Felix, explain what is happening and find the right next move.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
           <a class="button button-secondary" href="mailto:${EMAIL}?subject=Blocked%20drain%20enquiry">Email MelOne</a>
@@ -492,7 +492,7 @@ const homePage = () => ({
         <h2>From first call to a clearer way forward.</h2>
       </div>
       <ol class="process-list">
-        <li class="reveal"><span>1</span><div><h3>Describe it</h3><p>Tell Felix2 your suburb, which drain is blocked and what you have noticed. Photos can help when the problem is visible.</p></div></li>
+        <li class="reveal"><span>1</span><div><h3>Describe it</h3><p>Tell Felix your suburb, which drain is blocked and what you have noticed. Photos can help when the problem is visible.</p></div></li>
         <li class="reveal"><span>2</span><div><h3>Confirm the visit</h3><p>We check the location and current availability, then agree on what happens next.</p></div></li>
         <li class="reveal"><span>3</span><div><h3>Check the drain</h3><p>We use what you have noticed and the drains we can reach to work out where the blockage may be.</p></div></li>
         <li class="reveal"><span>4</span><div><h3>Know what follows</h3><p>We explain what we found and any sensible follow-up in plain English.</p></div></li>
@@ -507,7 +507,7 @@ const homePage = () => ({
         <p class="updated-note">Service information reviewed <time datetime="2026-08-03">3 August 2026</time>.</p>
       </div>
       <div class="why-grid">
-        <article class="why-card reveal"><span>01</span><h3>One clear contact</h3><p>Call or email Felix2 directly using the same contact details shown across the site.</p></article>
+        <article class="why-card reveal"><span>01</span><h3>One clear contact</h3><p>Call or email Felix directly using the same contact details shown across the site.</p></article>
         <article class="why-card reveal"><span>02</span><h3>Help matched to the problem</h3><p>Blocked drains, maintenance cleaning, toilet and sink blockages, and stormwater problems each have clear guidance.</p></article>
         <article class="why-card reveal"><span>03</span><h3>Coverage confirmed first</h3><p>Give us your Brisbane suburb and postcode so travel and current availability can be checked before booking.</p></article>
         <article class="why-card reveal"><span>04</span><h3>Useful details up front</h3><p>Where the water appears, how many drains are slow and whether the problem follows rain all help the first conversation.</p></article>
@@ -540,7 +540,7 @@ const homePage = () => ({
       <div class="about-card reveal">
         <p class="eyebrow">About MelOne</p>
         <h2>A local service built around useful answers.</h2>
-        <p>MelOne helps Brisbane residents, property managers and local businesses deal with blocked and slow drains. Felix2 is the primary contact, so you can explain the problem once and get a clear answer about what happens next.</p>
+        <p>MelOne helps Brisbane residents, property managers and local businesses deal with blocked and slow drains. Felix is the primary contact, so you can explain the problem once and get a clear answer about what happens next.</p>
         <a class="text-link" href="/about/">Meet MelOne <span aria-hidden="true">→</span></a>
       </div>
       <blockquote class="principle-card reveal">
@@ -649,7 +649,7 @@ const areaPage = () => ({
         <div class="map-copy reveal">
           <p class="eyebrow">Indicative coverage map</p>
           <h2 id="service-map-title">Mobile service across Brisbane.</h2>
-          <p>MelOne travels to customer properties. This map shows Brisbane as the general service area; it is not a shopfront pin or a guaranteed travel boundary. Call with your suburb and postcode so Felix2 can confirm current availability.</p>
+          <p>MelOne travels to customer properties. This map shows Brisbane as the general service area; it is not a shopfront pin or a guaranteed travel boundary. Call with your suburb and postcode so Felix can confirm current availability.</p>
           <a class="text-link" href="${GOOGLE_BUSINESS_URL}" target="_blank" rel="noopener">Open Mel One Renovations in Google Maps <span aria-hidden="true">↗</span></a>
           <p class="updated-note">Coverage information reviewed <time datetime="2026-08-03">3 August 2026</time>.</p>
         </div>
@@ -727,10 +727,10 @@ const aboutPage = () => ({
       <section class="section story-grid">
         <div class="story-lead reveal">
           <p class="eyebrow">The person behind the phone</p>
-          <h2>Speak with Felix2.</h2>
+          <h2>Speak with Felix.</h2>
         </div>
         <div class="story-copy reveal">
-          <p>Felix2 is MelOne’s primary contact for drain enquiries. That direct contact matters when a sink will not empty or an outside drain is starting to overflow. Tell us what is blocked and what you have noticed, and Felix2 will give you a clear answer about availability.</p>
+          <p>Felix is MelOne’s primary contact for drain enquiries. That direct contact matters when a sink will not empty or an outside drain is starting to overflow. Tell us what is blocked and what you have noticed, and Felix will give you a clear answer about availability.</p>
           <p>You do not need to know what is happening inside the pipe. Tell us where the water appears, what makes it worse and whether any other drains are slow or backing up.</p>
         </div>
       </section>
@@ -786,7 +786,7 @@ const chinesePage = () => ({
             <h1>布里斯班管道堵塞？先把情况说清楚。</h1>
           </div>
           <div class="inner-hero-aside reveal">
-            <p>告诉 Felix2 您所在的布里斯班郊区、哪一个排水口堵塞，以及是否有积水、异味、咕噜声或倒灌。我们会确认服务范围和可预约时间。</p>
+            <p>告诉 Felix 您所在的布里斯班郊区、哪一个排水口堵塞，以及是否有积水、异味、咕噜声或倒灌。我们会确认服务范围和可预约时间。</p>
             <a class="text-link" href="/">View the English website <span aria-hidden="true">→</span></a>
           </div>
         </div>
@@ -810,7 +810,7 @@ const chinesePage = () => ({
         <div class="why-heading reveal">
           <p class="eyebrow">为什么选择 MelOne</p>
           <h2 id="zh-why-title">一个联系人，清楚沟通。</h2>
-          <p>直接联系 Felix2。请提供郊区、邮编和现场情况，我们会先确认服务范围与时间。</p>
+          <p>直接联系 Felix。请提供郊区、邮编和现场情况，我们会先确认服务范围与时间。</p>
         </div>
         <div class="why-grid">
           <article class="why-card reveal"><span>01</span><h3>直接联系</h3><p>电话和邮箱在全站保持一致，不需要重复寻找联系人。</p></article>
@@ -832,7 +832,7 @@ const chinesePage = () => ({
         <div>
           <p class="eyebrow eyebrow-light">中文咨询</p>
           <h2 id="zh-contact-title">告诉我们哪里堵塞。</h2>
-          <p>联系 Felix2 时请提供布里斯班郊区、邮编、堵塞位置和当前情况。</p>
+          <p>联系 Felix 时请提供布里斯班郊区、邮编、堵塞位置和当前情况。</p>
         </div>
         <div class="contact-band-actions">
           <a class="button button-light" href="tel:${PHONE_HREF}">电话 ${PHONE_DISPLAY}</a>
@@ -845,7 +845,7 @@ const chinesePage = () => ({
 const contactPage = () => ({
   title: "Contact MelOne | Blocked Drain Help Brisbane",
   description:
-    "Call Felix2 at MelOne on 0403 202 949 or email handyman.kevinlee@gmail.com for blocked drain and drain cleaning enquiries across Brisbane.",
+    "Call Felix at MelOne on 0403 202 949 or email handyman.kevinlee@gmail.com for blocked drain and drain cleaning enquiries across Brisbane.",
   eyebrow: "Contact MelOne",
   heading: "Describe the drain problem. We will take it from there.",
   body: `
@@ -856,7 +856,7 @@ const contactPage = () => ({
           <div class="reveal">
             <p class="eyebrow eyebrow-light">Contact MelOne</p>
             <h1>What is the drain doing?</h1>
-            <p>Call for the quickest conversation, or email the key details and any useful photos. Felix2 will confirm whether the job is a fit and the next available step.</p>
+            <p>Call for the quickest conversation, or email the key details and any useful photos. Felix will confirm whether the job is a fit and the next available step.</p>
           </div>
           <div class="contact-cards reveal">
             <a href="tel:${PHONE_HREF}" class="contact-card"><span>Call</span><strong>${PHONE_DISPLAY}</strong><small>Primary contact: ${CONTACT}</small></a>
