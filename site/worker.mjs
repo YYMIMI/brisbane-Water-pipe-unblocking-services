@@ -754,6 +754,15 @@ const aboutPage = () => ({
         </div>
       </section>
 
+      <section id="company-details" class="section section-tight">
+        <div class="section-heading"><p class="eyebrow">Company &amp; insurance</p><h2>The registered business behind this website.</h2></div>
+        <div class="entity-card">
+          <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408<br>Registered with ASIC on 8 March 2023</p>
+          <p><strong>Current public liability insurance</strong><br>Chubb Insurance Australia Limited<br>Public &amp; Products Liability · AUD 20 million<br>13 April 2026 – 13 April 2027, subject to policy terms</p>
+          <p lang="zh-Hans"><strong>客户核验：</strong>本网站由 Mel One Property Maintenance Pty Ltd 运营；以上为已核验的公司注册与当前责任保险资料。牌照资料只会在持有人和工作类别与具体项目相符时提供。</p>
+        </div>
+      </section>
+
       ${brisbaneMap({
         id: "about-brisbane-map-title",
         eyebrow: "Where we work",
@@ -817,6 +826,14 @@ const chinesePage = () => ({
           <article class="why-card reveal"><span>02</span><h3>说明白再安排</h3><p>先了解哪里堵塞、何时开始，以及其他排水口是否也受影响。</p></article>
           <article class="why-card reveal"><span>03</span><h3>布里斯班上门服务</h3><p>提供郊区和邮编后，我们会确认当天的行程与可预约时间。</p></article>
           <article class="why-card reveal"><span>04</span><h3>住宅与本地商家</h3><p>可咨询住宅、出租物业、物业管理和小型商家的排水问题。</p></article>
+        </div>
+      </section>
+
+      <section id="company-details" class="section section-tight">
+        <div class="section-heading"><p class="eyebrow">公司与保险</p><h2>先确认您联系的是哪家公司。</h2></div>
+        <div class="entity-card">
+          <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408<br>公司注册日期：2023 年 3 月 8 日</p>
+          <p><strong>当前公众与产品责任险</strong><br>Chubb Insurance Australia Limited<br>责任限额：2,000 万澳元<br>保险期间：2026 年 4 月 13 日至 2027 年 4 月 13 日，具体保障以保单条款为准。</p>
         </div>
       </section>
 
@@ -926,7 +943,7 @@ const footer = () => `
     <div class="footer-main">
       <div class="footer-brand"><div class="footer-logo-lockup"><span class="footer-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><strong class="brand-wordmark">MELONE</strong></div><p>Blocked drain and drain cleaning help across Brisbane and nearby suburbs.</p><p>Mel One Property Maintenance Pty Ltd · ABN 39 666 325 408</p></div>
       <div><h2>Services</h2><ul>${services.map((service) => `<li><a href="${service.slug}">${esc(service.nav)}</a></li>`).join("")}</ul></div>
-      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li></ul></div>
       <div class="footer-contact"><h2>Speak with ${CONTACT}</h2><a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Brisbane, Queensland</p></div>
     </div>
     <div class="footer-bottom"><span>© MelOne</span><span>Brisbane drain clearing</span></div>
