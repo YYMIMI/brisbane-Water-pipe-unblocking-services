@@ -7,6 +7,7 @@ const paths = [
   "/",
   "/blocked-drains-brisbane/",
   "/drain-cleaning-brisbane/",
+  "/sewer-drain-cleaning-brisbane/",
   "/toilet-sink-blockages/",
   "/stormwater-drain-cleaning/",
   "/service-areas-brisbane/",
@@ -28,6 +29,9 @@ test("every public page renders with unique metadata and one useful heading", as
     assert.match(html, path === "/zh/" ? /<html lang="zh-Hans">/ : /<html lang="en-AU">/);
     assert.match(html, /0403 202 949/);
     assert.match(html, /handyman\.kevinlee@gmail\.com/);
+    if (["/", "/contact/", "/sewer-drain-cleaning-brisbane/"].includes(path)) {
+      assert.match(html, /reply within 24 hours|We reply within 24 hours/i);
+    }
     assert.match(html, /\/melone-logo\.png/);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://melone\\.example${path.replaceAll("/", "\\/")}">`));
     assert.match(html, /googletagmanager\\.com\\/gtag\\/js\\?id=G-2FKG0LZ2V1/);
@@ -59,8 +63,8 @@ test("every public page renders with unique metadata and one useful heading", as
     const json = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)?.[1];
     assert.ok(json, `${path} should contain JSON-LD`);
     const structuredData = JSON.parse(json);
-    assert.equal(structuredData["@graph"][0].name, "Mel One Renovations");
-    assert.equal(structuredData["@graph"][1].name, "Mel One Renovations");
+    assert.equal(structuredData["@graph"][0].name, "MelOne Brisbane Drain Care");
+    assert.equal(structuredData["@graph"][1].name, "MelOne Brisbane Drain Care");
     assert.doesNotMatch(json, /AggregateRating|\"@type\":\"Review\"/);
     if (path === "/") {
       assert.match(html, /Why choose MelOne/);

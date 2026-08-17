@@ -163,6 +163,45 @@ const services = [
       ],
     ],
   },
+  {
+    slug: "/sewer-drain-cleaning-brisbane/",
+    nav: "Sewer & main drains",
+    title: "Sewer Drain Cleaning Brisbane | Main Drain Help | MelOne",
+    description:
+      "Brisbane sewer and main drain cleaning enquiries for several fixtures backing up, recurring wastewater problems, gurgling and sewage odours.",
+    eyebrow: "Sewer and main drain cleaning",
+    heading: "Several fixtures backing up can point to the main drain.",
+    intro:
+      "When more than one toilet, sink, shower or floor waste backs up, or wastewater appears at an outside relief point, the problem may sit beyond one fixture. MelOne reviews the pattern across the property, safe access points and any recurring history before the cleaning or investigation scope is confirmed.",
+    intent: "For several affected fixtures and recurring main-drain restrictions",
+    signs: [
+      "More than one fixture draining slowly or backing up",
+      "Wastewater appearing at an outside relief point",
+      "Gurgling across different rooms when water is used",
+      "Sewage odours returning after normal cleaning",
+      "A main drain blockage that clears briefly and returns",
+      "A toilet level changing when another fixture is used",
+    ],
+    steps: [
+      "Reduce water use and stop using fixtures that are backing up.",
+      "Tell Felix which fixtures and outside relief points are affected.",
+      "We reply within 24 hours, confirm urgent availability separately and explain the appropriate next step.",
+    ],
+    faqs: [
+      [
+        "How is a main sewer blockage different from one blocked drain?",
+        "A local blockage usually affects one fixture. A main-drain problem often affects several fixtures or causes wastewater to appear at another point on the property.",
+      ],
+      [
+        "Should we keep using water while wastewater is backing up?",
+        "No. Reduce water use and stop using affected fixtures where possible. Keep people away from wastewater and call for advice.",
+      ],
+      [
+        "Will cleaning stop a recurring sewer blockage permanently?",
+        "Cleaning may restore flow, but recurring restrictions can involve roots, displaced joints, damaged pipework or another condition that needs separate investigation.",
+      ],
+    ],
+  },
 ];
 
 const areas = {
@@ -232,8 +271,8 @@ const homeFaqs = [
     "Common signs include slow flow, rising water, gurgling, recurring smells, an overflowing outside drain or several drains slowing at once. If water is rising, stop using the blocked drain and call for advice.",
   ],
   [
-    "How quickly can MelOne attend in Brisbane?",
-    "Availability varies by time, suburb and the jobs already scheduled. Call 0403 202 949 and Felix will confirm the earliest practical option. Same-day appointments are subject to availability.",
+    "How quickly will MelOne reply?",
+    "We reply to customer enquiries within 24 hours. Same-day attendance depends on the time, suburb and current schedule, so Felix will confirm the earliest practical option separately.",
   ],
   [
     "Which Brisbane suburbs do you service?",
@@ -385,7 +424,7 @@ const callout = (heading = "Tell us what the drain is doing.") => `
     <div>
       <p class="eyebrow eyebrow-light">Brisbane drain help</p>
       <h2 id="contact-band-title">${esc(heading)}</h2>
-      <p>Call Felix with your suburb, the blocked drain and what happens when water is used. We will confirm availability and explain what happens next.</p>
+      <p>Call Felix with your suburb, the blocked drain and what happens when water is used. We reply within 24 hours; urgent attendance and the work scope are confirmed separately.</p>
     </div>
     <div class="contact-band-actions">
       <a class="button button-light" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
@@ -399,7 +438,7 @@ const homePage = () => ({
     "MelOne provides Brisbane drain services for blocked, slow, gurgling and overflowing drains, with direct contact and clear next steps.",
   eyebrow: "Brisbane drain services",
   heading: "Brisbane drain help. Clear next steps.",
-  updated: "2026-08-03",
+  updated: "2026-08-17",
   faqs: homeFaqs,
   body: `
     <section class="hero home-hero">
@@ -411,7 +450,7 @@ const homePage = () => ({
           <a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
           <a class="button button-secondary" href="mailto:${EMAIL}?subject=Blocked%20drain%20enquiry">Email MelOne</a>
         </div>
-        <p class="availability-note"><span></span> Same-day appointments may be available — call to check.</p>
+        <p class="availability-note"><span></span> We reply within 24 hours. Same-day attendance may be available — call to check.</p>
       </div>
       <aside class="hero-panel reveal" aria-label="What to tell us">
         <div class="drain-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -563,6 +602,7 @@ const homePage = () => ({
 
 const servicePage = (service) => ({
   ...service,
+  updated: "2026-08-17",
   body: `
     <main>
       <section class="inner-hero">
@@ -628,7 +668,7 @@ const areaPage = () => ({
     "View MelOne's indicative Brisbane drain service area map, company contact details and suburb coverage for mobile drain help.",
   eyebrow: "Brisbane service area and map",
   heading: "MelOne's Brisbane service area and map.",
-  updated: "2026-08-03",
+  updated: "2026-08-17",
   body: `
     <main>
       <section class="inner-hero area-hero">
@@ -784,7 +824,7 @@ const chinesePage = () => ({
   eyebrow: "中文服务",
   heading: "布里斯班管道疏通与排水服务",
   lang: "zh-Hans",
-  updated: "2026-08-03",
+  updated: "2026-08-17",
   body: `
     <main>
       <section class="inner-hero about-hero">
@@ -873,7 +913,7 @@ const contactPage = () => ({
           <div class="reveal">
             <p class="eyebrow eyebrow-light">Contact MelOne</p>
             <h1>What is the drain doing?</h1>
-            <p>Call for the quickest conversation, or email the key details and any useful photos. Felix will confirm whether the job is a fit and the next available step.</p>
+            <p>Call for the quickest conversation, or email the key details and any useful photos. We reply within 24 hours; Felix confirms urgent attendance and the work scope separately.</p>
           </div>
           <div class="contact-cards reveal">
             <a href="tel:${PHONE_HREF}" class="contact-card"><span>Call</span><strong>${PHONE_DISPLAY}</strong><small>Primary contact: ${CONTACT}</small></a>
@@ -930,7 +970,7 @@ const header = (path) => `
     <a class="brand" href="/" aria-label="MelOne home"><span class="brand-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><span class="brand-copy"><strong class="brand-wordmark">MELONE</strong><span class="brand-tag">Drain care · Brisbane</span></span></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
     <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-      <a ${path.startsWith("/blocked") || path.startsWith("/drain-") || path.startsWith("/toilet") || path.startsWith("/stormwater") ? 'aria-current="page"' : ""} href="/blocked-drains-brisbane/">Services</a>
+      <a ${path.startsWith("/blocked") || path.startsWith("/drain-") || path.startsWith("/sewer-") || path.startsWith("/toilet") || path.startsWith("/stormwater") ? 'aria-current="page"' : ""} href="/blocked-drains-brisbane/">Services</a>
       <a ${path === "/service-areas-brisbane/" ? 'aria-current="page"' : ""} href="/service-areas-brisbane/">Map & areas</a>
       <a ${path === "/about/" ? 'aria-current="page"' : ""} href="/about/">About</a>
       <a ${path === "/zh/" ? 'aria-current="page"' : ""} href="/zh/" lang="zh-Hans">中文</a>
@@ -943,7 +983,7 @@ const footer = () => `
     <div class="footer-main">
       <div class="footer-brand"><div class="footer-logo-lockup"><span class="footer-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><strong class="brand-wordmark">MELONE</strong></div><p>Blocked drain and drain cleaning help across Brisbane and nearby suburbs.</p><p>Mel One Property Maintenance Pty Ltd · ABN 39 666 325 408</p></div>
       <div><h2>Services</h2><ul>${services.map((service) => `<li><a href="${service.slug}">${esc(service.nav)}</a></li>`).join("")}</ul></div>
-      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="https://www.meloneplumbingvic.com.au/plumbing-services-brisbane">Other Brisbane plumbing repairs</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li></ul></div>
       <div class="footer-contact"><h2>Speak with ${CONTACT}</h2><a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Brisbane, Queensland</p></div>
     </div>
     <div class="footer-bottom"><span>© MelOne</span><span>Brisbane drain clearing</span></div>
@@ -968,7 +1008,7 @@ const jsonLd = (page, origin, path) => {
     {
       "@type": "Organization",
       "@id": `${origin}/#organisation`,
-      name: "Mel One Renovations",
+      name: "MelOne Brisbane Drain Care",
       alternateName: ["MelOne", "MelOne Brisbane Drain Care"],
       legalName: "Mel One Property Maintenance Pty Ltd",
       url: `${origin}/`,
@@ -994,7 +1034,7 @@ const jsonLd = (page, origin, path) => {
     {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
       "@id": `${origin}/#business`,
-      name: "Mel One Renovations",
+      name: "MelOne Brisbane Drain Care",
       alternateName: ["MelOne", "MelOne Brisbane Drain Care"],
       legalName: "Mel One Property Maintenance Pty Ltd",
       url: `${origin}/`,

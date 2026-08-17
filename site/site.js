@@ -126,7 +126,7 @@ document.addEventListener("click", (event) => {
 
   const isPhone = link.href.startsWith("tel:");
   window.gtag("event", isPhone ? "click_to_call" : "email_click", {
-    link_url: link.href,
+    link_type: isPhone ? "telephone" : "email",
     page_path: window.location.pathname,
     transport_type: "beacon",
   });
