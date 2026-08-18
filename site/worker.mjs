@@ -799,7 +799,8 @@ const aboutPage = () => ({
         <div class="entity-card">
           <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408<br>Registered with ASIC on 8 March 2023</p>
           <p><strong>Current public liability insurance</strong><br>Chubb Insurance Australia Limited<br>Public &amp; Products Liability · AUD 20 million<br>13 April 2026 – 13 April 2027, subject to policy terms</p>
-          <p lang="zh-Hans"><strong>客户核验：</strong>本网站由 Mel One Property Maintenance Pty Ltd 运营；以上为已核验的公司注册与当前责任保险资料。牌照资料只会在持有人和工作类别与具体项目相符时提供。</p>
+          <p><strong>Regulated drainage work:</strong> If clearing identifies regulated plumbing or drainage work, that scope is separated from routine cleaning. The required licence class and responsible contracting party are confirmed before the quote is accepted or work starts.</p>
+          <p lang="zh-Hans"><strong>客户核验：</strong>本网站由 Mel One Property Maintenance Pty Ltd 运营；以上为已核验的公司注册与当前责任保险资料。如疏通后发现涉及受监管的水管或排水工程，该部分会与一般清理分开，并在客户接受报价或开工前确认所需资质类别与责任承包方。</p>
         </div>
       </section>
 
