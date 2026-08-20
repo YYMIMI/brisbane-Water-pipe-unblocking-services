@@ -33,6 +33,8 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /reply within 24 hours|We reply within 24 hours/i);
     }
     assert.match(html, /\/melone-logo\.png/);
+    assert.match(html, /<link rel="icon" href="\/melone-logo\.png" type="image\/png" sizes="960x960">/);
+    assert.match(html, /<link rel="apple-touch-icon" href="\/melone-logo\.png">/);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://melone\\.example${path.replaceAll("/", "\\/")}">`));
     assert.match(html, /googletagmanager\\.com\\/gtag\\/js\\?id=G-2FKG0LZ2V1/);
     assert.match(html, /gtag\\("config","G-2FKG0LZ2V1"\\)/);

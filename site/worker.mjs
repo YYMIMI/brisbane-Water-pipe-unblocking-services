@@ -1122,6 +1122,8 @@ const document = (page, origin, path) => {
   <link rel="preload" href="/assets/site.css" as="style">
   <link rel="stylesheet" href="/assets/site.css">
   <meta name="theme-color" content="#071a2b">
+  <link rel="icon" href="/melone-logo.png" type="image/png" sizes="960x960">
+  <link rel="apple-touch-icon" href="/melone-logo.png">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="${ogLocale}">
   <meta property="og:site_name" content="MelOne Brisbane Drain Care">
