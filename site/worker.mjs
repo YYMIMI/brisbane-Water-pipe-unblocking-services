@@ -433,9 +433,9 @@ const callout = (heading = "Tell us what the drain is doing.") => `
   </section>`;
 
 const homePage = () => ({
-  title: "Brisbane Drain Services | MelOne",
+  title: "Brisbane Drain Services | Mel One Maintenance",
   description:
-    "MelOne provides Brisbane drain services for blocked, slow, gurgling and overflowing drains, with direct contact and clear next steps.",
+    "Mel One Maintenance provides Brisbane drain services for blocked, slow, gurgling and overflowing drains, with direct contact and clear next steps.",
   eyebrow: "Brisbane drain services",
   heading: "Brisbane drain help. Clear next steps.",
   updated: "2026-08-17",
@@ -819,9 +819,9 @@ const aboutPage = () => ({
 });
 
 const chinesePage = () => ({
-  title: "布里斯班管道疏通与排水服务 | MelOne",
+  title: "布里斯班管道疏通与排水服务 | Mel One Maintenance",
   description:
-    "MelOne 为布里斯班住宅、出租物业和本地商家提供堵塞排水管、马桶、洗手盆及雨水排水问题的中文咨询。",
+    "Mel One Maintenance 为布里斯班住宅、出租物业和本地商家提供堵塞排水管、马桶、洗手盆及雨水排水问题的中文咨询。",
   eyebrow: "中文服务",
   heading: "布里斯班管道疏通与排水服务",
   lang: "zh-Hans",
@@ -832,7 +832,7 @@ const chinesePage = () => ({
         <nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="/">English</a></li><li><span aria-current="page">中文</span></li></ol></nav>
         <div class="inner-hero-grid">
           <div class="reveal">
-            <p class="eyebrow">MelOne 中文服务</p>
+            <p class="eyebrow">Mel One Maintenance 中文服务</p>
             <h1>布里斯班管道堵塞？先把情况说清楚。</h1>
           </div>
           <div class="inner-hero-aside reveal">
@@ -1010,7 +1010,7 @@ const jsonLd = (page, origin, path) => {
       "@type": "Organization",
       "@id": `${origin}/#organisation`,
       name: "MelOne Brisbane Drain Care",
-      alternateName: ["MelOne", "MelOne Brisbane Drain Care"],
+      alternateName: ["Mel One Maintenance", "Mel One", "MelOne", "MelOne Brisbane Drain Care"],
       legalName: "Mel One Property Maintenance Pty Ltd",
       url: `${origin}/`,
       logo: `${origin}/melone-logo.png`,
@@ -1036,7 +1036,7 @@ const jsonLd = (page, origin, path) => {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
       "@id": `${origin}/#business`,
       name: "MelOne Brisbane Drain Care",
-      alternateName: ["MelOne", "MelOne Brisbane Drain Care"],
+      alternateName: ["Mel One Maintenance", "Mel One", "MelOne", "MelOne Brisbane Drain Care"],
       legalName: "Mel One Property Maintenance Pty Ltd",
       url: `${origin}/`,
       image: `${origin}/og.png`,
