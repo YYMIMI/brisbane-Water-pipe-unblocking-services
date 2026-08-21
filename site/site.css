@@ -2402,6 +2402,15 @@ p {
   color: var(--orange);
 }
 
+.entity-card > p {
+  margin: 0;
+  color: #c7d1d8;
+}
+
+.entity-card > p strong {
+  color: var(--white);
+}
+
 .entity-card h2 {
   font-size: clamp(3rem, 6vw, 6rem);
 }
