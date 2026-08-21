@@ -450,7 +450,7 @@ const homePage = () => ({
           <a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
           <a class="button button-secondary" href="mailto:${EMAIL}?subject=Blocked%20drain%20enquiry">Email MelOne</a>
         </div>
-        <p class="availability-note"><span></span> Phone and email enquiries are free. The phone is answered seven days a week, including Saturdays and Sundays. On-site drain help, timing and the next quote step are confirmed from the suburb, urgency, site conditions and current schedule.</p>
+        <p class="availability-note"><span></span> Phone and email enquiries are free. The phone is answered seven days a week, including Saturdays and Sundays, and the team responds promptly. On-site drain help, timing and the next quote step are confirmed from the suburb, urgency, site conditions and current schedule.</p>
       </div>
       <aside class="hero-panel reveal" aria-label="What to tell us">
         <div class="drain-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -836,7 +836,7 @@ const chinesePage = () => ({
             <h1>布里斯班管道堵塞？先把情况说清楚。</h1>
           </div>
           <div class="inner-hero-aside reveal">
-            <p>Mel One 提供对应 Brisbane 服务区域内的上门排水服务。电话和电邮初步咨询免费，周六、周日也可致电。请告诉 Felix 您所在的 suburb、哪一个排水口堵塞，以及是否有积水、异味、咕噜声或倒灌；团队会确认是否上门、可安排时间、工作范围及下一步报价。</p>
+            <p>Mel One 提供对应 Brisbane 服务区域内的上门排水服务。电话和电邮初步咨询免费，周六、周日也可致电，团队会尽快回复。请告诉 Felix 您所在的 suburb、哪一个排水口堵塞，以及是否有积水、异味、咕噜声或倒灌；团队会确认是否上门、可安排时间、工作范围及下一步报价。</p>
             <a class="text-link" href="/">View the English website <span aria-hidden="true">→</span></a>
           </div>
         </div>
