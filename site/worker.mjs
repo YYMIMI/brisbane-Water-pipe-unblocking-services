@@ -398,7 +398,7 @@ const brisbaneMap = ({ id, eyebrow, heading, copy, linkText }) => `
       <div class="location-meta" aria-label="MelOne company and service area details">
         <strong>Mel One Property Maintenance Pty Ltd</strong>
         <span>ABN 39 666 325 408</span>
-        <span>Mel One Renovations</span>
+        <span>Brisbane company profile</span>
         <span>Google Maps</span>
       </div>
       <div class="map-links">
@@ -407,7 +407,7 @@ const brisbaneMap = ({ id, eyebrow, heading, copy, linkText }) => `
       </div>
     </div>
     <div class="map-frame map-frame-colour reveal">
-      <iframe title="Colour Google map for Mel One Renovations" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe title="Google map for the Mel One Brisbane company profile" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>`;
 
