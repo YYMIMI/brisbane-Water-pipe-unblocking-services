@@ -570,9 +570,9 @@ const homePage = () => ({
     ${brisbaneMap({
       id: "home-brisbane-map-title",
       eyebrow: "Brisbane service area",
-      heading: "Find Mel One Renovations on Google Maps.",
-      copy: "Use the map to view the Mel One Renovations business profile and get directions.",
-      linkText: "View Mel One Renovations on Google Maps",
+      heading: "Mel One’s Brisbane company profile.",
+      copy: "Use the map to view the Mel One company profile and get directions.",
+      linkText: "View the company profile on Google Maps",
     })}
 
     <section class="section about-preview">
@@ -690,11 +690,11 @@ const areaPage = () => ({
           <p class="eyebrow">Indicative coverage map</p>
           <h2 id="service-map-title">Mobile service across Brisbane.</h2>
           <p>MelOne travels to customer properties. This map shows Brisbane as the general service area; it is not a shopfront pin or a guaranteed travel boundary. Call with your suburb and postcode so Felix can confirm current availability.</p>
-          <a class="text-link" href="${GOOGLE_BUSINESS_URL}" target="_blank" rel="noopener">Open Mel One Renovations in Google Maps <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="${GOOGLE_BUSINESS_URL}" target="_blank" rel="noopener">Open the Mel One company profile in Google Maps <span aria-hidden="true">↗</span></a>
           <p class="updated-note">Coverage information reviewed <time datetime="2026-08-03">3 August 2026</time>.</p>
         </div>
         <div class="map-frame reveal">
-          <iframe title="Map of Mel One Renovations in Brisbane" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe title="Map showing the Mel One company profile in Brisbane" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <aside class="entity-card reveal" aria-labelledby="entity-title">
           <p class="eyebrow">Business details</p>
@@ -795,20 +795,19 @@ const aboutPage = () => ({
       </section>
 
       <section id="company-details" class="section section-tight">
-        <div class="section-heading"><p class="eyebrow">Company &amp; insurance</p><h2>The registered business behind this website.</h2></div>
+        <div class="section-heading"><p class="eyebrow">Company &amp; insurance</p><h2>Company and insurance details.</h2></div>
         <div class="entity-card">
           <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408<br>Registered with ASIC on 8 March 2023</p>
           <p><strong>Current public liability insurance</strong><br>Chubb Insurance Australia Limited<br>Public &amp; Products Liability · AUD 20 million<br>13 April 2026 – 13 April 2027, subject to policy terms</p>
           <p><strong>Regulated drainage work:</strong> If clearing identifies regulated plumbing or drainage work, that scope is separated from routine cleaning. The required licence class and responsible contracting party are confirmed before the quote is accepted or work starts.</p>
-          <p lang="zh-Hans"><strong>客户核验：</strong>本网站由 Mel One Property Maintenance Pty Ltd 运营；以上为已核验的公司注册与当前责任保险资料。如疏通后发现涉及受监管的水管或排水工程，该部分会与一般清理分开，并在客户接受报价或开工前确认所需资质类别与责任承包方。</p>
         </div>
       </section>
 
       ${brisbaneMap({
         id: "about-brisbane-map-title",
         eyebrow: "Where we work",
-        heading: "Mel One Renovations on Google Maps.",
-        copy: "View the Mel One Renovations business profile, location and directions.",
+        heading: "Mel One’s Brisbane company profile.",
+        copy: "View the Mel One company profile and directions.",
         linkText: "Open in Google Maps",
       })}
 
