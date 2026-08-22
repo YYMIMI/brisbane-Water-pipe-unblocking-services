@@ -549,7 +549,7 @@ const homePage = () => ({
         <article class="why-card reveal"><span>01</span><h3>One clear contact</h3><p>Call or email Felix directly using the same contact details shown across the site.</p></article>
         <article class="why-card reveal"><span>02</span><h3>Help matched to the problem</h3><p>Blocked drains, maintenance cleaning, toilet and sink blockages, and stormwater problems each have clear guidance.</p></article>
         <article class="why-card reveal"><span>03</span><h3>Coverage confirmed first</h3><p>Give us your Brisbane suburb and postcode so travel and current availability can be checked before booking.</p></article>
-        <article class="why-card reveal"><span>04</span><h3>Useful details up front</h3><p>Where the water appears, how many drains are slow and whether the problem follows rain all help the first conversation.</p></article>
+        <article class="why-card reveal"><span>04</span><h3>Repair workmanship warranty</h3><p>Eligible drain repair work includes a 10-year workmanship warranty. Covered scope and terms are confirmed in writing before work starts.</p></article>
       </div>
     </section>
 
@@ -865,7 +865,7 @@ const chinesePage = () => ({
           <article class="why-card reveal"><span>01</span><h3>直接联系</h3><p>电话和邮箱在全站保持一致，不需要重复寻找联系人。</p></article>
           <article class="why-card reveal"><span>02</span><h3>说明白再安排</h3><p>先了解哪里堵塞、何时开始，以及其他排水口是否也受影响。</p></article>
           <article class="why-card reveal"><span>03</span><h3>布里斯班上门服务</h3><p>提供郊区和邮编后，我们会确认当天的行程与可预约时间。</p></article>
-          <article class="why-card reveal"><span>04</span><h3>住宅与本地商家</h3><p>可咨询住宅、出租物业、物业管理和小型商家的排水问题。</p></article>
+          <article class="why-card reveal"><span>04</span><h3>维修工艺质保</h3><p>符合条件的排水维修工程提供10年工艺质保，覆盖范围和条款会在施工前书面确认。</p></article>
         </div>
       </section>
 
@@ -1206,3 +1206,4 @@ export default {
     });
   },
 };
+
