@@ -34,7 +34,7 @@ const services = [
     faqs: [
       [
         "Can MelOne attend a blocked drain today?",
-        "Same-day availability depends on the time, suburb and current schedule. Call 0403 202 949 and Felix will confirm the earliest available time.",
+        "Yes. The urgent line is open 24 hours a day. The team responds within minutes and can attend within two hours across the Brisbane service area.",
       ],
       [
         "What should I do while a drain is overflowing?",
@@ -272,7 +272,7 @@ const homeFaqs = [
   ],
   [
     "How quickly will MelOne reply?",
-    "We reply to customer enquiries within 24 hours. Same-day attendance depends on the time, suburb and current schedule, so Felix will confirm the earliest practical option separately.",
+    "For an active blockage or water backing up, call the 24-hour urgent line. The team responds within minutes and can attend within two hours across the Brisbane service area. General enquiries are answered within 24 hours.",
   ],
   [
     "Which Brisbane suburbs do you service?",
@@ -424,7 +424,7 @@ const callout = (heading = "Tell us what the drain is doing.") => `
     <div>
       <p class="eyebrow eyebrow-light">Brisbane drain help</p>
       <h2 id="contact-band-title">${esc(heading)}</h2>
-      <p>Call Felix with your suburb, the blocked drain and what happens when water is used. We reply within 24 hours; urgent attendance and the work scope are confirmed separately.</p>
+      <p>Blocked drain backing up? Call the 24-hour urgent line. We respond within minutes and can attend within two hours across the Brisbane service area.</p>
     </div>
     <div class="contact-band-actions">
       <a class="button button-light" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
@@ -450,7 +450,7 @@ const homePage = () => ({
           <a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
           <a class="button button-secondary" href="mailto:${EMAIL}?subject=Blocked%20drain%20enquiry">Email MelOne</a>
         </div>
-        <p class="availability-note"><span></span> Blocked drain or water backing up? Call Felix for a free quote—we’ll help you work out the next step.</p>
+        <p class="availability-note"><span></span> Water backing up? Call the 24-hour urgent line. We respond within minutes and can attend within two hours across Brisbane.</p>
       </div>
       <aside class="hero-panel reveal" aria-label="What to tell us">
         <div class="drain-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -835,7 +835,7 @@ const chinesePage = () => ({
             <h1>布里斯班管道堵塞？先把情况说清楚。</h1>
           </div>
           <div class="inner-hero-aside reveal">
-            <p>排水口堵塞、倒灌或有异味？致电 Felix 说明问题并获取免费报价，我们会帮您判断该怎么处理。</p>
+            <p>排水口正在倒灌？24 小时紧急电话通常数分钟内回复，布里斯班服务区域内两小时内可到场。</p>
             <a class="text-link" href="/">View the English website <span aria-hidden="true">→</span></a>
           </div>
         </div>
@@ -889,7 +889,7 @@ const chinesePage = () => ({
         <div>
           <p class="eyebrow eyebrow-light">中文咨询</p>
           <h2 id="zh-contact-title">告诉我们哪里堵塞。</h2>
-          <p>联系 Felix 时请提供布里斯班郊区、邮编、堵塞位置和当前情况。</p>
+          <p>紧急倒灌可随时致电；团队通常数分钟内回复，布里斯班服务区域内两小时内可到场。</p>
         </div>
         <div class="contact-band-actions">
           <a class="button button-light" href="tel:${PHONE_HREF}">电话 ${PHONE_DISPLAY}</a>
@@ -1206,3 +1206,4 @@ export default {
     });
   },
 };
+
