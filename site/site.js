@@ -120,6 +120,103 @@ document.querySelectorAll("[data-review-carousel]").forEach((carousel) => {
   start();
 });
 
+const enquiryForm = document.querySelector("[data-enquiry-form]");
+
+if (enquiryForm) {
+  const formStatus = enquiryForm.querySelector("[data-form-status]");
+  const submitButton = enquiryForm.querySelector('button[type="submit"]');
+  const startedAtInput = enquiryForm.elements.namedItem("startedAt");
+  const submissionIdInput = enquiryForm.elements.namedItem("submissionId");
+  let formStarted = false;
+
+  const refreshSubmissionData = () => {
+    if (startedAtInput) startedAtInput.value = String(Date.now());
+    if (submissionIdInput) {
+      submissionIdInput.value = typeof crypto.randomUUID === "function"
+        ? crypto.randomUUID()
+        : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
+    }
+  };
+
+  const showFormStatus = (message, type = "") => {
+    if (!formStatus) return;
+    formStatus.textContent = message;
+    formStatus.classList.toggle("is-error", type === "error");
+    formStatus.classList.toggle("is-success", type === "success");
+  };
+
+  const trackFormEvent = (name, parameters = {}) => {
+    if (typeof window.gtag !== "function") return;
+    window.gtag("event", name, {
+      form_id: "brisbane_drains_enquiry",
+      page_path: window.location.pathname,
+      transport_type: "beacon",
+      ...parameters,
+    });
+  };
+
+  refreshSubmissionData();
+  enquiryForm.addEventListener("focusin", () => {
+    if (formStarted) return;
+    formStarted = true;
+    trackFormEvent("form_start");
+  });
+
+  enquiryForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!enquiryForm.reportValidity() || !submitButton) return;
+
+    const originalLabel = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending enquiry…";
+    showFormStatus("Sending your enquiry securely…");
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15_000);
+
+    try {
+      const payload = Object.fromEntries(new FormData(enquiryForm).entries());
+      payload.sourcePath = window.location.pathname;
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || result?.delivered !== true) {
+        throw new Error(result?.error || "We could not send your enquiry. Please call Felix on 0403 202 949.");
+      }
+
+      trackFormEvent("form_submit");
+      trackFormEvent("generate_lead");
+      enquiryForm.reset();
+      refreshSubmissionData();
+      formStarted = false;
+      showFormStatus(
+        "Thanks — your enquiry has been sent to MelOne. We reply within 24 hours. If water is rising, call 0403 202 949.",
+        "success",
+      );
+    } catch (error) {
+      const message = error?.name === "AbortError"
+        ? "The request took too long. Please try again or call Felix on 0403 202 949."
+        : error instanceof Error
+          ? error.message
+          : "We could not send your enquiry. Please call Felix on 0403 202 949.";
+      showFormStatus(message, "error");
+      trackFormEvent("form_error");
+    } finally {
+      window.clearTimeout(timeout);
+      submitButton.disabled = false;
+      submitButton.textContent = originalLabel;
+    }
+  });
+}
+
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a[href^='tel:'], a[href^='mailto:']");
   if (!link || typeof window.gtag !== "function") return;

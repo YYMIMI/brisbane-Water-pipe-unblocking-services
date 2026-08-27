@@ -922,6 +922,35 @@ const contactPage = () => ({
         </div>
       </section>
 
+      <section class="section enquiry-form-section" aria-labelledby="enquiry-form-title">
+        <div class="enquiry-form-intro reveal">
+          <p class="eyebrow">Online enquiry</p>
+          <h2 id="enquiry-form-title">Send the drain details to MelOne.</h2>
+          <p>Tell us where you are, what is blocked and what the water is doing. Required fields are marked with an asterisk.</p>
+        </div>
+        <form class="enquiry-form reveal" data-enquiry-form action="/api/enquiry" method="post">
+          <div class="enquiry-fields">
+            <label><span>Your name *</span><input name="name" autocomplete="name" minlength="2" maxlength="80" required></label>
+            <label><span>Phone *</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="32" required placeholder="Best number for a callback"></label>
+            <label><span>Email <small>(optional)</small></span><input type="email" name="email" autocomplete="email" maxlength="254"></label>
+            <label><span>Brisbane suburb or postcode *</span><input name="suburb" autocomplete="address-level2" minlength="2" maxlength="100" required placeholder="e.g. Carindale 4152"></label>
+            <label><span>What is affected? *</span><select name="service" required><option value="">Select an issue</option><option value="not-sure">Not sure / need advice</option><option value="blocked-drain">Blocked drain</option><option value="drain-cleaning">Drain cleaning</option><option value="toilet-or-sink">Toilet or sink blockage</option><option value="stormwater">Stormwater drain</option><option value="sewer">Sewer or main drain</option><option value="other">Other drain enquiry</option></select></label>
+            <label><span>When do you need help? *</span><select name="timing" required><option value="">Select timing</option><option value="urgent">Urgent / water is rising</option><option value="soon">As soon as practical</option><option value="days">Within a few days</option><option value="flexible">Flexible</option></select></label>
+            <label class="enquiry-details-field"><span>What is the drain doing? *</span><textarea name="details" minlength="10" maxlength="2000" rows="6" required placeholder="Tell us which drain is affected, whether water is slow or rising, and when the problem started."></textarea></label>
+          </div>
+          <label class="enquiry-consent"><input name="consent" type="checkbox" value="yes" required><span>I agree that Mel One Property Maintenance Pty Ltd may use these details to respond to this drain enquiry.</span></label>
+          <label class="form-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabindex="-1" autocomplete="off"></label>
+          <input type="hidden" name="startedAt" value="">
+          <input type="hidden" name="submissionId" value="">
+          <div class="enquiry-form-actions">
+            <button class="button button-primary" type="submit">Send drain enquiry</button>
+            <a class="button button-secondary" href="tel:${PHONE_HREF}">Call ${CONTACT} instead</a>
+          </div>
+          <p class="enquiry-privacy">Your enquiry is sent securely to Mel One Property Maintenance Pty Ltd and used only to respond to your request. Do not include bank details or other sensitive information.</p>
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
       <section class="section enquiry-guide">
         <div>
           <p class="eyebrow">A useful first message</p>

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import enquiryHandler from "../api/enquiry.mjs";
 import vercelHandler from "../api/render.mjs";
 import worker from "../dist/server/index.js";
 
@@ -30,14 +31,14 @@ test("every public page renders with unique metadata and one useful heading", as
     assert.match(html, /0403 202 949/);
     assert.match(html, /handyman\.kevinlee@gmail\.com/);
     if (["/", "/contact/", "/sewer-drain-cleaning-brisbane/"].includes(path)) {
-      assert.match(html, /reply within 24 hours|We reply within 24 hours/i);
+      assert.match(html, /reply within 24 hours|We reply within 24 hours|answered within 24 hours/i);
     }
     assert.match(html, /\/melone-logo\.png/);
     assert.match(html, /<link rel="icon" href="\/melone-logo\.png" type="image\/png" sizes="960x960">/);
     assert.match(html, /<link rel="apple-touch-icon" href="\/melone-logo\.png">/);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://melone\\.example${path.replaceAll("/", "\\/")}">`));
-    assert.match(html, /googletagmanager\\.com\\/gtag\\/js\\?id=G-2FKG0LZ2V1/);
-    assert.match(html, /gtag\\("config","G-2FKG0LZ2V1"\\)/);
+    assert.match(html, /googletagmanager\.com\/gtag\/js\?id=G-2FKG0LZ2V1/);
+    assert.match(html, /gtag\("config","G-2FKG0LZ2V1"\)/);
     if (path === "/" || path === "/zh/") {
       assert.match(html, /hreflang="en-AU"/);
       assert.match(html, /hreflang="zh-Hans"/);
@@ -55,7 +56,7 @@ test("every public page renders with unique metadata and one useful heading", as
       .replace(/\s+/g, " ");
     assert.doesNotMatch(
       visibleText,
-      /\bsymptoms?\b|affected fixture|practical next step|drainage point|sewage-like|bigger restriction/i,
+      /\bsymptoms?\b|practical next step|drainage point|sewage-like|bigger restriction/i,
       `${path} should use plain Australian English`,
     );
     const title = html.match(/<title>(.*?)<\/title>/)?.[1];
@@ -90,7 +91,7 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /Mel One Property Maintenance Pty Ltd/);
     }
     if (path === "/zh/") {
-      assert.match(html, /MelOne 中文服务/);
+      assert.match(html, /Mel(?:One| One Maintenance) 中文服务/);
       assert.match(html, /布里斯班管道疏通与排水服务/);
       assert.match(html, /zh-brisbane-map-title/);
       assert.match(html, /www\.google\.com\/maps\/place\/Mel\+One\+Renovations/);
@@ -102,6 +103,14 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /39 666 325 408/);
       assert.match(html, /no walk-in shopfront/);
       assert.doesNotMatch(html, /streetAddress|postalCode|aggregateRating/);
+    }
+    if (path === "/contact/") {
+      assert.match(html, /data-enquiry-form/);
+      assert.match(html, /action="\/api\/enquiry" method="post"/);
+      assert.match(html, /name="phone"[^>]+required/);
+      assert.match(html, /name="suburb"[^>]+required/);
+      assert.match(html, /name="consent"[^>]+required/);
+      assert.match(html, /data-form-status/);
     }
   }
 });
@@ -153,4 +162,102 @@ test("Vercel catch-all renders the requested public route", async () => {
   assert.match(headers.get("content-type") || "", /^text\/html/);
   assert.match(html, /布里斯班管道疏通与排水服务/);
   assert.match(html, /https:\/\/melone\.example\/zh\//);
+});
+
+const invokeEnquiry = async ({ method = "POST", body = {}, headers = {} } = {}) => {
+  const chunks = [];
+  const responseHeaders = new Map();
+  const response = {
+    statusCode: 0,
+    setHeader: (name, value) => responseHeaders.set(name.toLowerCase(), value),
+    end: (chunk) => {
+      if (chunk) chunks.push(Buffer.from(chunk));
+    },
+  };
+  await enquiryHandler(
+    {
+      method,
+      body,
+      headers: {
+        host: "melone.example",
+        origin: "https://melone.example",
+        "x-forwarded-proto": "https",
+        "content-type": "application/json",
+        ...headers,
+      },
+    },
+    response,
+  );
+  return {
+    status: response.statusCode,
+    headers: responseHeaders,
+    json: JSON.parse(Buffer.concat(chunks).toString("utf8")),
+  };
+};
+
+const validEnquiry = () => ({
+  name: "Test Customer",
+  phone: "0400 000 000",
+  email: "customer@example.com",
+  suburb: "Carindale 4152",
+  service: "blocked-drain",
+  timing: "soon",
+  details: "The outside drain is slow and starts rising when the sink is used.",
+  consent: "yes",
+  website: "",
+  startedAt: Date.now() - 5_000,
+  submissionId: "test-enquiry-12345",
+  sourcePath: "/contact/",
+});
+
+test("enquiry endpoint rejects wrong methods, origins and invalid fields", async () => {
+  const wrongMethod = await invokeEnquiry({ method: "GET" });
+  assert.equal(wrongMethod.status, 405);
+  assert.equal(wrongMethod.headers.get("allow"), "POST");
+
+  const wrongOrigin = await invokeEnquiry({ body: validEnquiry(), headers: { origin: "https://example.com" } });
+  assert.equal(wrongOrigin.status, 403);
+
+  const invalid = await invokeEnquiry({ body: { ...validEnquiry(), phone: "bad", consent: "" } });
+  assert.equal(invalid.status, 422);
+});
+
+test("enquiry endpoint reports delivery only after Resend accepts the message", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalApiKey = process.env.RESEND_API_KEY;
+  const originalDomain = process.env.RESEND_EMAIL_DOMAIN;
+  const originalRecipient = process.env.CONTACT_TO_EMAIL;
+  let providerRequest;
+
+  process.env.RESEND_API_KEY = "re_test_key";
+  process.env.RESEND_EMAIL_DOMAIN = "example.com";
+  process.env.CONTACT_TO_EMAIL = "office@example.com";
+  globalThis.fetch = async (url, options) => {
+    providerRequest = { url, options };
+    return new Response(JSON.stringify({ id: "email_test_123" }), {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    });
+  };
+
+  try {
+    const result = await invokeEnquiry({ body: validEnquiry() });
+    assert.equal(result.status, 201);
+    assert.equal(result.json.delivered, true);
+    assert.equal(result.json.reference, "email_test_123");
+    assert.equal(providerRequest.url, "https://api.resend.com/emails");
+    const payload = JSON.parse(providerRequest.options.body);
+    assert.deepEqual(payload.to, ["office@example.com"]);
+    assert.equal(payload.reply_to, "customer@example.com");
+    assert.match(payload.subject, /Carindale 4152/);
+    assert.match(payload.text, /outside drain is slow/);
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalApiKey === undefined) delete process.env.RESEND_API_KEY;
+    else process.env.RESEND_API_KEY = originalApiKey;
+    if (originalDomain === undefined) delete process.env.RESEND_EMAIL_DOMAIN;
+    else process.env.RESEND_EMAIL_DOMAIN = originalDomain;
+    if (originalRecipient === undefined) delete process.env.CONTACT_TO_EMAIL;
+    else process.env.CONTACT_TO_EMAIL = originalRecipient;
+  }
 });

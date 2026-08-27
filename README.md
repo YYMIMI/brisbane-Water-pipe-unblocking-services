@@ -92,6 +92,23 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 - `npm test`: build the starter and verify its rendered loading skeleton
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
+## Production enquiry form
+
+The Brisbane Drains contact form posts JSON to `/api/enquiry`. The server sends the enquiry through Resend and returns `delivered: true` only after the provider accepts it. GA4 `form_submit` and `generate_lead` events are emitted only for that confirmed response.
+
+Required Vercel environment variables:
+
+- `RESEND_API_KEY`: server-side Resend credential.
+- `RESEND_EMAIL_DOMAIN`: verified sending domain used for `enquiries@<domain>`.
+
+Optional variables:
+
+- `CONTACT_TO_EMAIL` or `ENQUIRY_TO_EMAIL`: comma-separated notification recipients. The site contact email is the fallback.
+- `CONTACT_FROM_EMAIL`: full verified sender value when the default should be overridden.
+- `RESEND_API_URL`: test-only provider endpoint override.
+
+Keep credentials in Vercel's encrypted environment store; never expose them in browser code or commit them.
+
 ## Learn More
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
