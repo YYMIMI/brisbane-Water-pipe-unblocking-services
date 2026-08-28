@@ -1015,7 +1015,7 @@ const footer = () => `
       <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="https://www.meloneplumbingvic.com.au/plumbing-services-brisbane">Other Brisbane plumbing repairs</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li></ul></div>
       <div class="footer-contact"><h2>Speak with ${CONTACT}</h2><a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Brisbane, Queensland</p></div>
     </div>
-    <div class="footer-bottom"><span>© MelOne</span><span>Brisbane drain clearing</span></div>
+    <div class="footer-bottom"><span>© MelOne</span><span>On-site drain services across Greater Brisbane · Call ${CONTACT} on ${PHONE_DISPLAY}</span></div>
   </footer>
   <div class="mobile-call"><a href="tel:${PHONE_HREF}"><span>Call MelOne</span><strong>${PHONE_DISPLAY}</strong></a></div>`;
 
