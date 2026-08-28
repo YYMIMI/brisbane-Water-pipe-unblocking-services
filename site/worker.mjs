@@ -785,6 +785,15 @@ const aboutPage = () => ({
         </div>
       </section>
 
+      <section class="section who-we-help" aria-labelledby="drain-priorities-heading">
+        <div><p class="eyebrow">Before a visit is arranged</p><h2 id="drain-priorities-heading">What helps define a Brisbane drain-clearing visit.</h2></div>
+        <div class="who-grid">
+          <article><h3>Which outlets are affected</h3><p>One slow basin suggests a different starting point from several fixtures backing up together.</p></article>
+          <article><h3>What happens before the blockage</h3><p>Rain, appliance discharge, repeated gurgling or rising outside water can change the likely drain path.</p></article>
+          <article><h3>Access and property use</h3><p>Tenants, pets, business hours, inspection openings and safe access are discussed before attendance.</p></article>
+        </div>
+      </section>
+
       <section class="section who-we-help">
         <div><p class="eyebrow">Who we help</p><h2>Drain problems do not only happen at home.</h2></div>
         <div class="who-grid">
