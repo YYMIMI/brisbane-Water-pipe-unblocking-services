@@ -150,6 +150,7 @@ if (enquiryForm) {
     window.gtag("event", name, {
       form_id: "brisbane_drains_enquiry",
       page_path: window.location.pathname,
+      hostname: window.location.hostname,
       transport_type: "beacon",
       ...parameters,
     });
@@ -159,12 +160,16 @@ if (enquiryForm) {
   enquiryForm.addEventListener("focusin", () => {
     if (formStarted) return;
     formStarted = true;
-    trackFormEvent("form_start");
+    trackFormEvent("lead_form_start");
   });
 
   enquiryForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!enquiryForm.reportValidity() || !submitButton) return;
+
+    trackFormEvent("lead_submit_attempt", {
+      submission_id: String(submissionIdInput?.value || ""),
+    });
 
     const originalLabel = submitButton.textContent;
     submitButton.disabled = true;
@@ -174,6 +179,7 @@ if (enquiryForm) {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 15_000);
 
+    let failureTracked = false;
     try {
       const payload = Object.fromEntries(new FormData(enquiryForm).entries());
       payload.sourcePath = window.location.pathname;
@@ -189,11 +195,19 @@ if (enquiryForm) {
       const result = await response.json().catch(() => null);
 
       if (!response.ok || result?.delivered !== true) {
+        trackFormEvent(
+          response.status === 400 || response.status === 422
+            ? "lead_validation_error"
+            : "lead_api_error",
+          { http_status: response.status },
+        );
+        failureTracked = true;
         throw new Error(result?.error || "We could not send your enquiry. Please call Felix on 0403 202 949.");
       }
 
-      trackFormEvent("form_submit");
-      trackFormEvent("generate_lead");
+      trackFormEvent("generate_lead", {
+        submission_id: String(submissionIdInput?.value || ""),
+      });
       enquiryForm.reset();
       refreshSubmissionData();
       formStarted = false;
@@ -208,7 +222,9 @@ if (enquiryForm) {
           ? error.message
           : "We could not send your enquiry. Please call Felix on 0403 202 949.";
       showFormStatus(message, "error");
-      trackFormEvent("form_error");
+      if (!failureTracked) {
+        trackFormEvent("lead_api_error", { error_type: "network_or_client" });
+      }
     } finally {
       window.clearTimeout(timeout);
       submitButton.disabled = false;
