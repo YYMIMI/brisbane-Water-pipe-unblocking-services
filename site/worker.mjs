@@ -34,7 +34,7 @@ const services = [
     faqs: [
       [
         "Can MelOne attend a blocked drain today?",
-        "Yes. The urgent line is open 24 hours a day. The team responds within minutes and can attend within two hours across the Brisbane service area.",
+        "Call the 24-hour urgent line. For a suitable blockage within the current Brisbane service run, the team can aim for attendance in about one hour. Felix confirms the ETA after checking the suburb, affected drain, wastewater risk, technician availability, traffic and safe access.",
       ],
       [
         "What should I do while a drain is overflowing?",
@@ -272,7 +272,7 @@ const homeFaqs = [
   ],
   [
     "How quickly will MelOne reply?",
-    "For an active blockage or water backing up, call the 24-hour urgent line. The team responds within minutes and can attend within two hours across the Brisbane service area. General enquiries are answered within 24 hours.",
+    "For an active blockage or water backing up, call the 24-hour urgent line. Felix checks the suburb, affected drain and wastewater risk first. A suitable job within the current Brisbane service run may target attendance in about one hour; the ETA is confirmed after technician availability, traffic and safe access are checked. General enquiries are answered within 24 hours.",
   ],
   [
     "Which Brisbane suburbs do you service?",
@@ -424,7 +424,7 @@ const callout = (heading = "Tell us what the drain is doing.") => `
     <div>
       <p class="eyebrow eyebrow-light">Brisbane drain help</p>
       <h2 id="contact-band-title">${esc(heading)}</h2>
-      <p>Blocked drain backing up? Call the 24-hour urgent line. We respond within minutes and can attend within two hours across the Brisbane service area.</p>
+      <p>Blocked drain backing up? Call the 24-hour urgent line. Felix checks the suburb, affected drain and wastewater risk, then confirms the ETA. Suitable jobs within the current Brisbane service run may target attendance in about one hour, subject to technician availability, traffic and safe access.</p>
     </div>
     <div class="contact-band-actions">
       <a class="button button-light" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
@@ -450,7 +450,7 @@ const homePage = () => ({
           <a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
           <a class="button button-secondary" href="mailto:${EMAIL}?subject=Blocked%20drain%20enquiry">Email MelOne</a>
         </div>
-        <p class="availability-note"><span></span> Water backing up? Call the 24-hour urgent line. We respond within minutes and can attend within two hours across Brisbane.</p>
+        <p class="availability-note"><span></span> Water backing up? Call the 24-hour urgent line. Suitable jobs within the current Brisbane service run may target attendance in about one hour; Felix confirms the ETA after checking location, technician availability, traffic, wastewater risk and safe access.</p>
       </div>
       <aside class="hero-panel reveal" aria-label="What to tell us">
         <div class="drain-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -549,7 +549,7 @@ const homePage = () => ({
         <article class="why-card reveal"><span>01</span><h3>One clear contact</h3><p>Call or email Felix directly using the same contact details shown across the site.</p></article>
         <article class="why-card reveal"><span>02</span><h3>Help matched to the problem</h3><p>Blocked drains, maintenance cleaning, toilet and sink blockages, and stormwater problems each have clear guidance.</p></article>
         <article class="why-card reveal"><span>03</span><h3>Coverage confirmed first</h3><p>Give us your Brisbane suburb and postcode so travel and current availability can be checked before booking.</p></article>
-        <article class="why-card reveal"><span>04</span><h3>Repair workmanship warranty</h3><p>Eligible drain repair work includes a 10-year workmanship warranty. Covered scope and terms are confirmed in writing before work starts.</p></article>
+        <article class="why-card reveal"><span>04</span><h3>Repair workmanship warranty</h3><p>Eligible drain repair workmanship includes a 10-year workmanship warranty under the agreed written scope and terms. If the job moves into regulated plumbing or drainage work, the responsible licensed practitioner and class are confirmed before that work starts.</p></article>
       </div>
     </section>
 
