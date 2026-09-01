@@ -167,8 +167,10 @@ if (enquiryForm) {
     event.preventDefault();
     if (!enquiryForm.reportValidity() || !submitButton) return;
 
+    const leadId = String(submissionIdInput?.value || "");
     trackFormEvent("lead_submit_attempt", {
-      submission_id: String(submissionIdInput?.value || ""),
+      lead_id: leadId,
+      submission_id: leadId,
     });
 
     const originalLabel = submitButton.textContent;
@@ -199,14 +201,15 @@ if (enquiryForm) {
           response.status === 400 || response.status === 422
             ? "lead_validation_error"
             : "lead_api_error",
-          { http_status: response.status },
+          { http_status: response.status, lead_id: leadId, submission_id: leadId },
         );
         failureTracked = true;
         throw new Error(result?.error || "We could not send your enquiry. Please call Felix on 0403 202 949.");
       }
 
       trackFormEvent("generate_lead", {
-        submission_id: String(submissionIdInput?.value || ""),
+        lead_id: String(result?.leadId || leadId),
+        submission_id: leadId,
       });
       enquiryForm.reset();
       refreshSubmissionData();
@@ -223,7 +226,11 @@ if (enquiryForm) {
           : "We could not send your enquiry. Please call Felix on 0403 202 949.";
       showFormStatus(message, "error");
       if (!failureTracked) {
-        trackFormEvent("lead_api_error", { error_type: "network_or_client" });
+        trackFormEvent("lead_api_error", {
+          error_type: "network_or_client",
+          lead_id: leadId,
+          submission_id: leadId,
+        });
       }
     } finally {
       window.clearTimeout(timeout);
@@ -244,3 +251,4 @@ document.addEventListener("click", (event) => {
     transport_type: "beacon",
   });
 });
+
