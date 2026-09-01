@@ -244,13 +244,18 @@ test("enquiry endpoint reports delivery only after Resend accepts the message", 
     const result = await invokeEnquiry({ body: validEnquiry() });
     assert.equal(result.status, 201);
     assert.equal(result.json.delivered, true);
+    assert.equal(result.json.leadId, "test-enquiry-12345");
     assert.equal(result.json.reference, "email_test_123");
     assert.equal(providerRequest.url, "https://api.resend.com/emails");
     const payload = JSON.parse(providerRequest.options.body);
     assert.deepEqual(payload.to, ["office@example.com"]);
     assert.equal(payload.reply_to, "customer@example.com");
+    assert.match(payload.subject, /^test-enquiry-12345 — Brisbane drain enquiry/);
     assert.match(payload.subject, /Carindale 4152/);
+    assert.match(payload.text, /Lead ID: test-enquiry-12345/);
     assert.match(payload.text, /outside drain is slow/);
+    assert.match(payload.html, /<th align="left">Lead ID<\/th><td>test-enquiry-12345<\/td>/);
+    assert.equal(providerRequest.options.headers["idempotency-key"], "melone-drains-test-enquiry-12345");
   } finally {
     globalThis.fetch = originalFetch;
     if (originalApiKey === undefined) delete process.env.RESEND_API_KEY;
@@ -261,3 +266,4 @@ test("enquiry endpoint reports delivery only after Resend accepts the message", 
     else process.env.CONTACT_TO_EMAIL = originalRecipient;
   }
 });
+
