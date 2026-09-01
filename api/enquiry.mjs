@@ -160,6 +160,7 @@ export default async function enquiryHandler(request, response) {
   const proposedId = cleanField(body.submissionId, 120, true);
   const submissionId = /^[A-Za-z0-9_-]{8,120}$/.test(proposedId) ? proposedId : crypto.randomUUID();
   const safe = {
+    leadId: escapeEmailHtml(submissionId),
     name: escapeEmailHtml(name),
     phone: escapeEmailHtml(phone),
     email: escapeEmailHtml(email || "Not provided"),
@@ -172,6 +173,7 @@ export default async function enquiryHandler(request, response) {
   const text = [
     "New Mel One Brisbane Drains enquiry",
     "",
+    `Lead ID: ${submissionId}`,
     `Name: ${name}`,
     `Phone: ${phone}`,
     `Email: ${email || "Not provided"}`,
@@ -186,6 +188,7 @@ export default async function enquiryHandler(request, response) {
   const html = [
     "<h2>New Mel One Brisbane Drains enquiry</h2>",
     '<table cellpadding="6" cellspacing="0" style="border-collapse:collapse">',
+    `<tr><th align="left">Lead ID</th><td>${safe.leadId}</td></tr>`,
     `<tr><th align="left">Name</th><td>${safe.name}</td></tr>`,
     `<tr><th align="left">Phone</th><td>${safe.phone}</td></tr>`,
     `<tr><th align="left">Email</th><td>${safe.email}</td></tr>`,
@@ -199,7 +202,7 @@ export default async function enquiryHandler(request, response) {
   const payload = {
     from: fromEmail,
     to: recipients,
-    subject: `Brisbane drain enquiry — ${suburb}`,
+    subject: `${submissionId} — Brisbane drain enquiry — ${suburb}`,
     text,
     html,
   };
@@ -234,5 +237,11 @@ export default async function enquiryHandler(request, response) {
   }
 
   const result = await providerResponse.json().catch(() => null);
-  sendJson(response, 201, { ok: true, delivered: true, reference: result?.id || null });
+  sendJson(response, 201, {
+    ok: true,
+    delivered: true,
+    leadId: submissionId,
+    reference: result?.id || null,
+  });
 }
+
