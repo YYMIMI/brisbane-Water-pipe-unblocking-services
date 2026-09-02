@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import enquiryHandler from "../api/enquiry.mjs";
 import vercelHandler from "../api/render.mjs";
@@ -19,6 +20,15 @@ const paths = [
 
 const assets = { fetch: async () => new Response("asset", { status: 200 }) };
 const fetchPath = (path) => worker.fetch(new Request(`https://melone.example${path}`), { ASSETS: assets });
+
+test("static build publishes the approved llms navigation file", async () => {
+  const llms = await readFile(new URL("../dist/client/llms.txt", import.meta.url), "utf8");
+  assert.match(llms, /^# Mel One Maintenance — Brisbane Drain Services$/m);
+  assert.match(llms, /https:\/\/www\.melonedrains\.com\.au\/blocked-drains-brisbane\//);
+  assert.match(llms, /https:\/\/www\.melonedrains\.com\.au\/drain-cleaning-brisbane\//);
+  assert.doesNotMatch(llms, /\]\(\//);
+  assert.doesNotMatch(llms, /localhost|vercel\.app|lovable\.app|github\.io/i);
+});
 
 test("every public page renders with unique metadata and one useful heading", async () => {
   const titles = new Set();
