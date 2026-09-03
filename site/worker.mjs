@@ -493,6 +493,28 @@ const homePage = () => ({
       </div>
     </section>
 
+    <section class="section typical-jobs" aria-labelledby="typical-jobs-title">
+      <div class="typical-jobs-heading">
+        <p class="eyebrow">Evidence guide</p>
+        <h2 id="typical-jobs-title">Typical drain jobs.</h2>
+        <p>Representative service situations help describe what you are seeing. They are not named completed customer jobs, and the reference images do not identify a customer property, suburb, date or result.</p>
+      </div>
+      <div class="typical-jobs-grid">
+        <article class="typical-job reveal">
+          <figure><img src="/storm-drain-leaves.jpg" alt="Reference image of leaves gathered around an outdoor storm drain" width="1365" height="2048" loading="lazy"></figure>
+          <div><span>Outdoor drainage</span><h3>Outside grate restricted by leaves and silt.</h3><p>Water can linger when loose debris narrows the visible path into an outdoor grate. Explain where the pooling appears and what happens after rain.</p></div>
+        </article>
+        <article class="typical-job reveal">
+          <figure><img src="/drain-detail.jpg" alt="Reference image of water droplets around a household drain cover" width="1365" height="2048" loading="lazy"></figure>
+          <div><span>Indoor drainage</span><h3>Slow shower or basin drainage.</h3><p>A slower fixture, returning odour or gurgle can be a useful starting point. Let us know which fixture is affected and whether another drain changes at the same time.</p></div>
+        </article>
+        <article class="typical-job reveal">
+          <figure><img src="/representative-pipe-service.jpg" alt="Reference image of pipe service work" width="1365" height="2048" loading="lazy"></figure>
+          <div><span>Connected drainage</span><h3>Several fixtures backing up.</h3><p>When more than one fixture is slow, noisy or backing up, the pattern can help identify whether the restriction sits beyond one local drain. Reduce water use if wastewater is appearing.</p></div>
+        </article>
+      </div>
+    </section>
+
     <section class="section split-intro" id="services">
       <div>
         <p class="eyebrow">Start with the problem</p>
