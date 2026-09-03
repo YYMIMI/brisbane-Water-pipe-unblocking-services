@@ -125,6 +125,19 @@ test("every public page renders with unique metadata and one useful heading", as
   }
 });
 
+test("homepage labels typical drain jobs as representative guidance, not customer case proof", async () => {
+  const response = await fetchPath("/");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Typical drain jobs/);
+  assert.match(html, /Representative service situations/);
+  assert.match(html, /not named completed customer jobs/i);
+  assert.match(html, /Outside grate restricted by leaves and silt/);
+  assert.match(html, /Slow shower or basin drainage/);
+  assert.match(html, /Several fixtures backing up/);
+});
+
 test("crawl routes and redirects are complete", async () => {
   const sitemap = await (await fetchPath("/sitemap.xml")).text();
   for (const path of paths) assert.match(sitemap, new RegExp(`https://melone\\.example${path.replaceAll("/", "\\/")}`));
