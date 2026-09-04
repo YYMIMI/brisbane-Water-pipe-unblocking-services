@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import enquiryHandler from "../api/enquiry.mjs";
@@ -130,12 +131,58 @@ test("homepage labels typical drain jobs as representative guidance, not custome
   assert.equal(response.status, 200);
   const html = await response.text();
 
+  assert.match(html, /What drainage trouble looks like/);
+  assert.match(html, /Real details\. Easier to describe\./);
+  assert.match(html, /These reference photographs show common drainage situations and do not depict MelOne staff or completed jobs\./);
+  assert.match(html, /Service detail/);
+  assert.match(html, /Tell us what has already been tried\./);
+  assert.match(html, /Outdoor drains/);
+  assert.match(html, /Debris can restrict the path for rainwater\./);
+  assert.match(html, /Indoor drains/);
+  assert.match(html, /Slow flow often shows itself before a full blockage\./);
   assert.match(html, /Typical drain jobs/);
   assert.match(html, /Representative service situations/);
   assert.match(html, /not named completed customer jobs/i);
   assert.match(html, /Outside grate restricted by leaves and silt/);
   assert.match(html, /Slow shower or basin drainage/);
   assert.match(html, /Several fixtures backing up/);
+});
+
+test("homepage main uses each primary image binary only once", async () => {
+  const response = await fetchPath("/");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const mainStart = html.indexOf('<div id="main">');
+  const mainEnd = html.indexOf("<footer", mainStart);
+  assert.ok(mainStart >= 0, "homepage should render its main content container");
+  assert.ok(mainEnd > mainStart, "homepage main content should end before the footer");
+  const main = html.slice(mainStart, mainEnd);
+
+  const imageSources = [...main.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)].map(
+    (match) => match[1],
+  );
+  assert.deepEqual(
+    imageSources.toSorted(),
+    [
+      "/drain-detail.jpg",
+      "/representative-pipe-service.jpg",
+      "/storm-drain-leaves.jpg",
+    ].toSorted(),
+  );
+
+  const hashes = await Promise.all(
+    imageSources.map(async (src) => {
+      const bytes = await readFile(
+        new URL(`../public/${src.replace(/^\//, "")}`, import.meta.url),
+      );
+      return createHash("sha256").update(bytes).digest("hex");
+    }),
+  );
+  assert.equal(
+    new Set(hashes).size,
+    hashes.length,
+    "homepage main should not repeat the same image binary",
+  );
 });
 
 test("crawl routes and redirects are complete", async () => {
