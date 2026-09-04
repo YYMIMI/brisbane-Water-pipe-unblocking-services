@@ -477,19 +477,16 @@ const homePage = () => ({
         <h2 id="photo-story-title">Real details. Easier to describe.</h2>
         <p>From a restricted outside grate to water lingering around a shower drain, the visible detail helps start the conversation. These reference photographs show common drainage situations and do not depict MelOne staff or completed jobs.</p>
       </div>
-      <div class="photo-grid">
-        <figure class="photo-card photo-card-tall reveal">
-          <img src="/representative-pipe-service.jpg" alt="Tradesperson working on a pipe as a representative service image" width="1365" height="2048" loading="lazy">
-          <figcaption><span>Service detail</span><strong>Tell us what has already been tried.</strong></figcaption>
-        </figure>
-        <figure class="photo-card reveal">
-          <img src="/storm-drain-leaves.jpg" alt="Leaves gathered around an outdoor storm drain" width="1365" height="2048" loading="lazy">
-          <figcaption><span>Outdoor drains</span><strong>Debris can restrict the path for rainwater.</strong></figcaption>
-        </figure>
-        <figure class="photo-card reveal">
-          <img src="/drain-detail.jpg" alt="Water droplets around a household drain cover" width="1365" height="2048" loading="lazy">
-          <figcaption><span>Indoor drains</span><strong>Slow flow often shows itself before a full blockage.</strong></figcaption>
-        </figure>
+      <div class="photo-prompts">
+        <div class="photo-prompt reveal">
+          <span>Service detail</span><strong>Tell us what has already been tried.</strong>
+        </div>
+        <div class="photo-prompt reveal">
+          <span>Outdoor drains</span><strong>Debris can restrict the path for rainwater.</strong>
+        </div>
+        <div class="photo-prompt reveal">
+          <span>Indoor drains</span><strong>Slow flow often shows itself before a full blockage.</strong>
+        </div>
       </div>
     </section>
 

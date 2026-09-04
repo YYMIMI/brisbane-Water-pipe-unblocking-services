@@ -618,64 +618,26 @@ p {
   font-size: 0.92rem;
 }
 
-.photo-grid {
+.photo-prompts {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.photo-card {
-  position: relative;
-  min-height: 360px;
-  margin: 0;
-  overflow: hidden;
+.photo-prompt {
+  display: grid;
+  gap: 0.4rem;
+  min-height: 0;
+  padding: clamp(1.3rem, 3vw, 2rem);
   border-radius: var(--radius);
   background: var(--ink);
 }
 
-.photo-card-tall {
-  grid-row: span 2;
-  min-height: 736px;
-}
-
-.photo-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 500ms ease;
-}
-
-.photo-card-tall img {
-  object-position: 52% 45%;
-}
-
-.photo-card:hover img {
-  transform: scale(1.025);
-}
-
-.photo-card::after {
-  position: absolute;
-  inset: 42% 0 0;
-  content: "";
-  background: linear-gradient(transparent, rgba(4, 17, 29, 0.88));
-}
-
-.photo-card figcaption {
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1.4rem;
-}
-
-.photo-card figcaption span,
-.photo-card figcaption strong {
+.photo-prompt span,
+.photo-prompt strong {
   display: block;
 }
 
-.photo-card figcaption span {
-  margin-bottom: 0.35rem;
+.photo-prompt span {
   color: var(--orange-soft);
   font-size: 0.65rem;
   font-weight: 800;
@@ -683,7 +645,7 @@ p {
   text-transform: uppercase;
 }
 
-.photo-card figcaption strong {
+.photo-prompt strong {
   color: var(--white);
   font-size: 0.9rem;
   line-height: 1.35;
@@ -1936,11 +1898,6 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .photo-card,
-  .photo-card-tall {
-    min-height: 420px;
-  }
-
   .service-card {
     min-height: 340px;
   }
@@ -2109,15 +2066,8 @@ p {
   }
 
   .symptom-grid,
-  .process-list,
-  .photo-grid {
+  .process-list {
     grid-template-columns: 1fr;
-  }
-
-  .photo-card,
-  .photo-card-tall {
-    grid-row: auto;
-    min-height: 460px;
   }
 
   .symptom {
