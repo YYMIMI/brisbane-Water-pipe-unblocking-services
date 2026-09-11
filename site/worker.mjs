@@ -44,6 +44,14 @@ const services = [
         "Does a recurring blockage mean the pipe is broken?",
         "Not always. Build-up, foreign objects, tree roots or a damaged pipe can all cause a blockage to return. What to do next depends on where the problem is and how often it happens.",
       ],
+      [
+        "The blockage keeps returning after it is cleared. What information will help you assess it?",
+              "Tell us what was cleared previously, when the problem returned, which fixture or drain is affected and whether the signs have changed. A recurring blockage does not by itself prove that a pipe is broken, and any further inspection or repair should be identified separately in the proposed scope.",
+      ],
+      [
+        "Should I mention that more than one sink or drain is backing up?",
+        "Yes. List every sink, toilet, shower, floor waste or outside drain that is slow, noisy or backing up. That information helps distinguish one affected fixture from a wider drainage problem; do not run more water simply to reproduce an overflow.",
+      ],
     ],
   },
   {
@@ -82,6 +90,14 @@ const services = [
       [
         "Do chemical drain cleaners solve the problem?",
         "They may not reach or remove the underlying cause, and mixing products can be dangerous. Tell us about anything already poured into the drain before work begins.",
+      ],
+      [
+        "What should a drain-cleaning quote include, and what might be separate?",
+        "The quote should identify the affected location, the cleaning or clearing work proposed and what follow-up checking is included. Call-out charges, specialist equipment, camera inspection and pipe repair are separate unless the written scope specifically includes them.",
+      ],
+      [
+        "Is clearing a blockage the same as repairing a damaged drain pipe?",
+        "No. Clearing restores flow through an obstruction; repairing a damaged pipe addresses a confirmed defect in the pipework. Site findings and the written scope determine whether repair is a separate second stage.",
       ],
     ],
   },
