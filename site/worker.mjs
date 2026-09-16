@@ -879,7 +879,7 @@ const chinesePage = () => ({
             <h1>布里斯班管道堵塞？先把情况说清楚。</h1>
           </div>
           <div class="inner-hero-aside reveal">
-            <p>排水口正在倒灌？24 小时紧急电话通常数分钟内回复，布里斯班服务区域内两小时内可到场。</p>
+            <p>排水口正在倒灌？请立即来电说明 suburb、污水风险和受影响设施；到场时间按人员、交通、通道和现场风险单独确认。</p>
             <a class="text-link" href="/">View the English website <span aria-hidden="true">→</span></a>
           </div>
         </div>
@@ -896,6 +896,7 @@ const chinesePage = () => ({
           <article class="service-card reveal"><span class="service-number">02</span><p class="eyebrow">慢排水与异味</p><h3>排水清理</h3><p>处理积垢、反复出现的异味，以及越来越慢的厨房或浴室排水。</p><a class="text-link" href="/drain-cleaning-brisbane/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
           <article class="service-card reveal"><span class="service-number">03</span><p class="eyebrow">卫生间与厨房</p><h3>马桶和洗手盆堵塞</h3><p>马桶、厨房水槽、浴室洗手盆和淋浴排水问题。</p><a class="text-link" href="/toilet-sink-blockages/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
           <article class="service-card reveal"><span class="service-number">04</span><p class="eyebrow">室外积水</p><h3>雨水排水</h3><p>布里斯班大雨前后的格栅、落叶淤积和室外积水问题。</p><a class="text-link" href="/stormwater-drain-cleaning/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
+          <article class="service-card reveal"><span class="service-number">05</span><p class="eyebrow">多个设施同时受影响</p><h3>主管道疏通与主污水管</h3><p>多个排水口同时返水、马桶与淋浴相互影响、污水从其他位置出现或清理后反复堵塞，需要与单个设施堵塞分开判断。</p><a class="text-link" href="/sewer-drain-cleaning-brisbane/">查看主管道英文服务页 <span aria-hidden="true">→</span></a></article>
         </div>
       </section>
 
@@ -933,7 +934,7 @@ const chinesePage = () => ({
         <div>
           <p class="eyebrow eyebrow-light">中文咨询</p>
           <h2 id="zh-contact-title">告诉我们哪里堵塞。</h2>
-          <p>紧急倒灌可随时致电；团队通常数分钟内回复，布里斯班服务区域内两小时内可到场。</p>
+          <p>紧急倒灌可随时致电；团队会先确认位置、污水风险、人员安排、交通和安全通道，再提供实际到场时间。</p>
         </div>
         <div class="contact-band-actions">
           <a class="button button-light" href="tel:${PHONE_HREF}">电话 ${PHONE_DISPLAY}</a>
