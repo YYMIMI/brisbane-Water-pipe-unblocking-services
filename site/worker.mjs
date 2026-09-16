@@ -841,7 +841,7 @@ const aboutPage = () => ({
       <section id="company-details" class="section section-tight">
         <div class="section-heading"><p class="eyebrow">Company &amp; insurance</p><h2>Company and insurance details.</h2></div>
         <div class="entity-card">
-          <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408<br>Registered with ASIC on 8 March 2023</p>
+          <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408</p>
           <p><strong>Current public liability insurance</strong><br>Chubb Insurance Australia Limited<br>Public &amp; Products Liability · AUD 20 million<br>13 April 2026 – 13 April 2027, subject to policy terms</p>
           <p><strong>Regulated drainage work:</strong> If clearing identifies regulated plumbing or drainage work, that scope is separated from routine cleaning. The required licence class and responsible contracting party are confirmed before the quote is accepted or work starts.</p>
         </div>
@@ -917,7 +917,7 @@ const chinesePage = () => ({
       <section id="company-details" class="section section-tight">
         <div class="section-heading"><p class="eyebrow">公司与保险</p><h2>先确认您联系的是哪家公司。</h2></div>
         <div class="entity-card">
-          <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408<br>公司注册日期：2023 年 3 月 8 日</p>
+          <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408</p>
           <p><strong>当前公众与产品责任险</strong><br>Chubb Insurance Australia Limited<br>责任限额：2,000 万澳元<br>保险期间：2026 年 4 月 13 日至 2027 年 4 月 13 日，具体保障以保单条款为准。</p>
         </div>
       </section>
