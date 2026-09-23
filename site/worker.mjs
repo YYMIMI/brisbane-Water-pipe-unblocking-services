@@ -10,6 +10,8 @@ const services = [
   {
     slug: "/blocked-drains-brisbane/",
     nav: "Blocked drains",
+    image: "/drain-detail.jpg",
+    imageAlt: "Water droplets around a household drain cover",
     title: "Blocked Drains Brisbane | Local Drain Help | MelOne",
     description:
       "Blocked drain help across Brisbane for slow, gurgling, overflowing or unpleasant-smelling drains. Call MelOne to discuss the problem and availability.",
@@ -57,6 +59,8 @@ const services = [
   {
     slug: "/drain-cleaning-brisbane/",
     nav: "Drain cleaning",
+    image: "/melone-kitchenette-project.webp",
+    imageAlt: "Finished Mel One kitchenette project with a double sink and tap",
     title: "Drain Cleaning Brisbane | Slow & Smelly Drains | MelOne",
     description:
       "Brisbane drain cleaning for slow flow, recurring smells and build-up in household or small-business drains. Speak with MelOne about what to do next.",
@@ -104,6 +108,8 @@ const services = [
   {
     slug: "/toilet-sink-blockages/",
     nav: "Toilets & sinks",
+    image: "/melone-bathroom-project.webp",
+    imageAlt: "Finished Mel One bathroom project with a basin, shower and floor waste",
     title: "Blocked Toilet & Sink Brisbane | MelOne Drain Help",
     description:
       "Help with blocked toilets, kitchen sinks, bathroom basins and shower drains across Brisbane. Call MelOne to explain what is blocked and confirm availability.",
@@ -143,6 +149,8 @@ const services = [
   {
     slug: "/stormwater-drain-cleaning/",
     nav: "Stormwater drains",
+    image: "/storm-drain-leaves.jpg",
+    imageAlt: "Leaves gathered around an outdoor stormwater drain",
     title: "Stormwater Drain Cleaning Brisbane | MelOne",
     description:
       "Brisbane stormwater drain help for slow grates, pooling water, leaf build-up and outside overflows. Contact MelOne before the next heavy downpour.",
@@ -182,6 +190,8 @@ const services = [
   {
     slug: "/sewer-drain-cleaning-brisbane/",
     nav: "Sewer & main drains",
+    image: "/representative-pipe-service.jpg",
+    imageAlt: "Drain pipe service work",
     title: "Sewer Drain Cleaning Brisbane | Main Drain Help | MelOne",
     description:
       "Brisbane sewer and main drain cleaning enquiries for several fixtures backing up, recurring wastewater problems, gurgling and sewage odours.",
@@ -310,6 +320,7 @@ const homeFaqs = [
 
 const routePaths = [
   "/",
+  "/drain-services-brisbane/",
   ...services.map((service) => service.slug),
   "/service-areas-brisbane/",
   "/about/",
@@ -331,6 +342,9 @@ const serviceCards = (exclude = "") => `
       .map(
         (service, index) => `
           <article class="service-card reveal" style="--delay:${index * 70}ms">
+            <a class="service-card-image" href="${service.slug}" aria-label="View ${esc(service.nav)}">
+              <img src="${esc(service.image)}" alt="${esc(service.imageAlt)}" width="900" height="1200" loading="lazy">
+            </a>
             <span class="service-number">0${index + 1}</span>
             <p class="eyebrow">${esc(service.intent)}</p>
             <h3>${esc(service.nav)}</h3>
@@ -491,7 +505,7 @@ const homePage = () => ({
       <div class="photo-story-heading">
         <p class="eyebrow">What drainage trouble looks like</p>
         <h2 id="photo-story-title">Real details. Easier to describe.</h2>
-        <p>From a restricted outside grate to water lingering around a shower drain, the visible detail helps start the conversation. These reference photographs show common drainage situations and do not depict MelOne staff or completed jobs.</p>
+        <p>Clear photos help explain where water is slow, rising or returning. The kitchen and bathroom images below are from completed Mel One projects; the outdoor drain image elsewhere on this page is representative guidance.</p>
       </div>
       <div class="photo-prompts">
         <div class="photo-prompt reveal">
@@ -514,12 +528,12 @@ const homePage = () => ({
       </div>
       <div class="typical-jobs-grid">
         <article class="typical-job reveal">
-          <figure><img src="/storm-drain-leaves.jpg" alt="Reference image of leaves gathered around an outdoor storm drain" width="1365" height="2048" loading="lazy"></figure>
-          <div><span>Outdoor drainage</span><h3>Outside grate restricted by leaves and silt.</h3><p>Water can linger when loose debris narrows the visible path into an outdoor grate. Explain where the pooling appears and what happens after rain.</p></div>
+          <figure><img src="/melone-kitchenette-project.webp" alt="Finished Mel One kitchenette project with a double sink and tap" width="1365" height="2048" loading="lazy"></figure>
+          <div><span>Mel One project photo</span><h3>Kitchen sink and wet-area context.</h3><p>A clear photo of the affected sink, nearby fixtures and any standing water can help explain what is happening before the visit.</p></div>
         </article>
         <article class="typical-job reveal">
-          <figure><img src="/drain-detail.jpg" alt="Reference image of water droplets around a household drain cover" width="1365" height="2048" loading="lazy"></figure>
-          <div><span>Indoor drainage</span><h3>Slow shower or basin drainage.</h3><p>A slower fixture, returning odour or gurgle can be a useful starting point. Let us know which fixture is affected and whether another drain changes at the same time.</p></div>
+          <figure><img src="/melone-bathroom-project.webp" alt="Finished Mel One bathroom project with a basin, shower and floor waste" width="1365" height="2048" loading="lazy"></figure>
+          <div><span>Mel One project photo</span><h3>Bathroom fixtures and floor waste.</h3><p>Let us know whether the basin, shower, toilet or floor waste is affected and whether another drain changes at the same time.</p></div>
         </article>
         <article class="typical-job reveal">
           <figure><img src="/representative-pipe-service.jpg" alt="Reference image of pipe service work" width="1365" height="2048" loading="lazy"></figure>
@@ -694,6 +708,56 @@ const servicePage = (service) => ({
         ${faqMarkup(service.faqs)}
       </section>
       ${callout(`Need ${service.nav.toLowerCase()} help in Brisbane?`)}
+    </main>`,
+});
+
+const servicesPage = () => ({
+  title: "Drain Services Brisbane | All MelOne Services",
+  description:
+    "View all MelOne drain services across Brisbane, including blocked drains, drain cleaning, toilet and sink blockages, stormwater drains, and sewer or main drain help.",
+  eyebrow: "All Brisbane drain services",
+  heading: "Choose the drain service that matches the problem.",
+  updated: "2026-09-23",
+  body: `
+    <main>
+      <section class="inner-hero services-index-hero">
+        ${breadcrumb([["All drain services", ""]])}
+        <div class="inner-hero-grid">
+          <div class="reveal">
+            <p class="eyebrow">All Brisbane drain services</p>
+            <h1>Choose the drain service that matches the problem.</h1>
+          </div>
+          <div class="inner-hero-aside reveal">
+            <p>Start with what you can see: a drain that has stopped, slow flow and smells, a blocked toilet or sink, or rainwater pooling outside. Every service is listed below, with a dedicated page explaining the warning signs and next steps.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
+              <a class="text-link" href="/contact/">Send the details <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section service-index-intro" aria-labelledby="all-services-title">
+        <div class="section-heading">
+          <p class="eyebrow">Every service</p>
+          <h2 id="all-services-title">Four clear ways to find the right help.</h2>
+          <p>If you are not sure which page fits, call Felix2 and describe the affected drain, your suburb and what happens when water is used.</p>
+        </div>
+        ${serviceCards()}
+      </section>
+
+      <section class="section services-photo-pair" aria-label="Mel One project photographs">
+        <figure class="reveal">
+          <img src="/melone-kitchenette-project.webp" alt="Finished Mel One kitchenette project with a double sink and tap" width="900" height="1200" loading="lazy">
+          <figcaption><span>Mel One project photo</span><strong>Kitchen sink and wet-area context</strong></figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="/melone-bathroom-project.webp" alt="Finished Mel One bathroom project with a basin, shower and floor waste" width="900" height="1200" loading="lazy">
+          <figcaption><span>Mel One project photo</span><strong>Basin, shower and floor-waste context</strong></figcaption>
+        </figure>
+      </section>
+
+      ${callout("Not sure which drain service you need?")}
     </main>`,
 });
 
@@ -1025,6 +1089,7 @@ const contactPage = () => ({
 
 const getPage = (path) => {
   if (path === "/") return homePage();
+  if (path === "/drain-services-brisbane/") return servicesPage();
   const service = services.find((item) => item.slug === path);
   if (service) return servicePage(service);
   if (path === "/service-areas-brisbane/") return areaPage();
@@ -1044,7 +1109,13 @@ const header = (path) => `
     <a class="brand" href="/" aria-label="MelOne home"><span class="brand-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><span class="brand-copy"><strong class="brand-wordmark">MELONE</strong><span class="brand-tag">Drain care · Brisbane</span></span></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
     <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-      <a ${path.startsWith("/blocked") || path.startsWith("/drain-") || path.startsWith("/sewer-") || path.startsWith("/toilet") || path.startsWith("/stormwater") ? 'aria-current="page"' : ""} href="/blocked-drains-brisbane/">Services</a>
+      <details class="nav-services" ${path === "/drain-services-brisbane/" || services.some((service) => service.slug === path) ? 'data-current="true"' : ""}>
+        <summary>Services <span aria-hidden="true">⌄</span></summary>
+        <div class="nav-services-panel">
+          <a href="/drain-services-brisbane/"><strong>All drain services</strong><small>Compare every service</small></a>
+          ${services.map((service) => `<a href="${service.slug}" ${path === service.slug ? 'aria-current="page"' : ""}><strong>${esc(service.nav)}</strong><small>${esc(service.intent)}</small></a>`).join("")}
+        </div>
+      </details>
       <a ${path === "/service-areas-brisbane/" ? 'aria-current="page"' : ""} href="/service-areas-brisbane/">Map & areas</a>
       <a ${path === "/about/" ? 'aria-current="page"' : ""} href="/about/">About</a>
       <a ${path === "/zh/" ? 'aria-current="page"' : ""} href="/zh/" lang="zh-Hans">中文</a>
@@ -1056,7 +1127,7 @@ const footer = () => `
   <footer class="site-footer">
     <div class="footer-main">
       <div class="footer-brand"><div class="footer-logo-lockup"><span class="footer-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><strong class="brand-wordmark">MELONE</strong></div><p>Blocked drain and drain cleaning help across Brisbane and nearby suburbs.</p><p>Mel One Property Maintenance Pty Ltd · ABN 39 666 325 408</p></div>
-      <div><h2>Services</h2><ul>${services.map((service) => `<li><a href="${service.slug}">${esc(service.nav)}</a></li>`).join("")}</ul></div>
+      <div><h2>Services</h2><ul><li><a href="/drain-services-brisbane/">All drain services</a></li>${services.map((service) => `<li><a href="${service.slug}">${esc(service.nav)}</a></li>`).join("")}</ul></div>
       <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="https://www.meloneplumbingvic.com.au/plumbing-services-brisbane">Other Brisbane plumbing repairs</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li></ul></div>
       <div class="footer-contact"><h2>Speak with ${CONTACT}</h2><a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Brisbane, Queensland</p></div>
     </div>
@@ -1139,7 +1210,7 @@ const jsonLd = (page, origin, path) => {
       publisher: { "@id": `${origin}/#organisation` },
     },
     {
-      "@type": path === "/about/" ? "AboutPage" : path === "/contact/" ? "ContactPage" : path === "/service-areas-brisbane/" ? "CollectionPage" : "WebPage",
+      "@type": path === "/about/" ? "AboutPage" : path === "/contact/" ? "ContactPage" : path === "/service-areas-brisbane/" || path === "/drain-services-brisbane/" ? "CollectionPage" : "WebPage",
       "@id": `${canonical}#webpage`,
       url: canonical,
       name: page.title,
@@ -1255,6 +1326,8 @@ export default {
         "/representative-pipe-service.jpg",
         "/storm-drain-leaves.jpg",
         "/drain-detail.jpg",
+        "/melone-kitchenette-project.webp",
+        "/melone-bathroom-project.webp",
       ].includes(path)
     ) {
       return env.ASSETS.fetch(request);

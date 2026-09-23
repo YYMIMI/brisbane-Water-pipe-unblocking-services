@@ -8,6 +8,7 @@ import worker from "../dist/server/index.js";
 
 const paths = [
   "/",
+  "/drain-services-brisbane/",
   "/blocked-drains-brisbane/",
   "/drain-cleaning-brisbane/",
   "/sewer-drain-cleaning-brisbane/",
@@ -126,14 +127,14 @@ test("every public page renders with unique metadata and one useful heading", as
   }
 });
 
-test("homepage labels typical drain jobs as representative guidance, not customer case proof", async () => {
+test("homepage distinguishes real Mel One project photos from representative guidance", async () => {
   const response = await fetchPath("/");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   assert.match(html, /What drainage trouble looks like/);
   assert.match(html, /Real details\. Easier to describe\./);
-  assert.match(html, /These reference photographs show common drainage situations and do not depict MelOne staff or completed jobs\./);
+  assert.match(html, /kitchen and bathroom images below are from completed Mel One projects/i);
   assert.match(html, /Service detail/);
   assert.match(html, /Tell us what has already been tried\./);
   assert.match(html, /Outdoor drains/);
@@ -143,12 +144,12 @@ test("homepage labels typical drain jobs as representative guidance, not custome
   assert.match(html, /Typical drain jobs/);
   assert.match(html, /Representative service situations/);
   assert.match(html, /not named completed customer jobs/i);
-  assert.match(html, /Outside grate restricted by leaves and silt/);
-  assert.match(html, /Slow shower or basin drainage/);
+  assert.match(html, /Kitchen sink and wet-area context/);
+  assert.match(html, /Bathroom fixtures and floor waste/);
   assert.match(html, /Several fixtures backing up/);
 });
 
-test("homepage main uses each primary image binary only once", async () => {
+test("homepage typical job photographs use distinct image binaries", async () => {
   const response = await fetchPath("/");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -157,16 +158,21 @@ test("homepage main uses each primary image binary only once", async () => {
   assert.ok(mainStart >= 0, "homepage should render its main content container");
   assert.ok(mainEnd > mainStart, "homepage main content should end before the footer");
   const main = html.slice(mainStart, mainEnd);
+  const sectionStart = main.indexOf('<section class="section typical-jobs"');
+  const sectionEnd = main.indexOf('</section>', sectionStart);
+  assert.ok(sectionStart >= 0, "homepage should include the typical jobs section");
+  assert.ok(sectionEnd > sectionStart, "typical jobs section should close");
+  const typicalJobs = main.slice(sectionStart, sectionEnd);
 
-  const imageSources = [...main.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)].map(
+  const imageSources = [...typicalJobs.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)].map(
     (match) => match[1],
   );
   assert.deepEqual(
     imageSources.toSorted(),
     [
-      "/drain-detail.jpg",
+      "/melone-bathroom-project.webp",
+      "/melone-kitchenette-project.webp",
       "/representative-pipe-service.jpg",
-      "/storm-drain-leaves.jpg",
     ].toSorted(),
   );
 

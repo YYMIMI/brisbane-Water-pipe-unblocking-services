@@ -29,6 +29,8 @@ await Promise.all([
   copyFile(path.join(root, "public", "representative-pipe-service.jpg"), path.join(client, "representative-pipe-service.jpg")),
   copyFile(path.join(root, "public", "storm-drain-leaves.jpg"), path.join(client, "storm-drain-leaves.jpg")),
   copyFile(path.join(root, "public", "drain-detail.jpg"), path.join(client, "drain-detail.jpg")),
+  copyFile(path.join(root, "public", "melone-kitchenette-project.webp"), path.join(client, "melone-kitchenette-project.webp")),
+  copyFile(path.join(root, "public", "melone-bathroom-project.webp"), path.join(client, "melone-bathroom-project.webp")),
 ]);
 
 console.log("Built MelOne Brisbane site");
