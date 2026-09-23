@@ -291,6 +291,15 @@ const areas = {
   ],
 };
 
+const areaSlug = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const areaGuidance = {
+  "Inner Brisbane": "For a unit or managed property, tell Felix which fixtures are affected and who can arrange access to the drain or shared service area. One slow sink and several backing-up fixtures need different starting checks.",
+  "Northside": "If water rises in an outside drain or several fixtures slow together, stop using the affected outlets and explain where the wastewater appears. Note any inspection point, gate or shared access already known.",
+  "Southside": "For a toilet, sink or shower blockage, describe whether other fixtures are still draining normally. Avoid adding chemicals and note any product already used so the next inspection can be planned safely.",
+  "East & bayside": "For stormwater or outdoor drainage after rain, say whether water collects at a grate, driveway, garden or inside the home. Keep roof runoff and sewer problems separate when describing the job.",
+  "West & outer suburbs": "For an intermittent blockage, note when it recurs and whether more than one outlet is affected. Include the property access and suburb so equipment and availability can be discussed for the actual site.",
+};
+
 const homeFaqs = [
   [
     "What counts as a blocked drain?",
@@ -323,6 +332,7 @@ const routePaths = [
   "/drain-services-brisbane/",
   ...services.map((service) => service.slug),
   "/service-areas-brisbane/",
+  ...Object.keys(areas).map((region) => `/service-areas-brisbane/${areaSlug(region)}/`),
   "/about/",
   "/contact/",
   "/zh/",
@@ -816,8 +826,8 @@ const areaPage = () => ({
           .map(
             ([region, suburbs], index) => `
               <article class="area-group reveal" style="--delay:${index * 70}ms">
-                <div><span>0${index + 1}</span><h2>${esc(region)}</h2></div>
-                <ul>${suburbs.map((suburb) => `<li>${esc(suburb)}</li>`).join("")}</ul>
+                <div><span>0${index + 1}</span><h2><a href="/service-areas-brisbane/${areaSlug(region)}/">${esc(region)} →</a></h2></div>
+                <ul>${suburbs.map((suburb) => `<li><a href="/service-areas-brisbane/${areaSlug(region)}/#${areaSlug(suburb)}">${esc(suburb)}</a></li>`).join("")}</ul>
               </article>`,
           )
           .join("")}
@@ -839,6 +849,25 @@ const areaPage = () => ({
         ${serviceCards()}
       </section>
       ${callout("Ask if we service your Brisbane suburb.")}
+    </main>`,
+});
+
+const areaRegionPage = (region) => ({
+  title: `${region} Drain Service Areas | MelOne Brisbane`,
+  description: `Explore drain-clearing enquiries in ${region}, including ${areas[region].slice(0, 3).join(", ")}. Find the right service and prepare useful details before calling.`,
+  eyebrow: `${region} drain enquiries`,
+  heading: `Drain help in ${region}.`,
+  body: `
+    <main>
+      <section class="inner-hero area-hero">
+        ${breadcrumb([["Service areas", "/service-areas-brisbane/"], [region, ""]])}
+        <div class="inner-hero-grid"><div class="reveal"><p class="eyebrow">Brisbane drain service area</p><h1>Drain enquiries in ${esc(region)}.</h1></div><div class="inner-hero-aside reveal"><p>${esc(areaGuidance[region])}</p><a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></div>
+      </section>
+      <section class="section area-directory"><article class="area-group reveal"><div><span>01</span><h2>Popular ${esc(region)} suburbs</h2></div><ul>${areas[region].map((suburb) => `<li id="${areaSlug(suburb)}"><a href="/contact/?suburb=${encodeURIComponent(suburb)}">${esc(suburb)} →</a></li>`).join("")}</ul></article></section>
+      <section class="section area-notes"><div><p class="eyebrow">Plan the right drain work</p><h2>Describe what the drain is doing before choosing a service.</h2></div><div class="note-grid"><article><h3>What is blocked?</h3><p>${esc(areaGuidance[region])}</p></article><article><h3>What to send</h3><p>Give the suburb, affected outlet, when the problem started, whether water is rising and any access restrictions. Photos already taken safely can help.</p></article><article><h3>What to compare</h3><p>Ask what clearing, camera inspection, pipe repair and follow-up are included. Those are different scopes and should be identifiable in the quote.</p></article></div></section>
+      <section class="section related-services"><div class="section-heading"><p class="eyebrow">Brisbane drain services</p><h2>Choose the affected drain.</h2></div>${serviceCards()}</section>
+      <section class="section area-mini"><div><p class="eyebrow">Other areas</p><h2>Explore Brisbane service areas.</h2></div><p>${Object.keys(areas).filter((name) => name !== region).map((name) => `<a class="text-link" href="/service-areas-brisbane/${areaSlug(name)}/">${esc(name)} →</a>`).join(" ")}</p><a class="text-link" href="/service-areas-brisbane/">All Brisbane areas →</a></section>
+      ${callout("Ask about a drain problem in your suburb.")}
     </main>`,
 });
 
@@ -1093,6 +1122,8 @@ const getPage = (path) => {
   const service = services.find((item) => item.slug === path);
   if (service) return servicePage(service);
   if (path === "/service-areas-brisbane/") return areaPage();
+  const region = Object.keys(areas).find((name) => path === `/service-areas-brisbane/${areaSlug(name)}/`);
+  if (region) return areaRegionPage(region);
   if (path === "/about/") return aboutPage();
   if (path === "/contact/") return contactPage();
   if (path === "/zh/") return chinesePage();
