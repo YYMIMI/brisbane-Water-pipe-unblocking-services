@@ -148,7 +148,8 @@ test("homepage distinguishes real Mel One project photos from representative gui
   assert.match(html, /Slow flow often shows itself before a full blockage\./);
   assert.match(html, /Typical drain jobs/);
   assert.match(html, /Representative service situations/);
-  assert.match(html, /not named completed customer jobs/i);
+  assert.match(html, /not named completed customer drain-clearing jobs/i);
+  assert.match(html, /pipe-service photograph is a reference image/i);
   assert.match(html, /Kitchen sink and wet-area context/);
   assert.match(html, /Bathroom fixtures and floor waste/);
   assert.match(html, /Several fixtures backing up/);

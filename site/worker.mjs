@@ -33,6 +33,15 @@ const services = [
       "Call Felix and describe where the blockage is, what you can see and when it started.",
       "We confirm availability, check what is happening and explain what to do next.",
     ],
+    booking: {
+      heading: "Know what the first drain-clearing visit covers.",
+      intro: "A blocked basin, an outside gully and several backing-up fixtures can require different work. Describe the pattern so the initial scope can be agreed before attendance.",
+      details: [
+        ["Which drains are affected?", "Tell us whether one outlet has stopped or whether water returns through another toilet, shower or outside gully."],
+        ["What can be reached?", "Mention gates, shared areas and any known inspection opening. Access and the location of the restriction affect the work and quote."],
+        ["Has it happened before?", "If the blockage returns, ask whether a CCTV drain inspection is suitable and available. Confirm separately what clearing, camera work or pipe repair is included."],
+      ],
+    },
     faqs: [
       [
         "Can MelOne attend a blocked drain today?",
@@ -82,6 +91,15 @@ const services = [
       "We check where the problem is likely to be and the best way to clear the build-up.",
       "After the service, we explain what was found and any sensible follow-up.",
     ],
+    booking: {
+      heading: "Match the cleaning scope to the slow drain.",
+      intro: "Cleaning a slow-draining line is different from responding to water that is already backing up. Tell us when the flow changed and whether the problem comes and goes.",
+      details: [
+        ["Which line needs cleaning?", "Identify the kitchen sink, basin, shower or floor waste and say whether nearby outlets are also slow."],
+        ["What is included?", "Ask which accessible drain will be cleaned, what method is proposed and whether a call-out or specialist equipment is included in the quote."],
+        ["What if it slows again?", "A recurring problem may need a separate assessment. Cleaning, CCTV inspection and pipe repair are different scopes to confirm in writing."],
+      ],
+    },
     faqs: [
       [
         "How is drain cleaning different from clearing a blockage?",
@@ -131,6 +149,15 @@ const services = [
       "Note whether any other drains are slow, noisy or backing up as well.",
       "Call MelOne so we can understand what is happening and arrange the right help.",
     ],
+    booking: {
+      heading: "Start with the fixture, then check the wider drain.",
+      intro: "A single blocked toilet or kitchen sink may need a different first check from wastewater appearing at several outlets.",
+      details: [
+        ["One fixture or several?", "Tell us whether the toilet, sink, basin or shower is affected on its own and what happens when another outlet is used."],
+        ["What has been tried?", "Mention plungers, cleaning products or chemicals already used. Do not keep flushing or mix products to test the blockage."],
+        ["Where could the work extend?", "Ask whether the quote covers only the fixture or a connected drain. Access, inspection and pipe repair may need separate approval."],
+      ],
+    },
     faqs: [
       [
         "Should I keep flushing a blocked toilet?",
@@ -172,6 +199,15 @@ const services = [
       "Tell us where water pools, how long it remains and what happens during rain.",
       "We check the drains we can reach and explain what to do next.",
     ],
+    booking: {
+      heading: "Separate a blocked ground drain from other rainwater problems.",
+      intro: "A grate covered by leaves, a buried stormwater pipe and roof runoff are not the same job. Tell us where the water first appears.",
+      details: [
+        ["What happens during rain?", "Describe whether water pools at a yard or driveway grate, flows from a downpipe or enters the building."],
+        ["What can be accessed safely?", "Visible surface debris may be removable, but a restriction further along a pipe needs a separate assessment. Do not open or enter a drain."],
+        ["What sits outside this scope?", "Roof gutters, downpipes, council drains and property falls may need different work. Ask which part of the system the quote covers."],
+      ],
+    },
     faqs: [
       [
         "When should I arrange stormwater drain cleaning?",
@@ -213,6 +249,15 @@ const services = [
       "Tell Felix which fixtures and outside relief points are affected.",
       "We reply within 24 hours and confirm separately whether urgent drain work is available.",
     ],
+    booking: {
+      heading: "Separate main-drain clearing from investigation and repair.",
+      intro: "Several affected fixtures or wastewater at an outside relief point can indicate a restriction beyond one fixture. The site findings determine the appropriate next stage.",
+      details: [
+        ["Map the affected outlets", "Tell us which toilets, showers, floor wastes and outside points are involved, and whether the problem has returned after earlier clearing."],
+        ["Confirm the first stage", "Ask what access and clearing are included. If a CCTV drain inspection is appropriate, confirm availability and whether it is a separate item."],
+        ["Confirm any repair", "Clearing does not itself repair a damaged pipe. Any regulated plumbing or drainage repair needs a separately agreed scope and an appropriately licensed practitioner."],
+      ],
+    },
     faqs: [
       [
         "How is a main sewer blockage different from one blocked drain?",
@@ -393,7 +438,7 @@ const serviceCards = (exclude = "") => `
             <span class="service-number">0${index + 1}</span>
             <p class="eyebrow">${esc(service.intent)}</p>
             <h3>${esc(service.nav)}</h3>
-            <p>${esc(service.description.split(". ")[0])}.</p>
+            <p>${esc(service.description.split(". ")[0].replace(/[.!?]+$/, ""))}.</p>
             <a class="text-link" href="${service.slug}">Explore ${esc(service.nav.toLowerCase())}<span aria-hidden="true">→</span></a>
           </article>`,
       )
@@ -513,7 +558,7 @@ const homePage = () => ({
     "Mel One Maintenance provides Brisbane drain services for blocked, slow, gurgling and overflowing drains, with a direct way to discuss the affected drain and arrange the work.",
   eyebrow: "Brisbane drain services",
   heading: "Brisbane blocked drain clearing and inspection.",
-  updated: "2026-08-17",
+  updated: "2026-09-24",
   faqs: homeFaqs,
   body: `
     <section class="hero home-hero">
@@ -569,7 +614,7 @@ const homePage = () => ({
       <div class="typical-jobs-heading">
         <p class="eyebrow">Evidence guide</p>
         <h2 id="typical-jobs-title">Typical drain jobs.</h2>
-        <p>Representative service situations help describe what you are seeing. They are not named completed customer jobs, and the reference images do not identify a customer property, suburb, date or result.</p>
+        <p>Representative service situations help describe what you are seeing. The kitchen and bathroom photographs show completed Mel One projects, not named completed customer drain-clearing jobs. The pipe-service photograph is a reference image; none of these images documents the cause or result of a particular blockage.</p>
       </div>
       <div class="typical-jobs-grid">
         <article class="typical-job reveal">
@@ -637,7 +682,6 @@ const homePage = () => ({
         <p class="eyebrow">Why choose MelOne</p>
         <h2 id="why-title">Useful answers before a drain visit.</h2>
         <p>When water is backing up, you need one clear contact, sensible questions and a clear idea of what happens next.</p>
-        <p class="updated-note">Service information reviewed <time datetime="2026-08-03">3 August 2026</time>.</p>
       </div>
       <div class="why-grid">
         <article class="why-card reveal"><span>01</span><h3>One clear contact</h3><p>Call or email Felix directly using the same contact details shown across the site.</p></article>
@@ -696,7 +740,7 @@ const homePage = () => ({
 
 const servicePage = (service) => ({
   ...service,
-  updated: "2026-08-17",
+  updated: "2026-09-24",
   body: `
     <main>
       <section class="inner-hero">
@@ -737,6 +781,18 @@ const servicePage = (service) => ({
         </ol>
       </section>
 
+      <section class="section area-notes service-booking" aria-labelledby="service-booking-title">
+        <div>
+          <p class="eyebrow">Before booking</p>
+          <h2 id="service-booking-title">${esc(service.booking.heading)}</h2>
+          <p>${esc(service.booking.intro)}</p>
+          <a class="text-link" href="/contact/">Send the drain details <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="note-grid">
+          ${service.booking.details.map(([heading, detail]) => `<article><h3>${esc(heading)}</h3><p>${esc(detail)}</p></article>`).join("")}
+        </div>
+      </section>
+
       <section class="section related-services">
         <div class="section-heading">
           <p class="eyebrow">Related help</p>
@@ -762,7 +818,7 @@ const servicesPage = () => ({
     "View all MelOne drain services across Brisbane, including blocked drains, drain cleaning, toilet and sink blockages, stormwater drains, and sewer or main drain help.",
   eyebrow: "All Brisbane drain services",
   heading: "Choose the drain service that matches the problem.",
-  updated: "2026-09-23",
+  updated: "2026-09-24",
   body: `
     <main>
       <section class="inner-hero services-index-hero">
@@ -785,8 +841,8 @@ const servicesPage = () => ({
       <section class="section service-index-intro" aria-labelledby="all-services-title">
         <div class="section-heading">
           <p class="eyebrow">Every service</p>
-          <h2 id="all-services-title">Four clear ways to find the right help.</h2>
-          <p>If you are not sure which page fits, call Felix2 and describe the affected drain, your suburb and what happens when water is used.</p>
+          <h2 id="all-services-title">Five drain problems. Five clear starting points.</h2>
+          <p>If you are not sure which page fits, call Felix and describe the affected drain, your suburb and what happens when water is used.</p>
         </div>
         ${serviceCards()}
       </section>
@@ -812,7 +868,7 @@ const areaPage = () => ({
     "View MelOne's indicative Brisbane drain service area map, company contact details and suburb coverage for mobile drain help.",
   eyebrow: "Brisbane service area and map",
   heading: "MelOne's Brisbane service area and map.",
-  updated: "2026-08-17",
+  updated: "2026-09-24",
   body: `
     <main>
       <section class="inner-hero area-hero">
@@ -835,7 +891,6 @@ const areaPage = () => ({
           <h2 id="service-map-title">Mobile service across Brisbane.</h2>
           <p>MelOne travels to customer properties. This map shows Brisbane as the general service area; it is not a shopfront pin or a guaranteed travel boundary. Call with your suburb and postcode so Felix can confirm current availability.</p>
           <a class="text-link" href="${GOOGLE_BUSINESS_URL}" target="_blank" rel="noopener">Open the Mel One company profile in Google Maps <span aria-hidden="true">↗</span></a>
-          <p class="updated-note">Coverage information reviewed <time datetime="2026-08-03">3 August 2026</time>.</p>
         </div>
         <div class="map-frame reveal">
           <iframe title="Map showing the Mel One company profile in Brisbane" src="${GOOGLE_BUSINESS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -849,7 +904,7 @@ const areaPage = () => ({
             <div><dt>Primary contact</dt><dd>${CONTACT}</dd></div>
             <div><dt>Phone</dt><dd><a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a></dd></div>
             <div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div>
-            <div><dt>Phone enquiries</dt><dd>Free quotes by phone or email</dd></div>
+            <div><dt>Phone enquiries</dt><dd>Discuss the job and quote by phone or email</dd></div>
             <div><dt>How we work</dt><dd>We visit homes and businesses by arrangement; there is no walk-in shopfront</dd></div>
             <div><dt>Primary area</dt><dd>Brisbane and nearby suburbs, Queensland</dd></div>
           </dl>
@@ -1033,7 +1088,7 @@ const chinesePage = () => ({
   eyebrow: "中文服务",
   heading: "布里斯班管道疏通与排水服务",
   lang: "zh-Hans",
-  updated: "2026-08-17",
+  updated: "2026-09-24",
   body: `
     <main>
       <section class="inner-hero about-hero">
@@ -1044,7 +1099,7 @@ const chinesePage = () => ({
             <h1>布里斯班管道堵塞？先把情况说清楚。</h1>
           </div>
           <div class="inner-hero-aside reveal">
-            <p>排水口正在倒灌？请立即来电说明 suburb、污水风险和受影响设施；到场时间按人员、交通、通道和现场风险单独确认。</p>
+            <p>排水口正在倒灌？请立即来电说明所在郊区及邮编、污水风险和受影响设施；到场时间按人员、交通、通道和现场风险单独确认。</p>
             <a class="text-link" href="/">View the English website <span aria-hidden="true">→</span></a>
           </div>
         </div>
@@ -1063,6 +1118,20 @@ const chinesePage = () => ({
           <article class="service-card reveal"><span class="service-number">04</span><p class="eyebrow">室外积水</p><h3>雨水排水</h3><p>布里斯班大雨前后的格栅、落叶淤积和室外积水问题。</p><a class="text-link" href="/stormwater-drain-cleaning/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
           <article class="service-card reveal"><span class="service-number">05</span><p class="eyebrow">多个设施同时受影响</p><h3>主管道疏通与主污水管</h3><p>多个排水口同时返水、马桶与淋浴相互影响、污水从其他位置出现或清理后反复堵塞，需要与单个设施堵塞分开判断。</p><a class="text-link" href="/sewer-drain-cleaning-brisbane/">查看主管道英文服务页 <span aria-hidden="true">→</span></a></article>
         </div>
+      </section>
+
+      <section class="section faq-section" aria-labelledby="zh-drain-faq-title">
+        <div class="section-heading">
+          <p class="eyebrow">中文常见问题</p>
+          <h2 id="zh-drain-faq-title">清渠或通渠前，先确认这三件事。</h2>
+          <p>这里的「清渠／通渠」指堵塞排水管和下水道的疏通、清理咨询，不是普通家居保洁。一个水槽排水慢，与多个排水口同时返水，需要不同的处理起点。</p>
+          <a class="text-link" href="/contact/">填写咨询表，可用中文描述情况 <span aria-hidden="true">→</span></a>
+        </div>
+        ${faqMarkup([
+          ["污水管和雨水管堵塞是同一回事吗？", "不是。马桶或地漏返水可能涉及污水排水；下雨时院子或车道格栅积水则可能涉及雨水排水。请说明水从哪里出现、是否只在下雨时发生，不要为了测试而继续冲水。"],
+          ["反复堵塞需要 CCTV 管道摄像检查吗？", "不一定。请先说明之前疏通的时间、受影响位置和是否有旧检查报告。是否适合做 CCTV 检查、目前能否安排，以及检查是否包含在报价内，都需要按现场情况确认。"],
+          ["询价时要提供什么？", "请提供布里斯班郊区和邮编、堵塞的水槽或排水口、是否有其他设施同时返水、何时开始、是否使用过化学疏通剂，以及安全可达的入口。初步疏通、摄像检查和管道维修应分别确认范围。"],
+        ])}
       </section>
 
       <section class="section why-section" aria-labelledby="zh-why-title">
@@ -1104,6 +1173,7 @@ const chinesePage = () => ({
         <div class="contact-band-actions">
           <a class="button button-light" href="tel:${PHONE_HREF}">电话 ${PHONE_DISPLAY}</a>
           <a class="button button-ghost-light" href="mailto:${EMAIL}?subject=Brisbane%20drain%20service%20enquiry">${EMAIL}</a>
+          <a class="button button-ghost-light" href="/contact/">填写咨询表</a>
         </div>
       </section>
     </main>`,
@@ -1303,6 +1373,7 @@ const jsonLd = (page, origin, path) => {
         "Drain cleaning",
         "Blocked toilets and sinks",
         "Stormwater drain cleaning",
+        "Sewer and main drain cleaning",
       ],
     },
     {
@@ -1399,9 +1470,19 @@ const document = (page, origin, path) => {
 </html>`;
 };
 
+const updatedSitemapRoutes = new Set([
+  "/",
+  "/drain-services-brisbane/",
+  "/service-areas-brisbane/",
+  "/privacy/",
+  "/zh/",
+  ...services.map((service) => service.slug),
+  ...Object.keys(areas).map((region) => `/service-areas-brisbane/${areaSlug(region)}/`),
+]);
+
 const sitemap = (origin) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routePaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${path === "/privacy/" || (path.startsWith("/service-areas-brisbane/") && path !== "/service-areas-brisbane/") ? "2026-09-24" : "2026-08-03"}</lastmod><changefreq>${path === "/" ? "weekly" : "monthly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`).join("\n")}
+${routePaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${updatedSitemapRoutes.has(path) ? "2026-09-24" : "2026-08-03"}</lastmod><changefreq>${path === "/" ? "weekly" : "monthly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`).join("\n")}
 </urlset>`;
 
 const notFound = (origin) => `<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found | MelOne</title><meta name="robots" content="noindex"><link rel="stylesheet" href="/assets/site.css"></head><body>${header("")}<main class="not-found"><p class="eyebrow">404</p><h1>That page has gone down the wrong drain.</h1><p>Return to the MelOne homepage or call if you need drain help in Brisbane.</p><div class="hero-actions"><a class="button button-primary" href="/">Back to home</a><a class="button button-secondary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></main>${footer()}<script src="/assets/site.js" defer></script></body></html>`;
