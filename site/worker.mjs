@@ -887,6 +887,14 @@ const areaPage = () => ({
     </main>`,
 });
 
+const regionVisuals = {
+  "Inner Brisbane": { image: "/drain-detail.jpg", alt: "Drain connection detail", caption: "Show the affected outlet and any visible connection when asking about an indoor blockage." },
+  Northside: { image: "/storm-drain-leaves.jpg", alt: "Leaves at an outdoor stormwater drain", caption: "For an outdoor drain, note where water pools and whether the grate is accessible." },
+  Southside: { image: "/representative-pipe-service.jpg", alt: "Illustrative pipe service detail", caption: "Describe whether one outlet or several fixtures are slow or backing up." },
+  "East & bayside": { image: "/storm-drain-leaves.jpg", alt: "Leaves at an outdoor stormwater drain", caption: "A photo of the grate and nearby pooling can help explain an outdoor drainage issue." },
+  "West & outer suburbs": { image: "/drain-detail.jpg", alt: "Drain connection detail", caption: "For an indoor backup, identify the first affected outlet and when it started." },
+};
+
 const areaRegionPage = (region) => ({
   title: `${region} Drain Service Areas | MelOne Brisbane`,
   description: `Explore drain-clearing enquiries in ${region}, including ${areas[region].slice(0, 3).join(", ")}. Find the right service and prepare useful details before calling.`,
@@ -896,7 +904,7 @@ const areaRegionPage = (region) => ({
     <main>
       <section class="inner-hero area-hero">
         ${breadcrumb([["Service areas", "/service-areas-brisbane/"], [region, ""]])}
-        <div class="inner-hero-grid"><div class="reveal"><p class="eyebrow">Brisbane drain service area</p><h1>Drain enquiries in ${esc(region)}.</h1></div><div class="inner-hero-aside reveal"><p>${esc(areaGuidance[region])}</p><a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></div>
+        <div class="inner-hero-grid"><div class="reveal"><p class="eyebrow">Brisbane drain service area</p><h1>Drain enquiries in ${esc(region)}.</h1><p>${esc(areaGuidance[region])}</p><a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div><figure class="area-region-visual reveal"><img src="${regionVisuals[region].image}" alt="${regionVisuals[region].alt}" width="720" height="480" loading="eager"><figcaption>${regionVisuals[region].caption} Illustrative image.</figcaption></figure></div>
       </section>
       <section class="section area-directory"><article class="area-group reveal"><div><span>01</span><h2>Popular ${esc(region)} suburbs</h2></div><ul>${areas[region].map((suburb) => `<li id="${areaSlug(suburb)}"><a href="/contact/?suburb=${encodeURIComponent(suburb)}">${esc(suburb)} →</a></li>`).join("")}</ul></article></section>
       <section class="section area-notes"><div><p class="eyebrow">Plan the right drain work</p><h2>Describe what the drain is doing before choosing a service.</h2></div><div class="note-grid"><article><h3>What to do first</h3><p>${esc(areaImmediateStep[region])}</p></article><article><h3>What to send</h3><p>Give the suburb, affected outlet, when the problem started, whether water is rising and any access restrictions. Photos already taken safely can help.</p></article><article><h3>What to compare</h3><p>Ask what clearing, camera inspection, pipe repair and follow-up are included. Those are different scopes and should be identifiable in the quote.</p></article></div></section>

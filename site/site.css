@@ -2753,3 +2753,4 @@ p {
   .services-photo-pair { grid-template-columns: 1fr; }
   .services-photo-pair figure { min-height: 460px; }
 }
+.area-region-visual{margin:0;overflow:hidden;border:1px solid rgba(255,255,255,.22);background:#0c2233}.area-region-visual img{display:block;width:100%;height:280px;object-fit:cover}.area-region-visual figcaption{padding:15px 18px;color:#d4dce2;font-size:.79rem;line-height:1.5}.area-hero .inner-hero-grid>.reveal>p:not(.eyebrow){max-width:700px;margin:24px 0;color:#3c5364;font-size:1rem}.area-hero .inner-hero-grid>.reveal>.button{margin-top:4px}@media(max-width:720px){.area-region-visual img{height:220px}}
