@@ -16,7 +16,7 @@ const services = [
     description:
       "Blocked drain help across Brisbane for slow, gurgling, overflowing or unpleasant-smelling drains. Call MelOne to discuss the problem and availability.",
     eyebrow: "Blocked drain help",
-    heading: "A blocked drain needs a clear next step.",
+    heading: "Blocked drain clearing and inspection in Brisbane.",
     intro:
       "When water is backing up, a drain smells wrong or a toilet will not clear, guessing can make the mess worse. MelOne helps Brisbane households and small businesses understand the immediate problem, limit further overflow and arrange practical drain-clearing help.",
     intent: "For urgent, active or recurring blockages",
@@ -211,7 +211,7 @@ const services = [
     steps: [
       "Reduce water use and stop using fixtures that are backing up.",
       "Tell Felix which fixtures and outside relief points are affected.",
-      "We reply within 24 hours, confirm urgent availability separately and explain the appropriate next step.",
+      "We reply within 24 hours and confirm separately whether urgent drain work is available.",
     ],
     faqs: [
       [
@@ -497,7 +497,7 @@ const breadcrumb = (items) => `
 const callout = (heading = "Tell us what the drain is doing.") => `
   <section class="contact-band" aria-labelledby="contact-band-title">
     <div>
-      <p class="eyebrow eyebrow-light">Brisbane drain help</p>
+      <p class="eyebrow eyebrow-light">Blocked drain enquiries</p>
       <h2 id="contact-band-title">${esc(heading)}</h2>
       <p>Blocked drain backing up? Call the 24-hour urgent line. Felix checks the suburb, affected drain and wastewater risk, then confirms the ETA. Suitable jobs within the current Brisbane service run may target attendance in about one hour, subject to technician availability, traffic and safe access.</p>
     </div>
@@ -510,17 +510,17 @@ const callout = (heading = "Tell us what the drain is doing.") => `
 const homePage = () => ({
   title: "Brisbane Drain Services | Mel One Maintenance",
   description:
-    "Mel One Maintenance provides Brisbane drain services for blocked, slow, gurgling and overflowing drains, with direct contact and clear next steps.",
+    "Mel One Maintenance provides Brisbane drain services for blocked, slow, gurgling and overflowing drains, with a direct way to discuss the affected drain and arrange the work.",
   eyebrow: "Brisbane drain services",
-  heading: "Brisbane drain help. Clear next steps.",
+  heading: "Brisbane blocked drain clearing and inspection.",
   updated: "2026-08-17",
   faqs: homeFaqs,
   body: `
     <section class="hero home-hero">
       <div class="hero-copy reveal">
         <p class="eyebrow">Brisbane drain services</p>
-        <h1>Brisbane drain help.<br><span>Clear next steps.</span></h1>
-        <p class="hero-lede">Practical help for slow, gurgling, smelly or overflowing drains across Brisbane and nearby suburbs. Speak directly with Felix, explain what is happening and find the right next move.</p>
+        <h1>Blocked drains in Brisbane.<br><span>Clearing and inspection enquiries.</span></h1>
+        <p class="hero-lede">Help with slow, gurgling, smelly or overflowing drains across Brisbane and nearby suburbs. Tell Felix which outlet is affected and whether water is rising so clearing, inspection or another trade can be discussed.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
           <a class="button button-secondary" href="mailto:${EMAIL}?subject=Blocked%20drain%20enquiry">Email MelOne</a>
@@ -543,7 +543,7 @@ const homePage = () => ({
       <div><span>01</span><strong>Local Brisbane service</strong></div>
       <div><span>02</span><strong>Straightforward communication</strong></div>
       <div><span>03</span><strong>Homes & small businesses</strong></div>
-      <div><span>04</span><strong>Clear next steps</strong></div>
+      <div><span>04</span><strong>Clear advice on the work</strong></div>
     </section>
 
     <section class="section photo-story" aria-labelledby="photo-story-title">
@@ -773,7 +773,7 @@ const servicesPage = () => ({
             <h1>Choose the drain service that matches the problem.</h1>
           </div>
           <div class="inner-hero-aside reveal">
-            <p>Start with what you can see: a drain that has stopped, slow flow and smells, a blocked toilet or sink, or rainwater pooling outside. Every service is listed below, with a dedicated page explaining the warning signs and next steps.</p>
+            <p>Start with what you can see: a drain that has stopped, slow flow and smells, a blocked toilet or sink, or rainwater pooling outside. Every service is listed below, with a dedicated page explaining what the problem may involve and what to tell us.</p>
             <div class="hero-actions">
               <a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
               <a class="text-link" href="/contact/">Send the details <span aria-hidden="true">→</span></a>
@@ -908,7 +908,7 @@ const areaRegionPage = (region) => ({
       </section>
       <section class="section area-directory"><article class="area-group reveal"><div><span>01</span><h2>Popular ${esc(region)} suburbs</h2></div><ul>${areas[region].map((suburb) => `<li id="${areaSlug(suburb)}"><a href="/contact/?suburb=${encodeURIComponent(suburb)}">${esc(suburb)} →</a></li>`).join("")}</ul></article></section>
       <section class="section area-notes"><div><p class="eyebrow">Plan the right drain work</p><h2>Describe what the drain is doing before choosing a service.</h2></div><div class="note-grid"><article><h3>What to do first</h3><p>${esc(areaImmediateStep[region])}</p></article><article><h3>What to send</h3><p>Give the suburb, affected outlet, when the problem started, whether water is rising and any access restrictions. Photos already taken safely can help.</p></article><article><h3>What to compare</h3><p>Ask what clearing, camera inspection, pipe repair and follow-up are included. Those are different scopes and should be identifiable in the quote.</p></article></div></section>
-      <section class="section area-notes area-rfq"><div><p class="eyebrow">Drain quote details</p><h2>Give a quote request the detail it needs.</h2><p>${esc(areaQuoteHelp[region].situation)}</p></div><div class="note-grid"><article><h3>What to establish</h3><ul>${areaQuoteHelp[region].questions.map((question) => `<li>${esc(question)}</li>`).join("")}</ul></article><article><h3>What to compare</h3><p>${esc(areaQuoteHelp[region].decision)}</p></article><article><h3>Next step</h3><p>Include the suburb, postcode, affected outlet and a safe contact number. If wastewater is rising, stop using affected fixtures and call for advice.</p><a class="text-link" href="/contact/">Send the drain details →</a></article></div></section>
+      <section class="section area-notes area-rfq"><div><p class="eyebrow">Drain quote details</p><h2>Tell us which drain is affected and what has happened.</h2><p>${esc(areaQuoteHelp[region].situation)}</p></div><div class="note-grid"><article><h3>What to establish</h3><ul>${areaQuoteHelp[region].questions.map((question) => `<li>${esc(question)}</li>`).join("")}</ul></article><article><h3>What to compare</h3><p>${esc(areaQuoteHelp[region].decision)}</p></article><article><h3>Send the drain details</h3><p>Include the suburb, postcode, affected outlet and a safe contact number. If wastewater is rising, stop using affected fixtures and call for advice.</p><a class="text-link" href="/contact/">Send the drain details →</a></article></div></section>
       <section class="section related-services"><div class="section-heading"><p class="eyebrow">Brisbane drain services</p><h2>Choose the affected drain.</h2></div>${serviceCards()}</section>
       <section class="section area-mini"><div><p class="eyebrow">Other areas</p><h2>Explore Brisbane service areas.</h2></div><p>${Object.keys(areas).filter((name) => name !== region).map((name) => `<a class="text-link" href="/service-areas-brisbane/${areaSlug(name)}/">${esc(name)} →</a>`).join(" ")}</p><a class="text-link" href="/service-areas-brisbane/">All Brisbane areas →</a></section>
       ${callout("Ask about a drain problem in your suburb.")}
@@ -1381,7 +1381,7 @@ const document = (page, origin, path) => {
   <meta property="og:image" content="${origin}/og.png">
   <meta property="og:image:width" content="1732">
   <meta property="og:image:height" content="909">
-  <meta property="og:image:alt" content="MelOne — Blocked drains. Clear next steps. Brisbane.">
+  <meta property="og:image:alt" content="MelOne — Blocked drain enquiries in Brisbane.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${esc(page.title)}">
   <meta name="twitter:description" content="${esc(page.description)}">
