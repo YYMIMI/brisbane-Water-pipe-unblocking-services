@@ -1392,6 +1392,26 @@ p {
   font-size: 0.9rem;
 }
 
+.area-rfq {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.area-rfq .note-grid {
+  width: 100%;
+}
+
+.area-rfq .note-grid ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.area-rfq .note-grid li + li {
+  margin-top: 0.6rem;
+}
+
 .story-grid {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;

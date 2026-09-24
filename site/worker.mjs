@@ -299,6 +299,33 @@ const areaGuidance = {
   "East & bayside": "For stormwater or outdoor drainage after rain, say whether water collects at a grate, driveway, garden or inside the home. Keep roof runoff and sewer problems separate when describing the job.",
   "West & outer suburbs": "For an intermittent blockage, note when it recurs and whether more than one outlet is affected. Include the property access and suburb so equipment and availability can be discussed for the actual site.",
 };
+const areaQuoteHelp = {
+  "Inner Brisbane": {
+    situation: "For a unit, mixed-use property or managed building, first find out whether only one fixture is affected or several tenancies share the problem. That changes who needs to arrange access and authorise work.",
+    questions: ["Which sink, floor waste or toilet backs up first, and do nearby outlets gurgle?", "Can the site contact identify an inspection point or building manager without opening anything?", "Is wastewater entering a private room or a common area?"],
+    decision: "Ask the quote to separate initial clearing, any camera inspection of a shared line, and reinstatement. The contact for a common line may differ from the person living with the overflow.",
+  },
+  "Northside": {
+    situation: "If an outside gully rises or multiple fixtures slow together, describe the sequence before more water is run. One blocked outlet and a main-line restriction require different starting checks.",
+    questions: ["Which fixtures were used immediately before water rose?", "Is there an accessible outside inspection opening or locked gate?", "Has the line been cleared before, and how soon did the problem return?"],
+    decision: "Compare clearing with a separately priced camera check when the blockage keeps returning. A repeat problem is a reason to investigate, not proof that a pipe must be replaced.",
+  },
+  "Southside": {
+    situation: "For a toilet, shower or kitchen sink, show which outlet is affected and whether the others still work. Tell the team if a chemical cleaner was used; do not mix or add more product.",
+    questions: ["Is the water standing, slowly draining or flowing back from another outlet?", "Is there sewage or only clear water, and can people avoid the affected area?", "What chemical or tool has already been used, if any?"],
+    decision: "Ask what the first clearing attempt covers and what happens if the obstruction is beyond the fixture. Pipe repair and clean-up are separate decisions from clearing the blockage.",
+  },
+  "East & bayside": {
+    situation: "For outdoor pooling after rain, distinguish a blocked stormwater inlet from sewer overflow or roof runoff. The water source guides which system should be checked first.",
+    questions: ["Does pooling begin at a grate, downpipe, driveway or inside the building?", "Does it happen only during rain, or also when household fixtures are used?", "Where can a technician safely reach the inlet or inspection point?"],
+    decision: "Request the inspected drain path, clearing method and any follow-up camera or pipe work as separate items. Surface water alone does not identify an underground pipe defect.",
+  },
+  "West & outer suburbs": {
+    situation: "An intermittent blockage needs a history: which outlet slows, when it improves and what happens before it returns. That is more useful than ordering a repeat clean without context.",
+    questions: ["How often has the blockage returned and which fixtures are affected each time?", "Have prior clearing or camera findings been recorded?", "Are access points behind a gate, under a cover or in a shared area?"],
+    decision: "Ask the contractor to explain whether the scope is only to restore flow or also to locate a recurring cause. Camera inspection and repair should be described separately if proposed.",
+  },
+};
 
 const homeFaqs = [
   [
@@ -334,6 +361,7 @@ const routePaths = [
   "/service-areas-brisbane/",
   ...Object.keys(areas).map((region) => `/service-areas-brisbane/${areaSlug(region)}/`),
   "/about/",
+  "/privacy/",
   "/contact/",
   "/zh/",
 ];
@@ -865,6 +893,7 @@ const areaRegionPage = (region) => ({
       </section>
       <section class="section area-directory"><article class="area-group reveal"><div><span>01</span><h2>Popular ${esc(region)} suburbs</h2></div><ul>${areas[region].map((suburb) => `<li id="${areaSlug(suburb)}"><a href="/contact/?suburb=${encodeURIComponent(suburb)}">${esc(suburb)} →</a></li>`).join("")}</ul></article></section>
       <section class="section area-notes"><div><p class="eyebrow">Plan the right drain work</p><h2>Describe what the drain is doing before choosing a service.</h2></div><div class="note-grid"><article><h3>What is blocked?</h3><p>${esc(areaGuidance[region])}</p></article><article><h3>What to send</h3><p>Give the suburb, affected outlet, when the problem started, whether water is rising and any access restrictions. Photos already taken safely can help.</p></article><article><h3>What to compare</h3><p>Ask what clearing, camera inspection, pipe repair and follow-up are included. Those are different scopes and should be identifiable in the quote.</p></article></div></section>
+      <section class="section area-notes area-rfq"><div><p class="eyebrow">Drain quote details</p><h2>Give a quote request the detail it needs.</h2><p>${esc(areaQuoteHelp[region].situation)}</p></div><div class="note-grid"><article><h3>What to establish</h3><ul>${areaQuoteHelp[region].questions.map((question) => `<li>${esc(question)}</li>`).join("")}</ul></article><article><h3>What to compare</h3><p>${esc(areaQuoteHelp[region].decision)}</p></article><article><h3>Next step</h3><p>Include the suburb, postcode, affected outlet and a safe contact number. If wastewater is rising, stop using affected fixtures and call for advice.</p><a class="text-link" href="/contact/">Send the drain details →</a></article></div></section>
       <section class="section related-services"><div class="section-heading"><p class="eyebrow">Brisbane drain services</p><h2>Choose the affected drain.</h2></div>${serviceCards()}</section>
       <section class="section area-mini"><div><p class="eyebrow">Other areas</p><h2>Explore Brisbane service areas.</h2></div><p>${Object.keys(areas).filter((name) => name !== region).map((name) => `<a class="text-link" href="/service-areas-brisbane/${areaSlug(name)}/">${esc(name)} →</a>`).join(" ")}</p><a class="text-link" href="/service-areas-brisbane/">All Brisbane areas →</a></section>
       ${callout("Ask about a drain problem in your suburb.")}
@@ -951,6 +980,34 @@ const aboutPage = () => ({
       ${reviewCarousel()}
 
       ${callout("Speak directly with MelOne.")}
+    </main>`,
+});
+
+const privacyPage = () => ({
+  title: "Privacy Policy | MelOne Brisbane Drains",
+  description: "How Mel One Property Maintenance Pty Ltd handles drain enquiries, website analytics and contact information.",
+  eyebrow: "Privacy policy",
+  heading: "How we handle your drain enquiry information.",
+  body: `
+    <main>
+      <section class="inner-hero about-hero">
+        ${breadcrumb([["Privacy policy", ""]])}
+        <div class="inner-hero-grid"><div class="reveal"><p class="eyebrow">Privacy policy</p><h1>How we handle your information.</h1></div><div class="inner-hero-aside reveal"><p>Mel One Property Maintenance Pty Ltd (ABN 39 666 325 408) operates this Brisbane drain site. This page explains what happens when you use the site or contact Felix about a job.</p></div></div>
+      </section>
+      <section class="section story-grid"><div class="story-lead"><p class="eyebrow">Your enquiry</p><h2>What we receive and why.</h2></div><div class="story-copy">
+        <p>The online form asks for your name, phone, suburb or postcode, affected drain, preferred timing and description. Email is optional. It also sends the page where the enquiry began and a submission reference. If you call or email directly, we receive the information you choose to provide, including any photos you email.</p>
+        <p>We use these details to understand the drain problem, check service fit and availability, reply, discuss a quote or visit, and keep a record of our communications. Please leave out bank details and other sensitive information that is not needed to assess a drain problem.</p>
+      </div></section>
+      <section class="section area-notes area-rfq"><div><p class="eyebrow">Form delivery and website use</p><h2>Where the information goes.</h2></div><div class="note-grid">
+        <article><h3>Enquiry email</h3><p>The website sends a form submission through the Resend email service to the Mel One recipient mailbox. The submitted message and any replies may remain in email and provider delivery records. The form itself does not offer a customer account or photo upload.</p></article>
+        <article><h3>Hosting, analytics and maps</h3><p>Hosting may process technical data such as IP address, browser details, requested pages and access times. Google Analytics measures website use and contact interactions and may use cookies or similar identifiers. Google Maps content is embedded on some pages and can process browser data when loaded; opening the map follows Google's site.</p></article>
+        <article><h3>Who can receive it</h3><p>People handling the enquiry and providers supporting hosting, email delivery, analytics and maps may process relevant information. We may share job details with an appropriate service provider where needed to assess or arrange the requested work, or where law requires disclosure. We do not sell enquiry details.</p></article>
+      </div></section>
+      <section class="section story-grid"><div class="story-lead"><p class="eyebrow">Your choices</p><h2>Access, correction and concerns.</h2></div><div class="story-copy">
+        <p>Reasonable steps are taken to protect records. Enquiry and correspondence records are kept for the time needed to manage the request, business records and applicable obligations, then handled according to those needs. Email and internet transmission cannot be guaranteed completely secure.</p>
+        <p>Some technology providers may process information outside Australia. Their processing locations can change; contact us if you need current details about a particular provider. You can ask to access or correct personal information we hold, or raise a privacy complaint, by emailing <a href="mailto:${EMAIL}">${EMAIL}</a> or calling <a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a>. Please describe the concern and how we can contact you; we will review it and respond. If it remains unresolved, you may contact the <a href="https://www.oaic.gov.au/privacy/privacy-complaints" target="_blank" rel="noopener">Office of the Australian Information Commissioner</a>.</p>
+        <p>We will update this page if our enquiry or website practices materially change. Return to the <a href="/contact/">contact page</a> if you need to send a drain enquiry.</p>
+      </div></section>
     </main>`,
 });
 
@@ -1084,7 +1141,7 @@ const contactPage = () => ({
             <button class="button button-primary" type="submit">Send drain enquiry</button>
             <a class="button button-secondary" href="tel:${PHONE_HREF}">Call ${CONTACT} instead</a>
           </div>
-          <p class="enquiry-privacy">Your enquiry is sent securely to Mel One Property Maintenance Pty Ltd and used only to respond to your request. Do not include bank details or other sensitive information.</p>
+          <p class="enquiry-privacy">Your enquiry is sent to Mel One Property Maintenance Pty Ltd to assess and respond to your request. Do not include bank details or other sensitive information. Read our <a href="/privacy/">privacy policy</a> for details about email delivery and website analytics.</p>
           <p class="form-status" data-form-status role="status" aria-live="polite"></p>
         </form>
       </section>
@@ -1125,6 +1182,7 @@ const getPage = (path) => {
   const region = Object.keys(areas).find((name) => path === `/service-areas-brisbane/${areaSlug(name)}/`);
   if (region) return areaRegionPage(region);
   if (path === "/about/") return aboutPage();
+  if (path === "/privacy/") return privacyPage();
   if (path === "/contact/") return contactPage();
   if (path === "/zh/") return chinesePage();
   return null;
@@ -1159,7 +1217,7 @@ const footer = () => `
     <div class="footer-main">
       <div class="footer-brand"><div class="footer-logo-lockup"><span class="footer-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><strong class="brand-wordmark">MELONE</strong></div><p>Blocked drain and drain cleaning help across Brisbane and nearby suburbs.</p><p>Mel One Property Maintenance Pty Ltd · ABN 39 666 325 408</p></div>
       <div><h2>Services</h2><ul><li><a href="/drain-services-brisbane/">All drain services</a></li>${services.map((service) => `<li><a href="${service.slug}">${esc(service.nav)}</a></li>`).join("")}</ul></div>
-      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="https://www.meloneplumbingvic.com.au/plumbing-services-brisbane">Other Brisbane plumbing repairs</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="https://www.meloneplumbingvic.com.au/plumbing-services-brisbane">Other Brisbane plumbing repairs</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
       <div class="footer-contact"><h2>Speak with ${CONTACT}</h2><a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Brisbane, Queensland</p></div>
     </div>
     <div class="footer-bottom"><span>© MelOne</span><span>On-site drain services across Greater Brisbane · Call ${CONTACT} on ${PHONE_DISPLAY}</span></div>
@@ -1328,7 +1386,7 @@ const document = (page, origin, path) => {
 
 const sitemap = (origin) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routePaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>2026-08-03</lastmod><changefreq>${path === "/" ? "weekly" : "monthly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`).join("\n")}
+${routePaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${path === "/privacy/" || (path.startsWith("/service-areas-brisbane/") && path !== "/service-areas-brisbane/") ? "2026-09-24" : "2026-08-03"}</lastmod><changefreq>${path === "/" ? "weekly" : "monthly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`).join("\n")}
 </urlset>`;
 
 const notFound = (origin) => `<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found | MelOne</title><meta name="robots" content="noindex"><link rel="stylesheet" href="/assets/site.css"></head><body>${header("")}<main class="not-found"><p class="eyebrow">404</p><h1>That page has gone down the wrong drain.</h1><p>Return to the MelOne homepage or call if you need drain help in Brisbane.</p><div class="hero-actions"><a class="button button-primary" href="/">Back to home</a><a class="button button-secondary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></main>${footer()}<script src="/assets/site.js" defer></script></body></html>`;

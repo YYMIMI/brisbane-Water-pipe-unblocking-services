@@ -142,6 +142,9 @@ document.querySelectorAll("[data-review-carousel]").forEach((carousel) => {
 const enquiryForm = document.querySelector("[data-enquiry-form]");
 
 if (enquiryForm) {
+  const requestedSuburb = new URLSearchParams(window.location.search).get("suburb")?.trim().slice(0, 100);
+  const suburbInput = enquiryForm.elements.namedItem("suburb");
+  if (requestedSuburb && suburbInput && !suburbInput.value) suburbInput.value = requestedSuburb;
   const formStatus = enquiryForm.querySelector("[data-form-status]");
   const submitButton = enquiryForm.querySelector('button[type="submit"]');
   const startedAtInput = enquiryForm.elements.namedItem("startedAt");
