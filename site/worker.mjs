@@ -458,6 +458,52 @@ const faqMarkup = (faqs) => `
       .join("")}
   </div>`;
 
+const relatedProjects = {
+  bath: {
+    title: "Bath drain clearing and flow check",
+    description: "Ellis Services recorded the bath outlet before clearing and water moving towards the waste during the final visible flow check. A bath blockage is different from a restriction affecting several fixtures.",
+    photos: [
+      { src: "/ellis-bath-drain-before.jpg", alt: "Bath outlet before drain clearing in an Ellis Services Brisbane project", label: "Before clearing", width: 810, height: 1440 },
+      { src: "/ellis-bath-drain-flow.jpg", alt: "Water moving towards the bath waste during an Ellis Services flow check", label: "Flow check", width: 1080, height: 1920 },
+    ],
+  },
+  exterior: {
+    title: "An exterior drainage pipe route",
+    description: "These Ellis Services photos show a separate exterior drainage installation from the upper outlet down the wall. They do not show an underground stormwater blockage being cleared.",
+    photos: [
+      { src: "/ellis-exterior-drainage-installation.webp", alt: "Full-height exterior drainage pipe installed beside a Brisbane property doorway", label: "Installed route", width: 1080, height: 1920 },
+      { src: "/ellis-exterior-drainage-detail.jpg", alt: "Close view of the completed upper exterior drainage connection", label: "Upper connection", width: 1080, height: 1920 },
+    ],
+  },
+};
+
+const relatedProjectGallery = ({ id, heading, intro, projects }) => `
+  <section class="section project-gallery" ${id ? `id="${esc(id)}"` : ""} aria-label="Related Brisbane drainage project photos">
+    <div class="project-gallery-heading">
+      <p class="eyebrow">Related Brisbane work</p>
+      <h2>${esc(heading)}</h2>
+      <p>${esc(intro)}</p>
+    </div>
+    <div class="project-gallery-grid">
+      ${projects.map((key) => {
+        const project = relatedProjects[key];
+        return `<article class="project-gallery-card">
+          <div class="project-photo-pair">
+            ${project.photos.map((photo) => `<figure>
+              <img src="${esc(photo.src)}" alt="${esc(photo.alt)}" width="${photo.width}" height="${photo.height}" loading="lazy" decoding="async">
+              <figcaption>${esc(photo.label)}</figcaption>
+            </figure>`).join("")}
+          </div>
+          <div class="project-gallery-copy">
+            <p class="eyebrow">Ellis Services project photos</p>
+            <h3>${esc(project.title)}</h3>
+            <p>${esc(project.description)}</p>
+          </div>
+        </article>`;
+      }).join("")}
+    </div>
+  </section>`;
+
 const verifiedReviews = [
   [
     "Ingrid Gao",
@@ -474,7 +520,7 @@ const verifiedReviews = [
 ];
 
 const reviewCarousel = () => `
-  <section class="section reviews-section" aria-labelledby="reviews-title">
+  <section class="section reviews-section" id="reviews" aria-labelledby="reviews-title">
     <div class="reviews-heading">
       <div>
         <p class="eyebrow">Customer feedback</p>
@@ -558,7 +604,7 @@ const homePage = () => ({
     "Mel One Maintenance provides Brisbane drain services for blocked, slow, gurgling and overflowing drains, with a direct way to discuss the affected drain and arrange the work.",
   eyebrow: "Brisbane drain services",
   heading: "Brisbane blocked drain clearing and inspection.",
-  updated: "2026-09-24",
+  updated: "2026-09-27",
   faqs: homeFaqs,
   body: `
     <section class="hero home-hero">
@@ -631,6 +677,13 @@ const homePage = () => ({
         </article>
       </div>
     </section>
+
+    ${relatedProjectGallery({
+      id: "project-photos",
+      heading: "Related drainage work, shown clearly.",
+      intro: "These photos are from Ellis Services, our other Brisbane plumbing business. One pair shows a bath drain and flow check; the other shows a separate exterior drainage installation.",
+      projects: ["bath", "exterior"],
+    })}
 
     <section class="section split-intro" id="services">
       <div>
@@ -740,7 +793,7 @@ const homePage = () => ({
 
 const servicePage = (service) => ({
   ...service,
-  updated: "2026-09-24",
+  updated: ["/blocked-drains-brisbane/", "/stormwater-drain-cleaning/"].includes(service.slug) ? "2026-09-27" : "2026-09-24",
   body: `
     <main>
       <section class="inner-hero">
@@ -770,6 +823,17 @@ const servicePage = (service) => ({
           ${service.signs.map((sign, index) => `<li class="reveal"><span>${String(index + 1).padStart(2, "0")}</span><p>${esc(sign)}</p></li>`).join("")}
         </ul>
       </section>
+
+      ${service.slug === "/blocked-drains-brisbane/" ? relatedProjectGallery({
+        heading: "A bath drain clearing example.",
+        intro: "This Ellis Services Brisbane project shows one affected bath outlet and the visible flow check after clearing. It does not establish the cause of a different property's blockage.",
+        projects: ["bath"],
+      }) : ""}
+      ${service.slug === "/stormwater-drain-cleaning/" ? relatedProjectGallery({
+        heading: "A visible exterior drainage route.",
+        intro: "These Ellis Services project photos show pipe installation between an upper outlet and a lower run. A blocked grate or underground stormwater pipe is a different job to assess.",
+        projects: ["exterior"],
+      }) : ""}
 
       <section class="section safety-card">
         <div>
@@ -1283,14 +1347,17 @@ const header = (path) => `
     <a class="brand" href="/" aria-label="MelOne home"><span class="brand-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><span class="brand-copy"><strong class="brand-wordmark">MELONE</strong><span class="brand-tag">Drain care · Brisbane</span></span></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
     <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a class="nav-quick-contact" href="/contact/">Send an enquiry <span aria-hidden="true">↗</span></a>
       <details class="nav-services" ${path === "/drain-services-brisbane/" || services.some((service) => service.slug === path) ? 'data-current="true"' : ""}>
         <summary>Services <span aria-hidden="true">⌄</span></summary>
         <div class="nav-services-panel">
           <a href="/drain-services-brisbane/"><strong>All drain services</strong><small>Compare every service</small></a>
           ${services.map((service) => `<a href="${service.slug}" ${path === service.slug ? 'aria-current="page"' : ""}><strong>${esc(service.nav)}</strong><small>${esc(service.intent)}</small></a>`).join("")}
+          <a href="/#project-photos"><strong>Project photos</strong><small>Related Brisbane drainage work</small></a>
         </div>
       </details>
       <a ${path === "/service-areas-brisbane/" ? 'aria-current="page"' : ""} href="/service-areas-brisbane/">Map & areas</a>
+      <a href="/#reviews">Reviews</a>
       <a ${path === "/about/" ? 'aria-current="page"' : ""} href="/about/">About</a>
       <a ${path === "/zh/" ? 'aria-current="page"' : ""} href="/zh/" lang="zh-Hans">中文</a>
       <a class="nav-contact" ${path === "/contact/" ? 'aria-current="page"' : ""} href="/contact/">Contact <span aria-hidden="true">↗</span></a>
@@ -1479,10 +1546,11 @@ const updatedSitemapRoutes = new Set([
   ...services.map((service) => service.slug),
   ...Object.keys(areas).map((region) => `/service-areas-brisbane/${areaSlug(region)}/`),
 ]);
+const latestSitemapRoutes = new Set(["/", "/blocked-drains-brisbane/", "/stormwater-drain-cleaning/"]);
 
 const sitemap = (origin) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routePaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${updatedSitemapRoutes.has(path) ? "2026-09-24" : "2026-08-03"}</lastmod><changefreq>${path === "/" ? "weekly" : "monthly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`).join("\n")}
+${routePaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${latestSitemapRoutes.has(path) ? "2026-09-27" : updatedSitemapRoutes.has(path) ? "2026-09-24" : "2026-08-03"}</lastmod><changefreq>${path === "/" ? "weekly" : "monthly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`).join("\n")}
 </urlset>`;
 
 const notFound = (origin) => `<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found | MelOne</title><meta name="robots" content="noindex"><link rel="stylesheet" href="/assets/site.css"></head><body>${header("")}<main class="not-found"><p class="eyebrow">404</p><h1>That page has gone down the wrong drain.</h1><p>Return to the MelOne homepage or call if you need drain help in Brisbane.</p><div class="hero-actions"><a class="button button-primary" href="/">Back to home</a><a class="button button-secondary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></main>${footer()}<script src="/assets/site.js" defer></script></body></html>`;
@@ -1513,6 +1581,10 @@ export default {
         "/drain-detail.jpg",
         "/melone-kitchenette-project.webp",
         "/melone-bathroom-project.webp",
+        "/ellis-bath-drain-before.jpg",
+        "/ellis-bath-drain-flow.jpg",
+        "/ellis-exterior-drainage-installation.webp",
+        "/ellis-exterior-drainage-detail.jpg",
       ].includes(path)
     ) {
       return env.ASSETS.fetch(request);

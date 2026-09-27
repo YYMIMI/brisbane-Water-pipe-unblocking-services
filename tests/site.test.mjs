@@ -197,6 +197,45 @@ test("homepage typical job photographs use distinct image binaries", async () =>
   );
 });
 
+test("related Ellis drain photos are locally hosted and credited on matching pages", async () => {
+  const home = await (await fetchPath("/")).text();
+  const blocked = await (await fetchPath("/blocked-drains-brisbane/")).text();
+  const stormwater = await (await fetchPath("/stormwater-drain-cleaning/")).text();
+  const photos = [
+    "/ellis-bath-drain-before.jpg",
+    "/ellis-bath-drain-flow.jpg",
+    "/ellis-exterior-drainage-installation.webp",
+    "/ellis-exterior-drainage-detail.jpg",
+  ];
+
+  assert.match(home, /id="project-photos"/);
+  assert.match(home, /Ellis Services/);
+  for (const photo of photos) {
+    assert.ok(home.includes(`src="${photo}"`), `${photo} should appear in the home gallery`);
+    const bytes = await readFile(new URL(`../public${photo}`, import.meta.url));
+    assert.ok(bytes.length > 10_000, `${photo} should be a non-empty local image`);
+    const publishedBytes = await readFile(new URL(`../dist/client${photo}`, import.meta.url));
+    assert.deepEqual(publishedBytes, bytes, `${photo} should be included in the deployed build`);
+    const response = await fetchPath(photo);
+    assert.equal(response.status, 200, `${photo} should be served by the site`);
+  }
+  assert.match(blocked, /Ellis Services/);
+  assert.ok(blocked.includes('src="/ellis-bath-drain-before.jpg"'));
+  assert.ok(blocked.includes('src="/ellis-bath-drain-flow.jpg"'));
+  assert.match(stormwater, /Ellis Services/);
+  assert.ok(stormwater.includes('src="/ellis-exterior-drainage-installation.webp"'));
+  assert.ok(stormwater.includes('src="/ellis-exterior-drainage-detail.jpg"'));
+});
+
+test("primary navigation reaches photos and reviews on the homepage", async () => {
+  const home = await (await fetchPath("/")).text();
+  const service = await (await fetchPath("/blocked-drains-brisbane/")).text();
+  assert.match(home, /id="project-photos"/);
+  assert.match(home, /id="reviews"/);
+  assert.match(service, /href="\/#project-photos"/);
+  assert.match(service, /href="\/#reviews"/);
+});
+
 test("crawl routes and redirects are complete", async () => {
   const sitemap = await (await fetchPath("/sitemap.xml")).text();
   for (const path of paths) assert.match(sitemap, new RegExp(`https://melone\\.example${path.replaceAll("/", "\\/")}`));
