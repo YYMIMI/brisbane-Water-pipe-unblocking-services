@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import enquiryHandler from "../api/enquiry.mjs";
@@ -132,14 +131,14 @@ test("every public page renders with unique metadata and one useful heading", as
   }
 });
 
-test("homepage distinguishes real Mel One project photos from representative guidance", async () => {
+test("homepage explains drain symptoms without implying completed jobs", async () => {
   const response = await fetchPath("/");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   assert.match(html, /What drainage trouble looks like/);
   assert.match(html, /Real details\. Easier to describe\./);
-  assert.match(html, /kitchen and bathroom images below are from completed Mel One projects/i);
+  assert.match(html, /A photo of the affected drain can help us understand/i);
   assert.match(html, /Service detail/);
   assert.match(html, /Tell us what has already been tried\./);
   assert.match(html, /Outdoor drains/);
@@ -147,15 +146,13 @@ test("homepage distinguishes real Mel One project photos from representative gui
   assert.match(html, /Indoor drains/);
   assert.match(html, /Slow flow often shows itself before a full blockage\./);
   assert.match(html, /Typical drain jobs/);
-  assert.match(html, /Representative service situations/);
-  assert.match(html, /not named completed customer drain-clearing jobs/i);
-  assert.match(html, /pipe-service photograph is a reference image/i);
-  assert.match(html, /Kitchen sink and wet-area context/);
+  assert.match(html, /These examples help you describe the problem/i);
+  assert.match(html, /Kitchen sink draining slowly/);
   assert.match(html, /Bathroom fixtures and floor waste/);
   assert.match(html, /Several fixtures backing up/);
 });
 
-test("homepage typical job photographs use distinct image binaries", async () => {
+test("homepage typical job examples do not borrow photos from other services", async () => {
   const response = await fetchPath("/");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -173,28 +170,7 @@ test("homepage typical job photographs use distinct image binaries", async () =>
   const imageSources = [...typicalJobs.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)].map(
     (match) => match[1],
   );
-  assert.deepEqual(
-    imageSources.toSorted(),
-    [
-      "/melone-bathroom-project.webp",
-      "/melone-kitchenette-project.webp",
-      "/representative-pipe-service.jpg",
-    ].toSorted(),
-  );
-
-  const hashes = await Promise.all(
-    imageSources.map(async (src) => {
-      const bytes = await readFile(
-        new URL(`../public/${src.replace(/^\//, "")}`, import.meta.url),
-      );
-      return createHash("sha256").update(bytes).digest("hex");
-    }),
-  );
-  assert.equal(
-    new Set(hashes).size,
-    hashes.length,
-    "homepage main should not repeat the same image binary",
-  );
+  assert.deepEqual(imageSources, []);
 });
 
 test("related Ellis drain photos are locally hosted and credited on matching pages", async () => {

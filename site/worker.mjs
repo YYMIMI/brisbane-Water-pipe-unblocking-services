@@ -68,8 +68,8 @@ const services = [
   {
     slug: "/drain-cleaning-brisbane/",
     nav: "Drain cleaning",
-    image: "/melone-kitchenette-project.webp",
-    imageAlt: "Finished Mel One kitchenette project with a double sink and tap",
+    image: "/drain-detail.jpg",
+    imageAlt: "Close view of a household drain cover",
     title: "Drain Cleaning Brisbane | Slow & Smelly Drains | MelOne",
     description:
       "Brisbane drain cleaning for slow flow, recurring smells and build-up in household or small-business drains. Speak with MelOne about what to do next.",
@@ -126,8 +126,8 @@ const services = [
   {
     slug: "/toilet-sink-blockages/",
     nav: "Toilets & sinks",
-    image: "/melone-bathroom-project.webp",
-    imageAlt: "Finished Mel One bathroom project with a basin, shower and floor waste",
+    image: "/representative-pipe-service.jpg",
+    imageAlt: "Reference photograph of accessible drainage pipework",
     title: "Blocked Toilet & Sink Brisbane | MelOne Drain Help",
     description:
       "Help with blocked toilets, kitchen sinks, bathroom basins and shower drains across Brisbane. Call MelOne to explain what is blocked and confirm availability.",
@@ -641,7 +641,7 @@ const homePage = () => ({
       <div class="photo-story-heading">
         <p class="eyebrow">What drainage trouble looks like</p>
         <h2 id="photo-story-title">Real details. Easier to describe.</h2>
-        <p>Clear photos help explain where water is slow, rising or returning. The kitchen and bathroom images below are from completed Mel One projects; the outdoor drain image elsewhere on this page is representative guidance.</p>
+        <p>A photo of the affected drain can help us understand where water is slow, rising or returning. The outdoor drain image is general guidance, not a photo of your job.</p>
       </div>
       <div class="photo-prompts">
         <div class="photo-prompt reveal">
@@ -660,19 +660,16 @@ const homePage = () => ({
       <div class="typical-jobs-heading">
         <p class="eyebrow">Evidence guide</p>
         <h2 id="typical-jobs-title">Typical drain jobs.</h2>
-        <p>Representative service situations help describe what you are seeing. The kitchen and bathroom photographs show completed Mel One projects, not named completed customer drain-clearing jobs. The pipe-service photograph is a reference image; none of these images documents the cause or result of a particular blockage.</p>
+        <p>Tell us what is blocked and what happens when water is used. These examples help you describe the problem; they are not claims about a particular completed job.</p>
       </div>
       <div class="typical-jobs-grid">
         <article class="typical-job reveal">
-          <figure><img src="/melone-kitchenette-project.webp" alt="Finished Mel One kitchenette project with a double sink and tap" width="1365" height="2048" loading="lazy"></figure>
-          <div><span>Mel One project photo</span><h3>Kitchen sink and wet-area context.</h3><p>A clear photo of the affected sink, nearby fixtures and any standing water can help explain what is happening before the visit.</p></div>
+          <div><span>Kitchen drains</span><h3>Kitchen sink draining slowly.</h3><p>A clear photo of the affected sink and any standing water can help explain what is happening before the visit.</p></div>
         </article>
         <article class="typical-job reveal">
-          <figure><img src="/melone-bathroom-project.webp" alt="Finished Mel One bathroom project with a basin, shower and floor waste" width="1365" height="2048" loading="lazy"></figure>
-          <div><span>Mel One project photo</span><h3>Bathroom fixtures and floor waste.</h3><p>Let us know whether the basin, shower, toilet or floor waste is affected and whether another drain changes at the same time.</p></div>
+          <div><span>Bathroom drains</span><h3>Bathroom fixtures and floor waste.</h3><p>Let us know whether the basin, shower, toilet or floor waste is affected and whether another drain changes at the same time.</p></div>
         </article>
         <article class="typical-job reveal">
-          <figure><img src="/representative-pipe-service.jpg" alt="Reference image of pipe service work" width="1365" height="2048" loading="lazy"></figure>
           <div><span>Connected drainage</span><h3>Several fixtures backing up.</h3><p>When more than one fixture is slow, noisy or backing up, the pattern can help identify whether the restriction sits beyond one local drain. Reduce water use if wastewater is appearing.</p></div>
         </article>
       </div>
@@ -909,17 +906,6 @@ const servicesPage = () => ({
           <p>If you are not sure which page fits, call Felix and describe the affected drain, your suburb and what happens when water is used.</p>
         </div>
         ${serviceCards()}
-      </section>
-
-      <section class="section services-photo-pair" aria-label="Mel One project photographs">
-        <figure class="reveal">
-          <img src="/melone-kitchenette-project.webp" alt="Finished Mel One kitchenette project with a double sink and tap" width="900" height="1200" loading="lazy">
-          <figcaption><span>Mel One project photo</span><strong>Kitchen sink and wet-area context</strong></figcaption>
-        </figure>
-        <figure class="reveal">
-          <img src="/melone-bathroom-project.webp" alt="Finished Mel One bathroom project with a basin, shower and floor waste" width="900" height="1200" loading="lazy">
-          <figcaption><span>Mel One project photo</span><strong>Basin, shower and floor-waste context</strong></figcaption>
-        </figure>
       </section>
 
       ${callout("Not sure which drain service you need?")}
@@ -1579,8 +1565,6 @@ export default {
         "/representative-pipe-service.jpg",
         "/storm-drain-leaves.jpg",
         "/drain-detail.jpg",
-        "/melone-kitchenette-project.webp",
-        "/melone-bathroom-project.webp",
         "/ellis-bath-drain-before.jpg",
         "/ellis-bath-drain-flow.jpg",
         "/ellis-exterior-drainage-installation.webp",
