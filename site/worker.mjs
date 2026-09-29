@@ -451,7 +451,7 @@ const faqMarkup = (faqs) => `
       .map(
         ([question, answer], index) => `
           <details class="faq-item reveal" ${index === 0 ? "open" : ""}>
-            <summary><span>${esc(question)}</span><span class="faq-plus" aria-hidden="true">+</span></summary>
+            <summary><span>${esc(question)}</span><span class="faq-plus" aria-hidden="true">${index === 0 ? "−" : "+"}</span></summary>
             <p>${esc(answer)}</p>
           </details>`,
       )
