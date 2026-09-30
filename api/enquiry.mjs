@@ -1,6 +1,7 @@
 const PHONE_DISPLAY = "0403 202 949";
 const CONTACT_NAME = "Felix";
 const DEFAULT_TO_EMAIL = "handyman.kevinlee@gmail.com";
+const FORMAL_HOSTS = new Set(["melonedrains.com.au", "www.melonedrains.com.au"]);
 
 const SERVICE_LABELS = Object.freeze({
   "not-sure": "Not sure / needs advice",
@@ -72,6 +73,16 @@ const recipientList = () =>
 export default async function enquiryHandler(request, response) {
   if ((request.method || "GET").toUpperCase() !== "POST") {
     sendJson(response, 405, { error: "Method not allowed." }, { allow: "POST" });
+    return;
+  }
+
+  // Use the routed Host, not a client-supplied X-Forwarded-Host, to keep preview forms inert.
+  const host = firstHeader(request.headers?.host);
+  if (
+    (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") ||
+    !FORMAL_HOSTS.has(typeof host === "string" ? host.toLowerCase() : "")
+  ) {
+    sendJson(response, 403, { error: "Online enquiries are available only on the published Mel One drains site." });
     return;
   }
 

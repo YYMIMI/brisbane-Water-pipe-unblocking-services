@@ -152,6 +152,18 @@ test("homepage explains drain symptoms without implying completed jobs", async (
   assert.match(html, /Several fixtures backing up/);
 });
 
+test("expanded FAQ shows the matching collapse indicator before JavaScript runs", async () => {
+  const html = await (await fetchPath("/blocked-drains-brisbane/")).text();
+  assert.match(
+    html,
+    /<details class="faq-item reveal" open>[\s\S]*?<span class="faq-plus" aria-hidden="true">−<\/span>/,
+  );
+  assert.match(
+    html,
+    /<details class="faq-item reveal" >[\s\S]*?<span class="faq-plus" aria-hidden="true">\+<\/span>/,
+  );
+});
+
 test("homepage typical job examples do not borrow photos from other services", async () => {
   const response = await fetchPath("/");
   assert.equal(response.status, 200);
@@ -276,8 +288,8 @@ const invokeEnquiry = async ({ method = "POST", body = {}, headers = {} } = {}) 
       method,
       body,
       headers: {
-        host: "melone.example",
-        origin: "https://melone.example",
+        host: "www.melonedrains.com.au",
+        origin: "https://www.melonedrains.com.au",
         "x-forwarded-proto": "https",
         "content-type": "application/json",
         ...headers,
@@ -307,6 +319,55 @@ const validEnquiry = () => ({
   sourcePath: "/contact/",
 });
 
+test("preview and unapproved hosts cannot send a valid enquiry to Resend", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalEnv = Object.fromEntries(
+    ["VERCEL_ENV", "RESEND_API_KEY", "RESEND_EMAIL_DOMAIN", "CONTACT_TO_EMAIL"].map((key) => [key, process.env[key]]),
+  );
+  let providerCalls = 0;
+
+  process.env.RESEND_API_KEY = "re_test_key";
+  process.env.RESEND_EMAIL_DOMAIN = "example.com";
+  process.env.CONTACT_TO_EMAIL = "office@example.com";
+  globalThis.fetch = async () => {
+    providerCalls += 1;
+    return new Response(JSON.stringify({ id: "should-not-send" }), { status: 200 });
+  };
+
+  try {
+    process.env.VERCEL_ENV = "preview";
+    const preview = await invokeEnquiry({
+      body: validEnquiry(),
+      headers: { host: "drains-feature-yymimi.vercel.app", origin: "https://drains-feature-yymimi.vercel.app" },
+    });
+    assert.equal(preview.status, 403);
+    assert.notEqual(preview.json.delivered, true);
+    assert.equal(providerCalls, 0);
+
+    const previewWithFormalHost = await invokeEnquiry({ body: validEnquiry() });
+    assert.equal(previewWithFormalHost.status, 403);
+    assert.equal(providerCalls, 0);
+
+    delete process.env.VERCEL_ENV;
+    const unapprovedHost = await invokeEnquiry({
+      body: validEnquiry(),
+      headers: {
+        host: "drains-feature-yymimi.vercel.app",
+        "x-forwarded-host": "www.melonedrains.com.au",
+        origin: "https://www.melonedrains.com.au",
+      },
+    });
+    assert.equal(unapprovedHost.status, 403);
+    assert.equal(providerCalls, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+    for (const [key, value] of Object.entries(originalEnv)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+});
+
 test("enquiry endpoint rejects wrong methods, origins and invalid fields", async () => {
   const wrongMethod = await invokeEnquiry({ method: "GET" });
   assert.equal(wrongMethod.status, 405);
@@ -321,15 +382,19 @@ test("enquiry endpoint rejects wrong methods, origins and invalid fields", async
 
 test("enquiry endpoint reports delivery only after Resend accepts the message", async () => {
   const originalFetch = globalThis.fetch;
+  const originalVercelEnv = process.env.VERCEL_ENV;
   const originalApiKey = process.env.RESEND_API_KEY;
   const originalDomain = process.env.RESEND_EMAIL_DOMAIN;
   const originalRecipient = process.env.CONTACT_TO_EMAIL;
   let providerRequest;
+  let providerCalls = 0;
 
+  process.env.VERCEL_ENV = "production";
   process.env.RESEND_API_KEY = "re_test_key";
   process.env.RESEND_EMAIL_DOMAIN = "example.com";
   process.env.CONTACT_TO_EMAIL = "office@example.com";
   globalThis.fetch = async (url, options) => {
+    providerCalls += 1;
     providerRequest = { url, options };
     return new Response(JSON.stringify({ id: "email_test_123" }), {
       status: 200,
@@ -353,8 +418,18 @@ test("enquiry endpoint reports delivery only after Resend accepts the message", 
     assert.match(payload.text, /outside drain is slow/);
     assert.match(payload.html, /<th align="left">Lead ID<\/th><td>test-enquiry-12345<\/td>/);
     assert.equal(providerRequest.options.headers["idempotency-key"], "melone-drains-test-enquiry-12345");
+
+    const apex = await invokeEnquiry({
+      body: validEnquiry(),
+      headers: { host: "melonedrains.com.au", origin: "https://melonedrains.com.au" },
+    });
+    assert.equal(apex.status, 201);
+    assert.equal(apex.json.delivered, true);
+    assert.equal(providerCalls, 2);
   } finally {
     globalThis.fetch = originalFetch;
+    if (originalVercelEnv === undefined) delete process.env.VERCEL_ENV;
+    else process.env.VERCEL_ENV = originalVercelEnv;
     if (originalApiKey === undefined) delete process.env.RESEND_API_KEY;
     else process.env.RESEND_API_KEY = originalApiKey;
     if (originalDomain === undefined) delete process.env.RESEND_EMAIL_DOMAIN;
