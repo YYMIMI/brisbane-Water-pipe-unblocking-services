@@ -406,12 +406,56 @@ const homeFaqs = [
   ],
 ];
 
+const suburbGuides = [
+  {
+    slug: "sunnybank", name: "Sunnybank",
+    title: "Sunnybank Drain Enquiry & Household Access Guide | MelOne",
+    description: "Prepare a Sunnybank drain enquiry: identify affected fixtures, essential household use, outside access and the clearing or inspection scope to compare.",
+    intro: "For a drain problem at a Sunnybank home, identify which fixtures are affected and whether water is backing up now. Describe the pattern before choosing clearing, camera inspection or pipe work. Felix confirms job suitability and current availability for the property before booking.",
+    context: "In the ABS 2021 Census, 85.8% of occupied private dwellings in Sunnybank were separate houses. This historical figure does not identify your pipe condition. If yours is an occupied house, explain which toilets, sinks or showers are affected and what the household can stop using while the problem is assessed.",
+    source: "https://www.abs.gov.au/census/find-census-data/quickstats/2021/SAL32694",
+    sections: [
+      { title: "One outlet or several affected fixtures?", copy: "A slow basin and a toilet backing up when another fixture is used need different enquiry details. List what you have already observed, including an outside gully if relevant. Do not run extra water to reproduce an overflow.", checks: ["Name each affected sink, toilet, shower, floor waste or outside drain and which changed first.", "Say whether the water is rising now, has stopped draining or is only slow.", "For a recurring problem, include when it returned after previous clearing and any inspection notes you already have."] },
+      { title: "Keep the household and the access route in the plan", copy: "If this is the only working toilet or bathroom, say so when calling. Stop using affected fixtures if water is backing up and keep people away from dirty water. Describe access already visible from a safe position; a drain enquiry does not require you to open covers or dig.", checks: ["Mention side gates, pets, stored items and any known inspection opening that can be reached.", "Identify rooms that remain in use and whether access must pass through the occupied home.", "Send a wide photo of the affected outlet and its surroundings only if it can be taken safely."] },
+    ],
+    comparison: "Ask what the initial clearing scope includes, how success is checked and what remains uncertain. Camera inspection, pipe repair and a maintenance clean are separate decisions; confirm if any is included or requires a further quote. A recurring blockage alone does not prove a broken pipe. Any additional work should have an identified reason and approval before proceeding.",
+    enquiry: "Sunnybank drain enquiry: [fixtures] are affected, first noticed [when]. Water is [slow/rising/overflowing]. The home is occupied and [essential fixture] is affected. Previous clearing was [details/none known]. Access is through [gate/inside/outside], and safe photos are available. Please confirm suitability, availability and what the first clearing scope covers.",
+    links: [["/blocked-drains-brisbane/", "Active blocked drain help"], ["/toilet-sink-blockages/", "Toilet and sink blockages"], ["/drain-cleaning-brisbane/", "Drain cleaning and recurring concerns"]],
+    faqs: [
+      ["What if the only toilet at my Sunnybank home is blocked?", "Say that it is the only usable toilet and describe whether water is rising. Stop using the affected fixture, keep people away from dirty water and call for advice. Felix confirms current availability and the response for the actual problem."],
+      ["Should I request CCTV immediately for one slow sink?", "Describe the affected outlet and previous clearing first. A camera inspection is a separate scope whose suitability and availability should be discussed; one slow sink does not by itself establish that a wider pipe inspection is needed."],
+      ["Can I compare a clearing quote with a pipe repair quote?", "They describe different work. Compare quotes for the same first scope and ask what findings support any proposed repair. Check clearing, inspection, access, follow-up and additional-work approval separately."],
+    ],
+  },
+  {
+    slug: "eight-mile-plains", name: "Eight Mile Plains",
+    title: "Eight Mile Plains Drain Enquiry & Shared Access Guide | MelOne",
+    description: "Prepare an Eight Mile Plains drain enquiry with affected outlets, approval contacts and shared access details. Distinguish private fixtures from drainage needing investigation.",
+    intro: "For an Eight Mile Plains drain enquiry, describe the affected outlet and who can arrange property access. If the property has shared drainage or common areas, include the owner or manager's instructions before booking. Felix confirms the particular job, safe access and current availability.",
+    context: "The ABS 2021 Census recorded 26.1% of occupied private dwellings in Eight Mile Plains as semi-detached, row or terrace houses and townhouses, alongside 64.4% separate houses. These historical figures do not establish your drain ownership. If you live in a townhouse or managed property, clarify which access areas are private or shared for that address.",
+    source: "https://www.abs.gov.au/census/find-census-data/quickstats/2021/SAL30950",
+    sections: [
+      { title: "Record the affected outlets without assuming a shared cause", copy: "Tell us whether the problem is confined to your bathroom or also appears at another outlet or outside drain. If a neighbour has reported a problem, keep their observations separate from your own. Similar timing does not identify a shared restriction or establish responsibility.", checks: ["List the affected outlets, when they changed and any dirty-water backup already observed.", "Say whether the concern is household wastewater or an outdoor drain pooling during rain.", "Provide earlier clearing or inspection records if available, including what area was inspected."] },
+      { title: "Arrange permission for the area that needs access", copy: "An inspection opening or outside drain may sit behind a gate, in a common passage or in a managed area. Identify who can authorise access and approve the proposed work. Do not assume a visible cover belongs to your property or try to lift it for an enquiry photo.", checks: ["Give the property type and whether you are the owner, tenant or manager.", "Describe gates, shared driveways and any existing access or work-hour restrictions.", "Identify the contact who can confirm permission, receive findings and approve a further scope if needed."] },
+    ],
+    comparison: "Compare the same approved outlets and access scope. Ask clearing and camera findings to be distinguished from proposed pipe repair, and ask what remains unassessed if access is restricted. Responsibility for a shared drain must be established for the actual property; it cannot be decided from a suburb name or one photo. Any additional work needs an explained scope and approval.",
+    enquiry: "Eight Mile Plains drain enquiry: this is a [house/townhouse/unit], and I am the [owner/tenant/manager]. The affected outlets are [list], with [observed behaviour] since [when]. Access involves [private gate/common passage]. The approval contact is [role]. Please confirm task suitability and what can be checked within the approved access scope.",
+    links: [["/toilet-sink-blockages/", "Indoor fixture blockages"], ["/sewer-drain-cleaning-brisbane/", "Sewer and main drain enquiries"], ["/stormwater-drain-cleaning/", "Outdoor stormwater drain concerns"]],
+    faqs: [
+      ["Who should arrange drain access for an Eight Mile Plains townhouse?", "Supply the person who can authorise the relevant private or common area and any owner or manager instructions. Access, the actual drain scope and availability need confirmation before arranging the work."],
+      ["If two neighbours have slow drains, is the shared pipe blocked?", "That observation may help frame an investigation but does not prove a shared-pipe fault. Record which outlets are affected and when, then ask for inspected areas, findings and any access limitations to be clear."],
+      ["Can stormwater pooling be included with a blocked toilet enquiry?", "Mention both, but identify them separately. An outdoor rainwater concern and household wastewater backup can involve different drainage and work scopes; the enquiry should not assume one causes the other."],
+    ],
+  },
+];
+
 const routePaths = [
   "/",
   "/drain-services-brisbane/",
   ...services.map((service) => service.slug),
   "/service-areas-brisbane/",
   ...Object.keys(areas).map((region) => `/service-areas-brisbane/${areaSlug(region)}/`),
+  ...suburbGuides.map((guide) => `/service-areas-brisbane/${guide.slug}/`),
   "/about/",
   "/privacy/",
   "/contact/",
@@ -973,6 +1017,7 @@ const areaPage = () => ({
           .join("")}
       </section>
 
+      ${suburbGuideLinks()}
       <section class="section area-notes">
         <div>
           <p class="eyebrow">Before booking</p>
@@ -990,6 +1035,18 @@ const areaPage = () => ({
       </section>
       ${callout("Ask if we service your Brisbane suburb.")}
     </main>`,
+});
+
+const suburbGuideLinks = () => `<section class="section area-notes"><div><p class="eyebrow">Southside suburb guides</p><h2>Prepare the enquiry for your property.</h2><p>For occupied homes, read the <a href="/service-areas-brisbane/sunnybank/">Sunnybank household drain guide</a>. For an address with shared access, read the <a href="/service-areas-brisbane/eight-mile-plains/">Eight Mile Plains access and approval guide</a>.</p></div></section>`;
+
+const suburbPage = (guide) => ({
+  title: guide.title, description: guide.description,
+  heading: `Drain enquiries in ${guide.name}.`, updated: "2026-10-07", faqs: guide.faqs,
+  body: `<main><section class="inner-hero area-hero">${breadcrumb([["Service areas", "/service-areas-brisbane/"], ["Southside", "/service-areas-brisbane/southside/"], [guide.name, ""]])}<div class="inner-hero-grid"><div><p class="eyebrow">Southside drain enquiry guide</p><h1>Drain enquiries in ${esc(guide.name)}.</h1></div><div class="inner-hero-aside"><p>${esc(guide.intro)}</p><a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></div></section>
+  <section class="section area-notes"><div><p class="eyebrow">Your property details</p><h2>Describe the actual drain and access.</h2><p>${esc(guide.context)}</p><a class="text-link" href="${guide.source}">ABS 2021 Census housing context for ${esc(guide.name)} →</a></div></section>
+  <section class="section suburb-guide-sections">${guide.sections.map((section, index) => `<article class="suburb-guide-section"><div class="suburb-guide-heading"><span>0${index + 1}</span><h2>${esc(section.title)}</h2></div><div class="suburb-guide-copy"><p>${esc(section.copy)}</p><ul>${section.checks.map(check => `<li>${esc(check)}</li>`).join("")}</ul></div></article>`).join("")}</section>
+  <section class="section area-notes"><div><p class="eyebrow">Compare the quote</p><h2>Keep clearing, inspection and repair identifiable.</h2><p>${esc(guide.comparison)}</p></div><div class="note-grid"><article><h3>Details for your enquiry</h3><p>${esc(guide.enquiry)}</p><a class="text-link" href="/contact/">Use the existing drain enquiry form →</a></article><article><h3>Read the relevant service guide</h3><ul>${guide.links.map(([href, label]) => `<li><a href="${href}">${esc(label)} →</a></li>`).join("")}</ul><a class="text-link" href="/service-areas-brisbane/southside/">Explore the Southside region guide →</a></article></div></section>
+  <section class="section faq-section"><div class="section-heading"><p class="eyebrow">Before booking</p><h2>${esc(guide.name)} drain enquiry questions.</h2></div>${faqMarkup(guide.faqs)}</section>${callout(`Discuss a drain problem in ${guide.name}.`)}</main>`,
 });
 
 const regionVisuals = {
@@ -1012,6 +1069,7 @@ const areaRegionPage = (region) => ({
         <div class="inner-hero-grid"><div class="reveal"><p class="eyebrow">Brisbane drain service area</p><h1>Drain enquiries in ${esc(region)}.</h1><p>${esc(areaGuidance[region])}</p><a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div><figure class="area-region-visual reveal"><img src="${regionVisuals[region].image}" alt="${regionVisuals[region].alt}" width="720" height="480" loading="eager"><figcaption>${regionVisuals[region].caption} Illustrative image.</figcaption></figure></div>
       </section>
       <section class="section area-directory"><article class="area-group reveal"><div><span>01</span><h2>Popular ${esc(region)} suburbs</h2></div><ul>${areas[region].map((suburb) => `<li id="${areaSlug(suburb)}"><a href="/contact/?suburb=${encodeURIComponent(suburb)}">${esc(suburb)} →</a></li>`).join("")}</ul></article></section>
+      ${region === "Southside" ? suburbGuideLinks() : ""}
       <section class="section area-notes"><div><p class="eyebrow">Plan the right drain work</p><h2>Describe what the drain is doing before choosing a service.</h2></div><div class="note-grid"><article><h3>What to do first</h3><p>${esc(areaImmediateStep[region])}</p></article><article><h3>What to send</h3><p>Give the suburb, affected outlet, when the problem started, whether water is rising and any access restrictions. Photos already taken safely can help.</p></article><article><h3>What to compare</h3><p>Ask what clearing, camera inspection, pipe repair and follow-up are included. Those are different scopes and should be identifiable in the quote.</p></article></div></section>
       <section class="section area-notes area-rfq"><div><p class="eyebrow">Drain quote details</p><h2>Tell us which drain is affected and what has happened.</h2><p>${esc(areaQuoteHelp[region].situation)}</p></div><div class="note-grid"><article><h3>What to establish</h3><ul>${areaQuoteHelp[region].questions.map((question) => `<li>${esc(question)}</li>`).join("")}</ul></article><article><h3>What to compare</h3><p>${esc(areaQuoteHelp[region].decision)}</p></article><article><h3>Send the drain details</h3><p>Include the suburb, postcode, affected outlet and a safe contact number. If wastewater is rising, stop using affected fixtures and call for advice.</p><a class="text-link" href="/contact/">Send the drain details →</a></article></div></section>
       <section class="section related-services"><div class="section-heading"><p class="eyebrow">Brisbane drain services</p><h2>Choose the affected drain.</h2></div>${serviceCards()}</section>
@@ -1314,6 +1372,8 @@ const getPage = (path) => {
   const service = services.find((item) => item.slug === path);
   if (service) return servicePage(service);
   if (path === "/service-areas-brisbane/") return areaPage();
+  const suburbGuide = suburbGuides.find((guide) => path === `/service-areas-brisbane/${guide.slug}/`);
+  if (suburbGuide) return suburbPage(suburbGuide);
   const region = Object.keys(areas).find((name) => path === `/service-areas-brisbane/${areaSlug(name)}/`);
   if (region) return areaRegionPage(region);
   if (path === "/about/") return aboutPage();
@@ -1536,7 +1596,7 @@ const latestSitemapRoutes = new Set(["/", "/blocked-drains-brisbane/", "/stormwa
 
 const sitemap = (origin) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routePaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${latestSitemapRoutes.has(path) ? "2026-09-27" : updatedSitemapRoutes.has(path) ? "2026-09-24" : "2026-08-03"}</lastmod><changefreq>${path === "/" ? "weekly" : "monthly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`).join("\n")}
+${routePaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${suburbGuides.some(guide => path === `/service-areas-brisbane/${guide.slug}/`) ? "2026-10-07" : latestSitemapRoutes.has(path) ? "2026-09-27" : updatedSitemapRoutes.has(path) ? "2026-09-24" : "2026-08-03"}</lastmod><changefreq>${path === "/" ? "weekly" : "monthly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`).join("\n")}
 </urlset>`;
 
 const notFound = (origin) => `<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found | MelOne</title><meta name="robots" content="noindex"><link rel="stylesheet" href="/assets/site.css"></head><body>${header("")}<main class="not-found"><p class="eyebrow">404</p><h1>That page has gone down the wrong drain.</h1><p>Return to the MelOne homepage or call if you need drain help in Brisbane.</p><div class="hero-actions"><a class="button button-primary" href="/">Back to home</a><a class="button button-secondary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div></main>${footer()}<script src="/assets/site.js" defer></script></body></html>`;

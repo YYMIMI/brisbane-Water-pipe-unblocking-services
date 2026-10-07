@@ -1317,6 +1317,59 @@ p {
   padding-top: 5rem;
 }
 
+.suburb-guide-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: 2.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.suburb-guide-section:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.suburb-guide-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.suburb-guide-heading span {
+  color: var(--blue);
+  font-family: "Bahnschrift Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.suburb-guide-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+}
+
+.suburb-guide-copy {
+  max-width: 68ch;
+}
+
+.suburb-guide-copy p {
+  margin-top: 0;
+}
+
+.suburb-guide-copy ul {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.suburb-guide-copy li + li {
+  margin-top: 0.65rem;
+}
+
+@media (max-width: 800px) {
+  .suburb-guide-section {
+    grid-template-columns: 1fr;
+  }
+}
+
 .area-group {
   display: grid;
   grid-template-columns: 0.65fr 1.35fr;
