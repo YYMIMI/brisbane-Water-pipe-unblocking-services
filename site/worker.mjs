@@ -832,6 +832,72 @@ const homePage = () => ({
   `,
 });
 
+const servicePlanning = {
+  "/toilet-sink-blockages/": {
+    "heading": "A fixture visit and a drain repair are different scopes.",
+    "intro": "A slow outlet describes what you can see. The accessible fixture and connected drain need to be checked before choosing how far the work should go.",
+    "details": [
+      [
+        "Agree on the first clearing step",
+        "Confirm whether the first stage concerns a toilet, trap, sink outlet or connected drain. The method depends on what can be reached and what is found; removing or replacing a fixture should be agreed separately."
+      ],
+      [
+        "Check flow before discussing more work",
+        "Ask which affected outlets will be checked after clearing. If water still backs up, or the same blockage returns, discuss the next investigation rather than assuming a new fixture will solve a drain problem."
+      ],
+      [
+        "Compare the same quote scope",
+        "Ask whether access, fixture removal and refitting, replacement parts, clearing and any further inspection are included or separate items. Mention previous clearing and products already used so the first visit can be scoped accurately."
+      ]
+    ]
+  },
+  "/stormwater-drain-cleaning/": {
+    "heading": "Confirm what a stormwater clearing visit covers.",
+    "intro": "Removing debris from a reachable grate is different from clearing a buried line or changing how the property drains. Make the intended part of the system clear before booking.",
+    "details": [
+      [
+        "Identify the grate and the water route",
+        "Point out the affected ground drains, any visible outlet and where water first collects. A ground-level photo and the pattern during rain help explain the problem; do not enter pits or climb onto a roof to gather information."
+      ],
+      [
+        "Agree on clearing and the available check",
+        "Ask which grates or accessible pipe sections are included, how removed debris is handled and what flow check is possible at the visit. A dry-weather check cannot reproduce every heavy-rain condition."
+      ],
+      [
+        "Separate repairs and drainage changes",
+        "Access, the number of drains, debris build-up and a restriction beyond the reachable section can change the work required. Confirm any further inspection, pipe repair or change to falls as a separate scope; clearing alone does not redesign drainage."
+      ]
+    ]
+  },
+  "/sewer-drain-cleaning-brisbane/": {
+    "heading": "Set the first clearing stage and the follow-up decision.",
+    "intro": "The aim of the first agreed stage is to address the restriction that can be assessed and reached. A recurring problem may need evidence for a later repair decision.",
+    "details": [
+      [
+        "Confirm access and the affected fixtures",
+        "Tell us which outlets back up together, where wastewater appears and how long earlier clearing lasted. Confirm who can authorise access and additional work, particularly where a shared or managed property is involved."
+      ],
+      [
+        "Ask what the clearing check includes",
+        "Confirm the access point and clearing scope, then ask which affected outlets can be observed for flow afterwards. If a restriction remains or returns, discuss whether further investigation is appropriate before agreeing to pipework."
+      ],
+      [
+        "Keep investigation and repair costs distinct",
+        "Access constraints, the extent of clearing, equipment required and a further visit can affect the quote. Ask for any CCTV inspection, excavation, pipe replacement and reinstatement to be identified separately rather than treated as automatically included in cleaning."
+      ]
+    ]
+  }
+};
+
+const servicePlanningSection = (slug) => {
+  const planning = servicePlanning[slug];
+  if (!planning) return "";
+  return `<section class="section area-notes service-booking" aria-labelledby="service-planning-title">
+    <div><p class="eyebrow">Scope and follow-up</p><h2 id="service-planning-title">${esc(planning.heading)}</h2><p>${esc(planning.intro)}</p></div>
+    <div class="note-grid">${planning.details.map(([heading, detail]) => `<article><h3>${esc(heading)}</h3><p>${esc(detail)}</p></article>`).join("")}</div>
+  </section>`;
+};
+
 const servicePage = (service) => ({
   ...service,
   updated: ["/blocked-drains-brisbane/", "/stormwater-drain-cleaning/"].includes(service.slug) ? "2026-09-27" : "2026-09-24",
@@ -897,6 +963,8 @@ const servicePage = (service) => ({
           ${service.booking.details.map(([heading, detail]) => `<article><h3>${esc(heading)}</h3><p>${esc(detail)}</p></article>`).join("")}
         </div>
       </section>
+
+      ${servicePlanningSection(service.slug)}
 
       <section class="section related-services">
         <div class="section-heading">
