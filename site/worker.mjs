@@ -1383,6 +1383,7 @@ const contactPage = () => ({
           <p class="eyebrow">Online enquiry</p>
           <h2 id="enquiry-form-title">Send the drain details to MelOne.</h2>
           <p>Tell us where you are, what is blocked and what the water is doing. Required fields are marked with an asterisk.</p>
+          <p id="commercial-properties"><strong>Drain help for homes and businesses.</strong> We also welcome blocked-drain and drain-cleaning enquiries for Brisbane shops, offices and other commercial premises. Include the affected sinks, toilets or outdoor drains, any overflow, business hours and the person arranging access. Tell us if multiple tenancies share the drain so the assessment and work scope can be discussed.</p>
         </div>
         <form class="enquiry-form reveal" data-enquiry-form action="/api/enquiry" method="post">
           <div class="enquiry-fields">
