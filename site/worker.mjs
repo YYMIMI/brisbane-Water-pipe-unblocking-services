@@ -127,7 +127,7 @@ const services = [
     slug: "/toilet-sink-blockages/",
     nav: "Toilets & sinks",
     image: "/representative-pipe-service.jpg",
-    imageAlt: "Reference photograph of accessible drainage pipework",
+    imageAlt: "Accessible drainage pipework",
     title: "Blocked Toilet & Sink Brisbane | MelOne Drain Help",
     description:
       "Help with blocked toilets, kitchen sinks, bathroom basins and shower drains across Brisbane. Call MelOne to explain what is blocked and confirm availability.",
@@ -1120,7 +1120,7 @@ const suburbPage = (guide) => ({
 const regionVisuals = {
   "Inner Brisbane": { image: "/drain-detail.jpg", alt: "Drain connection detail", caption: "Show the affected outlet and any visible connection when asking about an indoor blockage." },
   Northside: { image: "/storm-drain-leaves.jpg", alt: "Leaves at an outdoor stormwater drain", caption: "For an outdoor drain, note where water pools and whether the grate is accessible." },
-  Southside: { image: "/representative-pipe-service.jpg", alt: "Illustrative pipe service detail", caption: "Describe whether one outlet or several fixtures are slow or backing up." },
+  Southside: { image: "/representative-pipe-service.jpg", alt: "Pipe connection detail", caption: "Describe whether one outlet or several fixtures are slow or backing up." },
   "East & bayside": { image: "/storm-drain-leaves.jpg", alt: "Leaves at an outdoor stormwater drain", caption: "A photo of the grate and nearby pooling can help explain an outdoor drainage issue." },
   "West & outer suburbs": { image: "/drain-detail.jpg", alt: "Drain connection detail", caption: "For an indoor backup, identify the first affected outlet and when it started." },
 };
@@ -1134,7 +1134,7 @@ const areaRegionPage = (region) => ({
     <main>
       <section class="inner-hero area-hero">
         ${breadcrumb([["Service areas", "/service-areas-brisbane/"], [region, ""]])}
-        <div class="inner-hero-grid"><div class="reveal"><p class="eyebrow">Brisbane drain service area</p><h1>Drain enquiries in ${esc(region)}.</h1><p>${esc(areaGuidance[region])}</p><a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div><figure class="area-region-visual reveal"><img src="${regionVisuals[region].image}" alt="${regionVisuals[region].alt}" width="720" height="480" loading="eager"><figcaption>${regionVisuals[region].caption} Illustrative image.</figcaption></figure></div>
+        <div class="inner-hero-grid"><div class="reveal"><p class="eyebrow">Brisbane drain service area</p><h1>Drain enquiries in ${esc(region)}.</h1><p>${esc(areaGuidance[region])}</p><a class="button button-primary" href="tel:${PHONE_HREF}">Call ${PHONE_DISPLAY}</a></div><figure class="area-region-visual reveal"><img src="${regionVisuals[region].image}" alt="${regionVisuals[region].alt}" width="720" height="480" loading="eager"><figcaption>${regionVisuals[region].caption}</figcaption></figure></div>
       </section>
       <section class="section area-directory"><article class="area-group reveal"><div><span>01</span><h2>Popular ${esc(region)} suburbs</h2></div><ul>${areas[region].map((suburb) => `<li id="${areaSlug(suburb)}"><a href="/contact/?suburb=${encodeURIComponent(suburb)}">${esc(suburb)} →</a></li>`).join("")}</ul></article></section>
       ${region === "Southside" ? suburbGuideLinks() : ""}
