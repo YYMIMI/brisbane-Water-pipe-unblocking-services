@@ -60,7 +60,9 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /hreflang="zh-Hans"/);
       assert.match(html, /hreflang="x-default"/);
     } else {
-      assert.doesNotMatch(html, /rel="alternate"/);
+      assert.match(html, /hreflang="en-AU"/);
+      assert.match(html, /hreflang="zh-Hans"/);
+      assert.match(html, /hreflang="x-default"/);
     }
     assert.equal((html.match(/<h1\b/g) || []).length, 1, `${path} should contain one h1`);
     assert.doesNotMatch(html, /codex-preview|Your site is taking shape|keyword strategy|SEO strategy/i);
@@ -107,9 +109,11 @@ test("every public page renders with unique metadata and one useful heading", as
       assert.match(html, /Mel One Property Maintenance Pty Ltd/);
     }
     if (path === "/zh/") {
-      assert.match(html, /Mel(?:One| One Maintenance) 中文服务/);
-      assert.match(html, /布里斯班管道疏通与排水服务/);
-      assert.match(html, /zh-brisbane-map-title/);
+      assert.match(html, /<html lang="zh-Hans">/);
+      assert.match(html, /布里斯班排水服务/);
+      assert.match(html, /home-brisbane-map-title/);
+      assert.match(html, /清渠／通渠/);
+      assert.match(html, /company-details/);
       assert.match(html, /www\.google\.com\/maps\/place\/Mel\+One\+Renovations/);
       assert.match(html, /hreflang="zh-Hans"/);
     }
@@ -269,7 +273,7 @@ test("Vercel catch-all renders the requested public route", async () => {
   const html = Buffer.concat(chunks).toString("utf8");
   assert.equal(response.statusCode, 200);
   assert.match(headers.get("content-type") || "", /^text\/html/);
-  assert.match(html, /布里斯班管道疏通与排水服务/);
+  assert.match(html, /布里斯班排水服务/);
   assert.match(html, /https:\/\/melone\.example\/zh\//);
 });
 

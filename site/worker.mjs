@@ -1,3 +1,4 @@
+import { localizeHTML, chinesePath, englishPath } from "./bilingual.mjs";
 const PHONE_DISPLAY = "0403 202 949";
 const PHONE_HREF = "+61403202949";
 const EMAIL = "handyman.kevinlee@gmail.com";
@@ -449,7 +450,7 @@ const suburbGuides = [
   },
 ];
 
-const routePaths = [
+const originalRoutePaths = [
   "/",
   "/drain-services-brisbane/",
   ...services.map((service) => service.slug),
@@ -461,6 +462,9 @@ const routePaths = [
   "/contact/",
   "/zh/",
 ];
+
+const englishRoutePaths = originalRoutePaths.filter(path => path !== "/zh/");
+const routePaths = [...englishRoutePaths, ...englishRoutePaths.map(chinesePath)];
 
 const esc = (value) =>
   String(value)
@@ -685,7 +689,7 @@ const homePage = () => ({
       <div class="photo-story-heading">
         <p class="eyebrow">What drainage trouble looks like</p>
         <h2 id="photo-story-title">Real details. Easier to describe.</h2>
-        <p>A photo of the affected drain can help us understand where water is slow, rising or returning. The outdoor drain image is general guidance, not a photo of your job.</p>
+        <p>A photo of the affected drain can help us understand where water is slow, rising or returning.</p>
       </div>
       <div class="photo-prompts">
         <div class="photo-prompt reveal">
@@ -702,7 +706,7 @@ const homePage = () => ({
 
     <section class="section typical-jobs" aria-labelledby="typical-jobs-title">
       <div class="typical-jobs-heading">
-        <p class="eyebrow">Evidence guide</p>
+        <p class="eyebrow">Describe the problem</p>
         <h2 id="typical-jobs-title">Typical drain jobs.</h2>
         <p>Tell us what is blocked and what happens when water is used. These examples help you describe the problem; they are not claims about a particular completed job.</p>
       </div>
@@ -774,7 +778,7 @@ const homePage = () => ({
     <section class="section why-section" aria-labelledby="why-title">
       <div class="why-heading reveal">
         <p class="eyebrow">Why choose MelOne</p>
-        <h2 id="why-title">Useful answers before a drain visit.</h2>
+        <h2 id="why-title"><span id="zh-why-title"></span>Useful answers before a drain visit.</h2>
         <p>When water is backing up, you need one clear contact, sensible questions and a clear idea of what happens next.</p>
       </div>
       <div class="why-grid">
@@ -799,6 +803,7 @@ const homePage = () => ({
       </div>
     </section>
 
+    <span id="zh-brisbane-map-title"></span>
     ${brisbaneMap({
       id: "home-brisbane-map-title",
       eyebrow: "Brisbane service area",
@@ -828,6 +833,17 @@ const homePage = () => ({
       ${faqMarkup(homeFaqs)}
     </section>
 
+      <section id="company-details" class="section section-tight">
+        <div class="section-heading"><p class="eyebrow">Company &amp; insurance</p><h2>Company and insurance details.</h2></div>
+        <div class="entity-card">
+          <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408</p>
+          <p><strong>Current public liability insurance</strong><br>Chubb Insurance Australia Limited<br>Public &amp; Products Liability · AUD 20 million<br>13 April 2026 – 13 April 2027, subject to policy terms</p>
+          <p><strong>Regulated drainage work:</strong> If clearing identifies regulated plumbing or drainage work, that scope is separated from routine cleaning. The required licence class and responsible contracting party are confirmed before the quote is accepted or work starts.</p>
+        </div>
+      </section>
+
+    <section class="section faq-section" id="drain-enquiry-details"><div class="section-heading"><p class="eyebrow">Before you enquire</p><h2 id="zh-drain-faq-title">Confirm the drain, access and scope.</h2><p>Here, 清渠／通渠 means enquiries about clearing and cleaning blocked drains and sewers, rather than ordinary household cleaning. One slow sink and several drains backing up together need different starting points.</p><a class="text-link" href="/contact/">Describe the problem in English or Chinese <span aria-hidden="true">→</span></a></div>${faqMarkup([["Are sewer and stormwater blockages the same issue?","No. A toilet or floor waste backing up may involve wastewater drainage; a yard or driveway grate pooling during rain may involve stormwater drainage. Tell us where water appears and whether it happens only in rain. Do not keep flushing to test the problem."],["Does a recurring blockage need a CCTV drain inspection?","Not necessarily. Tell us when it was last cleared, which outlets are affected and whether you have an earlier inspection report. Whether CCTV is suitable, currently available or included in the quote must be confirmed for the site."],["What should I include in a drain enquiry?","Include your Brisbane suburb and postcode, the affected sink or outlet, whether other fixtures are backing up, when it started, any chemical drain cleaner already used, and a safely accessible entry. Confirm the scope of initial clearing, camera inspection and pipe repairs separately."]])}</section>
+    <span id="zh-contact-title"></span>
     ${callout()}
   `,
 });
@@ -1257,104 +1273,6 @@ const privacyPage = () => ({
     </main>`,
 });
 
-const chinesePage = () => ({
-  title: "布里斯班管道疏通与排水服务 | Mel One Maintenance",
-  description:
-    "Mel One Maintenance 为布里斯班住宅、出租物业和本地商家提供堵塞排水管、马桶、洗手盆及雨水排水问题的中文咨询。",
-  eyebrow: "中文服务",
-  heading: "布里斯班管道疏通与排水服务",
-  lang: "zh-Hans",
-  updated: "2026-09-24",
-  body: `
-    <main>
-      <section class="inner-hero about-hero">
-        <nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="/">English</a></li><li><span aria-current="page">中文</span></li></ol></nav>
-        <div class="inner-hero-grid">
-          <div class="reveal">
-            <p class="eyebrow">Mel One Maintenance 中文服务</p>
-            <h1>布里斯班管道堵塞？先把情况说清楚。</h1>
-          </div>
-          <div class="inner-hero-aside reveal">
-            <p>排水口正在倒灌？请立即来电说明所在郊区及邮编、污水风险和受影响设施；到场时间按人员、交通、通道和现场风险单独确认。</p>
-            <a class="text-link" href="/">View the English website <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section split-intro">
-        <div><p class="eyebrow">常见排水问题</p><h2>住宅、出租物业和本地商家。</h2></div>
-        <p>我们处理布里斯班常见的排水堵塞咨询。情况紧急时，请先停止使用受影响的排水口，并尽量减少附近用水。</p>
-      </section>
-
-      <section class="section section-tight" aria-label="中文排水服务">
-        <div class="service-grid">
-          <article class="service-card reveal"><span class="service-number">01</span><p class="eyebrow">水位上升或倒灌</p><h3>堵塞排水管</h3><p>洗手盆、淋浴、地漏或室外排水口排水缓慢、发出咕噜声或溢水。</p><a class="text-link" href="/blocked-drains-brisbane/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
-          <article class="service-card reveal"><span class="service-number">02</span><p class="eyebrow">慢排水与异味</p><h3>排水清理</h3><p>处理积垢、反复出现的异味，以及越来越慢的厨房或浴室排水。</p><a class="text-link" href="/drain-cleaning-brisbane/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
-          <article class="service-card reveal"><span class="service-number">03</span><p class="eyebrow">卫生间与厨房</p><h3>马桶和洗手盆堵塞</h3><p>马桶、厨房水槽、浴室洗手盆和淋浴排水问题。</p><a class="text-link" href="/toilet-sink-blockages/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
-          <article class="service-card reveal"><span class="service-number">04</span><p class="eyebrow">室外积水</p><h3>雨水排水</h3><p>布里斯班大雨前后的格栅、落叶淤积和室外积水问题。</p><a class="text-link" href="/stormwater-drain-cleaning/">查看英文服务页 <span aria-hidden="true">→</span></a></article>
-          <article class="service-card reveal"><span class="service-number">05</span><p class="eyebrow">多个设施同时受影响</p><h3>主管道疏通与主污水管</h3><p>多个排水口同时返水、马桶与淋浴相互影响、污水从其他位置出现或清理后反复堵塞，需要与单个设施堵塞分开判断。</p><a class="text-link" href="/sewer-drain-cleaning-brisbane/">查看主管道英文服务页 <span aria-hidden="true">→</span></a></article>
-        </div>
-      </section>
-
-      <section class="section faq-section" aria-labelledby="zh-drain-faq-title">
-        <div class="section-heading">
-          <p class="eyebrow">中文常见问题</p>
-          <h2 id="zh-drain-faq-title">清渠或通渠前，先确认这三件事。</h2>
-          <p>这里的「清渠／通渠」指堵塞排水管和下水道的疏通、清理咨询，不是普通家居保洁。一个水槽排水慢，与多个排水口同时返水，需要不同的处理起点。</p>
-          <a class="text-link" href="/contact/">填写咨询表，可用中文描述情况 <span aria-hidden="true">→</span></a>
-        </div>
-        ${faqMarkup([
-          ["污水管和雨水管堵塞是同一回事吗？", "不是。马桶或地漏返水可能涉及污水排水；下雨时院子或车道格栅积水则可能涉及雨水排水。请说明水从哪里出现、是否只在下雨时发生，不要为了测试而继续冲水。"],
-          ["反复堵塞需要 CCTV 管道摄像检查吗？", "不一定。请先说明之前疏通的时间、受影响位置和是否有旧检查报告。是否适合做 CCTV 检查、目前能否安排，以及检查是否包含在报价内，都需要按现场情况确认。"],
-          ["询价时要提供什么？", "请提供布里斯班郊区和邮编、堵塞的水槽或排水口、是否有其他设施同时返水、何时开始、是否使用过化学疏通剂，以及安全可达的入口。初步疏通、摄像检查和管道维修应分别确认范围。"],
-        ])}
-      </section>
-
-      <section class="section why-section" aria-labelledby="zh-why-title">
-        <div class="why-heading reveal">
-          <p class="eyebrow">为什么选择 MelOne</p>
-          <h2 id="zh-why-title">一个联系人，清楚沟通。</h2>
-          <p>直接联系 Felix。请提供郊区、邮编和现场情况，我们会先确认服务范围与时间。</p>
-        </div>
-        <div class="why-grid">
-          <article class="why-card reveal"><span>01</span><h3>直接联系</h3><p>电话和邮箱在全站保持一致，不需要重复寻找联系人。</p></article>
-          <article class="why-card reveal"><span>02</span><h3>说明白再安排</h3><p>先了解哪里堵塞、何时开始，以及其他排水口是否也受影响。</p></article>
-          <article class="why-card reveal"><span>03</span><h3>布里斯班上门服务</h3><p>提供郊区和邮编后，我们会确认当天的行程与可预约时间。</p></article>
-          <article class="why-card reveal"><span>04</span><h3>维修工艺质保</h3><p>符合条件的排水维修工程提供10年工艺质保，覆盖范围和条款会在施工前书面确认。</p></article>
-        </div>
-      </section>
-
-      <section id="company-details" class="section section-tight">
-        <div class="section-heading"><p class="eyebrow">公司与保险</p><h2>先确认您联系的是哪家公司。</h2></div>
-        <div class="entity-card">
-          <p><strong>Mel One Property Maintenance Pty Ltd</strong><br>ABN 39 666 325 408 · ACN 666 325 408</p>
-          <p><strong>当前公众与产品责任险</strong><br>Chubb Insurance Australia Limited<br>责任限额：2,000 万澳元<br>保险期间：2026 年 4 月 13 日至 2027 年 4 月 13 日，具体保障以保单条款为准。</p>
-        </div>
-      </section>
-
-      ${brisbaneMap({
-        id: "zh-brisbane-map-title",
-        eyebrow: "服务区域地图",
-        heading: "在 Google 地图查看 Mel One Renovations",
-        copy: "使用地图查看 Mel One Renovations 商家资料、地点和路线。",
-        linkText: "在 Google 地图中查看 Mel One Renovations",
-      })}
-
-      <section class="contact-band" aria-labelledby="zh-contact-title">
-        <div>
-          <p class="eyebrow eyebrow-light">中文咨询</p>
-          <h2 id="zh-contact-title">告诉我们哪里堵塞。</h2>
-          <p>紧急倒灌可随时致电；团队会先确认位置、污水风险、人员安排、交通和安全通道，再提供实际到场时间。</p>
-        </div>
-        <div class="contact-band-actions">
-          <a class="button button-light" href="tel:${PHONE_HREF}">电话 ${PHONE_DISPLAY}</a>
-          <a class="button button-ghost-light" href="mailto:${EMAIL}?subject=Brisbane%20drain%20service%20enquiry">${EMAIL}</a>
-          <a class="button button-ghost-light" href="/contact/">填写咨询表</a>
-        </div>
-      </section>
-    </main>`,
-});
-
 const contactPage = () => ({
   title: "Contact MelOne | Blocked Drain Help Brisbane",
   description:
@@ -1448,7 +1366,6 @@ const getPage = (path) => {
   if (path === "/about/") return aboutPage();
   if (path === "/privacy/") return privacyPage();
   if (path === "/contact/") return contactPage();
-  if (path === "/zh/") return chinesePage();
   return null;
 };
 
@@ -1474,17 +1391,17 @@ const header = (path) => `
       <a ${path === "/service-areas-brisbane/" ? 'aria-current="page"' : ""} href="/service-areas-brisbane/">Map & areas</a>
       <a href="/#reviews">Reviews</a>
       <a ${path === "/about/" ? 'aria-current="page"' : ""} href="/about/">About</a>
-      <a ${path === "/zh/" ? 'aria-current="page"' : ""} href="/zh/" lang="zh-Hans">中文</a>
+      <a ${path === "/zh/" ? 'aria-current="page"' : ""} href="${chinesePath(path)}" lang="zh-Hans" data-language-switch>中文</a>
       <a class="nav-contact" ${path === "/contact/" ? 'aria-current="page"' : ""} href="/contact/">Contact <span aria-hidden="true">↗</span></a>
     </nav>
   </header>`;
 
-const footer = () => `
+const footer = (path = "/") => `
   <footer class="site-footer">
     <div class="footer-main">
       <div class="footer-brand"><div class="footer-logo-lockup"><span class="footer-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><strong class="brand-wordmark">MELONE</strong></div><p>Blocked drain and drain cleaning help across Brisbane and nearby suburbs.</p><p>Mel One Property Maintenance Pty Ltd · ABN 39 666 325 408</p></div>
       <div><h2>Services</h2><ul><li><a href="/drain-services-brisbane/">All drain services</a></li>${services.map((service) => `<li><a href="${service.slug}">${esc(service.nav)}</a></li>`).join("")}</ul></div>
-      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="https://www.meloneplumbingvic.com.au/plumbing-services-brisbane">Other Brisbane plumbing repairs</a></li><li><a href="/zh/" lang="zh-Hans">中文服务</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="/service-areas-brisbane/">Map & service areas</a></li><li><a href="/about/">About MelOne</a></li><li><a href="/about/#company-details">Company &amp; insurance</a></li><li><a href="https://www.meloneplumbingvic.com.au/plumbing-services-brisbane">Other Brisbane plumbing repairs</a></li><li><a href="${chinesePath(path)}" lang="zh-Hans" data-language-switch>中文服务</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
       <div class="footer-contact"><h2>Speak with ${CONTACT}</h2><a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Brisbane, Queensland</p></div>
     </div>
     <div class="footer-bottom"><span>© MelOne</span><span>On-site drain services across Greater Brisbane · Call ${CONTACT} on ${PHONE_DISPLAY}</span></div>
@@ -1608,9 +1525,7 @@ const document = (page, origin, path) => {
   const canonical = `${origin}${path}`;
   const pageLang = page.lang || "en-AU";
   const ogLocale = pageLang === "zh-Hans" ? "zh_CN" : "en_AU";
-  const alternateLinks = path === "/" || path === "/zh/"
-    ? `\n  <link rel="alternate" hreflang="en-AU" href="${origin}/">\n  <link rel="alternate" hreflang="zh-Hans" href="${origin}/zh/">\n  <link rel="alternate" hreflang="x-default" href="${origin}/">`
-    : "";
+  const alternateLinks = `\n  <link rel="alternate" hreflang="en-AU" href="${origin}${path}">\n  <link rel="alternate" hreflang="zh-Hans" href="${origin}${chinesePath(path)}">\n  <link rel="alternate" hreflang="x-default" href="${origin}${path}">`;
   return `<!doctype html>
 <html lang="${pageLang}">
 <head>
@@ -1646,7 +1561,7 @@ const document = (page, origin, path) => {
 <body>
   ${header(path)}
   <div id="main">${page.body}</div>
-  ${footer()}
+  ${footer(path)}
   <script src="/assets/site.js" defer></script>
 </body>
 </html>`;
@@ -1705,20 +1620,22 @@ export default {
     if (!path.endsWith("/") && !path.includes(".")) {
       return Response.redirect(`${origin}${path}/`, 301);
     }
-    const page = getPage(path);
+    const isChinese = path.startsWith("/zh/");
+    const basePath = isChinese ? englishPath(path) : path;
+    const page = getPage(basePath);
     if (!page) {
-      return new Response(notFound(origin), {
+      return new Response(isChinese ? localizeHTML(notFound(origin), origin, basePath) : notFound(origin), {
         status: 404,
         headers: { "content-type": "text/html; charset=utf-8", "x-content-type-options": "nosniff" },
       });
     }
-    return new Response(document(page, origin, path), {
+    return new Response(isChinese ? localizeHTML(document(page, origin, basePath), origin, basePath) : document(page, origin, basePath), {
       headers: {
         "content-type": "text/html; charset=utf-8",
         "cache-control": "public, max-age=0, s-maxage=3600",
         "x-content-type-options": "nosniff",
         "referrer-policy": "strict-origin-when-cross-origin",
-        "content-language": page.lang || "en-AU",
+        "content-language": isChinese ? "zh-Hans" : "en-AU",
       },
     });
   },

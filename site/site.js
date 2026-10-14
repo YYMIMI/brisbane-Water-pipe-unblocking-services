@@ -1,10 +1,14 @@
+const isChinese = document.documentElement.lang.startsWith("zh");
+const runtimeChinese = {"Open menu":"打开菜单","Close menu":"关闭菜单","Play":"播放","Pause":"暂停","Play automatic review scrolling":"播放评价自动滚动","Pause automatic review scrolling":"暂停评价自动滚动","Sending enquiry…":"正在发送咨询…","Sending your enquiry securely…":"正在安全发送您的咨询…","We could not send your enquiry. Please call Felix on 0403 202 949.":"未能发送咨询，请致电 Felix：0403 202 949。","Thanks — your enquiry has been sent to MelOne. We reply within 24 hours. If water is rising, call 0403 202 949.":"谢谢，您的咨询已发送给 MelOne。我们会在24小时内回复。如果水位正在上升，请致电 0403 202 949。","The request took too long. Please try again or call Felix on 0403 202 949.":"请求超时，请重试或致电 Felix：0403 202 949。","Online enquiries are temporarily unavailable. Please call Felix on 0403 202 949.":"在线咨询暂时无法使用，请致电 Felix：0403 202 949。","Please provide your name, a valid phone number, Brisbane suburb or postcode, issue type, timing and at least 10 characters describing the drain problem.":"请填写姓名、有效电话、布里斯班郊区或邮编、问题类型、希望安排时间，并用至少10个字符说明排水问题。","Please refresh the page and submit the form again.":"请刷新页面后重新提交表单。","Please check the form and try again.":"请检查表单后重试。","The enquiry is too large.":"咨询内容过长，请缩短后重试。","Please submit the online form.":"请使用在线表单提交。","This form must be submitted from the MelOne website.":"请从 MelOne 网站提交此表单。","Online enquiries are available only on the published Mel One drains site.":"在线咨询仅可在已发布的 Mel One 排水网站提交。"};
+const localText = text => isChinese ? (runtimeChinese[text] || text) : text;
+
 const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector(".site-nav");
 
 if (menuButton && navigation) {
   const closeMenu = (restoreFocus = false) => {
     menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", "Open menu");
+    menuButton.setAttribute("aria-label", localText("Open menu"));
     navigation.classList.remove("is-open");
     navigation.querySelectorAll(".nav-services").forEach((menu) => menu.removeAttribute("open"));
     document.body.classList.remove("menu-open");
@@ -18,7 +22,7 @@ if (menuButton && navigation) {
       return;
     }
     menuButton.setAttribute("aria-expanded", String(!isOpen));
-    menuButton.setAttribute("aria-label", "Close menu");
+    menuButton.setAttribute("aria-label", localText("Close menu"));
     navigation.classList.add("is-open");
     document.body.classList.add("menu-open");
   });
@@ -124,8 +128,8 @@ document.querySelectorAll("[data-review-carousel]").forEach((carousel) => {
   };
 
   const updateToggle = () => {
-    toggle.textContent = paused ? "Play" : "Pause";
-    toggle.setAttribute("aria-label", paused ? "Play automatic review scrolling" : "Pause automatic review scrolling");
+    toggle.textContent = paused ? localText("Play") : localText("Pause");
+    toggle.setAttribute("aria-label", paused ? localText("Play automatic review scrolling") : localText("Pause automatic review scrolling"));
   };
 
   previous.addEventListener("click", () => {
@@ -160,6 +164,11 @@ document.querySelectorAll("[data-review-carousel]").forEach((carousel) => {
 const enquiryForm = document.querySelector("[data-enquiry-form]");
 
 if (enquiryForm) {
+  if (isChinese) {
+    enquiryForm.addEventListener("invalid", event => { const field = event.target; field.setCustomValidity(""); if(field.validity.valueMissing) field.setCustomValidity(field.tagName === "SELECT" ? "请选择一项。" : field.type === "checkbox" ? "请先确认同意条款。" : "请填写此项。"); else if(field.validity.typeMismatch) field.setCustomValidity("请填写有效的邮箱地址。"); else if(field.validity.tooShort) field.setCustomValidity("填写内容太短，请补充资料。"); else if(!field.validity.valid) field.setCustomValidity("请检查此项资料。"); }, true);
+    enquiryForm.addEventListener("input", event => event.target.setCustomValidity?.(""));
+    enquiryForm.addEventListener("change", event => event.target.setCustomValidity?.(""));
+  }
   const requestedSuburb = new URLSearchParams(window.location.search).get("suburb")?.trim().slice(0, 100);
   const suburbInput = enquiryForm.elements.namedItem("suburb");
   if (requestedSuburb && suburbInput && !suburbInput.value) suburbInput.value = requestedSuburb;
@@ -215,8 +224,8 @@ if (enquiryForm) {
 
     const originalLabel = submitButton.textContent;
     submitButton.disabled = true;
-    submitButton.textContent = "Sending enquiry…";
-    showFormStatus("Sending your enquiry securely…");
+    submitButton.textContent = localText("Sending enquiry…");
+    showFormStatus(localText("Sending your enquiry securely…"));
 
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 15_000);
@@ -244,7 +253,7 @@ if (enquiryForm) {
           { http_status: response.status, lead_id: leadId, submission_id: leadId },
         );
         failureTracked = true;
-        throw new Error(result?.error || "We could not send your enquiry. Please call Felix on 0403 202 949.");
+        throw new Error((isChinese ? (runtimeChinese[result?.error] || runtimeChinese["We could not send your enquiry. Please call Felix on 0403 202 949."]) : result?.error) || localText("We could not send your enquiry. Please call Felix on 0403 202 949."));
       }
 
       trackFormEvent("generate_lead", {
@@ -255,15 +264,15 @@ if (enquiryForm) {
       refreshSubmissionData();
       formStarted = false;
       showFormStatus(
-        "Thanks — your enquiry has been sent to MelOne. We reply within 24 hours. If water is rising, call 0403 202 949.",
+        localText("Thanks — your enquiry has been sent to MelOne. We reply within 24 hours. If water is rising, call 0403 202 949."),
         "success",
       );
     } catch (error) {
       const message = error?.name === "AbortError"
-        ? "The request took too long. Please try again or call Felix on 0403 202 949."
+        ? localText("The request took too long. Please try again or call Felix on 0403 202 949.")
         : error instanceof Error
-          ? error.message
-          : "We could not send your enquiry. Please call Felix on 0403 202 949.";
+          ? (isChinese ? (/\p{Script=Han}/u.test(error.message) ? error.message : runtimeChinese["We could not send your enquiry. Please call Felix on 0403 202 949."]) : error.message)
+          : localText("We could not send your enquiry. Please call Felix on 0403 202 949.");
       showFormStatus(message, "error");
       if (!failureTracked) {
         trackFormEvent("lead_api_error", {

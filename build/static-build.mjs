@@ -20,6 +20,8 @@ await mkdir(hosting, { recursive: true });
 
 await Promise.all([
   copyFile(path.join(root, "site", "worker.mjs"), path.join(server, "index.js")),
+  copyFile(path.join(root, "site", "bilingual.mjs"), path.join(server, "bilingual.mjs")),
+  copyFile(path.join(root, "site", "translations.json"), path.join(server, "translations.json")),
   copyFile(path.join(root, ".openai", "hosting.json"), path.join(hosting, "hosting.json")),
   copyFile(path.join(root, "site", "site.css"), path.join(assets, "site.css")),
   copyFile(path.join(root, "site", "site.js"), path.join(assets, "site.js")),
