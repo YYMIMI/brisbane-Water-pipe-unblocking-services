@@ -1,4 +1,4 @@
-import { copyFile, mkdir, rm } from "node:fs/promises";
+import { copyFile, mkdir, rm, cp } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -36,5 +36,7 @@ await Promise.all([
   copyFile(path.join(root, "public", "ellis-exterior-drainage-installation.webp"), path.join(client, "ellis-exterior-drainage-installation.webp")),
   copyFile(path.join(root, "public", "ellis-exterior-drainage-detail.jpg"), path.join(client, "ellis-exterior-drainage-detail.jpg")),
 ]);
+
+await cp(path.join(root, "public", "service-qa"), path.join(client, "service-qa"), { recursive: true });
 
 console.log("Built MelOne Brisbane site");

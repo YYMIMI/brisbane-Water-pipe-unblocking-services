@@ -1397,7 +1397,7 @@ const header = (path) => `
   </header>`;
 
 const footer = (path = "/") => `
-  <footer class="site-footer">
+  <footer data-service-qa-mount="" class="site-footer">
     <div class="footer-main">
       <div class="footer-brand"><div class="footer-logo-lockup"><span class="footer-logo-crop" aria-hidden="true"><img src="/melone-logo.png" alt="" width="960" height="960"></span><strong class="brand-wordmark">MELONE</strong></div><p>Blocked drain and drain cleaning help across Brisbane and nearby suburbs.</p><p>Mel One Property Maintenance Pty Ltd · ABN 39 666 325 408</p></div>
       <div><h2>Services</h2><ul><li><a href="/drain-services-brisbane/">All drain services</a></li>${services.map((service) => `<li><a href="${service.slug}">${esc(service.nav)}</a></li>`).join("")}</ul></div>
@@ -1562,7 +1562,7 @@ const document = (page, origin, path) => {
   ${header(path)}
   <div id="main">${page.body}</div>
   ${footer(path)}
-  <script src="/assets/site.js" defer></script>
+  <script src="/assets/site.js" defer></script><link rel="stylesheet" href="/service-qa/20261014-1/widget.css" data-service-qa-style="" /><script type="module" src="/service-qa/20261014-1/widget.js" data-service-qa="" data-site-origin="https://www.melonedrains.com.au" data-contact-en="/contact/" data-contact-zh="/zh/contact/"></script>
 </body>
 </html>`;
 };
