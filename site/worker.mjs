@@ -1270,6 +1270,7 @@ const privacyPage = () => ({
         <p>Some technology providers may process information outside Australia. Their processing locations can change; contact us if you need current details about a particular provider. You can ask to access or correct personal information we hold, or raise a privacy complaint, by emailing <a href="mailto:${EMAIL}">${EMAIL}</a> or calling <a href="tel:${PHONE_HREF}">${PHONE_DISPLAY}</a>. Please describe the concern and how we can contact you; we will review it and respond. If it remains unresolved, you may contact the <a href="https://www.oaic.gov.au/privacy/privacy-complaints" target="_blank" rel="noopener">Office of the Australian Information Commissioner</a>.</p>
         <p>We will update this page if our enquiry or website practices materially change. Return to the <a href="/contact/">contact page</a> if you need to send a drain enquiry.</p>
       </div></section>
+    <section class="section story-grid" data-clarity-notice><div class="story-lead"><h2>Optional Microsoft Clarity analytics</h2></div><div class="story-copy"><p>Only with your permission, Microsoft Clarity records masked page reading, scrolling and clicks for heatmaps and session recordings, and may process device, connection and first-party analytics identifiers. Contact, confirmation and staff pages, and addresses containing query strings or fragments, are excluded. Recording stops when you start using an enquiry form; enquiry content is excluded.</p><p>Clarity preferences at the foot of the page control Clarity only and do not change the Google Analytics settings described above. You may turn Clarity off at any time without affecting browsing or contacting us. We respect browser no-tracking signals.</p><p><a href="https://privacy.microsoft.com/privacystatement">Microsoft Privacy Statement</a></p></div></section>
     </main>`,
 });
 
@@ -1558,11 +1559,12 @@ const document = (page, origin, path) => {
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_MEASUREMENT_ID}");</script>
   <script type="application/ld+json">${jsonLd(page, origin, path)}</script>
 </head>
-<body>
+<body data-clarity-mask="true">
   ${header(path)}
   <div id="main">${page.body}</div>
   ${footer(path)}
   <script src="/assets/site.js" defer></script><link rel="stylesheet" href="/service-qa/20261014-1/widget.css" data-service-qa-style="" /><script type="module" src="/service-qa/20261014-1/widget.js" data-service-qa="" data-site-origin="https://www.melonedrains.com.au" data-contact-en="/contact/" data-contact-zh="/zh/contact/"></script>
+  <script id="clarity-config" type="application/json">{"projectId":"yy15u4fmm6","hostname":"www.melonedrains.com.au","cookieDomains":["www.melonedrains.com.au","melonedrains.com.au"],"storageKey":"mel-one.clarity-consent.v1","theme":"plumbing","siteKind":"business"}</script><script src="/clarity-consent.js?v=20261015-1" defer></script>
 </body>
 </html>`;
 };
@@ -1604,6 +1606,8 @@ export default {
     if (
       path.startsWith("/assets/") ||
       [
+        "/clarity-consent.js",
+        "/clarity-consent.css",
         "/og.png",
         "/melone-logo.png",
         "/representative-pipe-service.jpg",

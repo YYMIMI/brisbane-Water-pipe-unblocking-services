@@ -37,6 +37,8 @@ await Promise.all([
   copyFile(path.join(root, "public", "ellis-exterior-drainage-detail.jpg"), path.join(client, "ellis-exterior-drainage-detail.jpg")),
 ]);
 
+await Promise.all(["clarity-consent.js", "clarity-consent.css"].map(file => copyFile(path.join(root, "public", file), path.join(client, file))));
+
 await cp(path.join(root, "public", "service-qa"), path.join(client, "service-qa"), { recursive: true });
 
 console.log("Built MelOne Brisbane site");
